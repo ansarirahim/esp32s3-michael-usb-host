@@ -66,11 +66,11 @@
 #define CFG_TUSB_DEBUG        0
 #endif
 
-// Enable Device stack
-#define CFG_TUD_ENABLED       1
+// Enable Device stack (disabled - using host mode)
+#define CFG_TUD_ENABLED       0
 
-// Enable Host stack (temporarily disabled)
-#define CFG_TUH_ENABLED       0
+// Enable Host stack
+#define CFG_TUH_ENABLED       1
 
 // Default is max speed that hardware controller could support with on-chip PHY
 #define CFG_TUD_MAX_SPEED     BOARD_TUD_MAX_SPEED
@@ -123,9 +123,9 @@
 #define CFG_TUH_MAX_SPEED     BOARD_TUD_MAX_SPEED
 
 #define CFG_TUH_HUB                 1
-#define CFG_TUH_CDC                 1
-#define CFG_TUH_HID                 4 // typical keyboard + mouse device can have 3-4 HID interfaces
-#define CFG_TUH_MSC                 1
+#define CFG_TUH_CDC                 0  // Disabled - not needed for USB drives
+#define CFG_TUH_HID                 0  // Disabled - not needed for USB drives
+#define CFG_TUH_MSC                 1  // Enabled - for USB Mass Storage (drives)
 #define CFG_TUH_VENDOR              0
 
 // max device support (excluding hub device)

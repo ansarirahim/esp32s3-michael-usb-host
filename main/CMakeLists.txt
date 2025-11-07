@@ -3,7 +3,7 @@
 # Date: November 2025
 
 idf_component_register(
-    SRCS 
+    SRCS
         "main.c"
         "board_pins.c"
         "led_control.c"
@@ -11,13 +11,13 @@ idf_component_register(
         "usb_host.c"
         "usb_device.c"
         "usb_host_automator.c"
-    INCLUDE_DIRS 
+    INCLUDE_DIRS
         "."
-    REQUIRES 
-        "tinyusb"
+    REQUIRES
         "fatfs"
         "driver"
         "esp_rom"
+        "usb"
 )
 
 # Add main directory to include path for tinyusb config
