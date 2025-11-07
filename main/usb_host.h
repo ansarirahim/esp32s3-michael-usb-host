@@ -4,7 +4,7 @@
  *
  * @author Abdul Raheem Ansari <ansarirahim1@gmail.com>
  * @date November 2025
- * @version 1.0.0
+ * @version 3.0.0
  */
 
 #pragma once
@@ -13,7 +13,7 @@
 #include "esp_err.h"
 
 /**
- * @brief Initialize USB Host Mode
+ * @brief Initialize USB Host Mode with MSC support
  * @return ESP_OK on success, error code otherwise
  */
 esp_err_t usb_host_init(void);
@@ -36,3 +36,8 @@ bool usb_host_is_device_connected(void);
  */
 bool usb_host_is_initialized(void);
 
+/**
+ * @brief Get USB mount point
+ * @return Mount point path if USB drive is mounted, NULL otherwise
+ */
+const char* usb_host_get_mount_point(void);

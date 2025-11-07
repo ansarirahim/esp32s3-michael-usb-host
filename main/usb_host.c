@@ -4,7 +4,7 @@
  *
  * @author Abdul Raheem Ansari <ansarirahim1@gmail.com>
  * @date November 2025
- * @version 2.0.0
+ * @version 3.0.0
  */
 
 #include "usb_host.h"
@@ -12,21 +12,29 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "usb/usb_host.h"
+#include "usb/msc_host.h"
+#include "usb/msc_host_vfs.h"
 #include "led_control.h"
 
 static const char *TAG = "usb_host";
 
+#define USB_MOUNT_POINT "/usb"
+
 /* USB Host state */
 static bool usb_host_initialized = false;
 static bool usb_device_connected = false;
+static bool msc_initialized = false;
 static usb_host_client_handle_t client_hdl = NULL;
 static usb_device_handle_t dev_hdl = NULL;
+static msc_host_device_handle_t msc_device = NULL;
+static msc_host_vfs_handle_t vfs_handle = NULL;
 static uint8_t dev_addr = 0;
 
 /* Forward declarations */
 static void usb_host_lib_task(void *arg);
 static void usb_host_client_task(void *arg);
 static void usb_host_client_event_cb(const usb_host_client_event_msg_t *event_msg, void *arg);
+static void msc_event_cb(const msc_host_event_t *event, void *arg);
 
 /**
  * @brief USB Host library task - handles USB host library events
@@ -69,6 +77,18 @@ static void usb_host_client_task(void *arg)
 }
 
 /**
+ * @brief MSC event callback
+ */
+static void msc_event_cb(const msc_host_event_t *event, void *arg)
+{
+    if (event->event == MSC_DEVICE_CONNECTED) {
+        ESP_LOGI(TAG, "MSC device connected");
+    } else if (event->event == MSC_DEVICE_DISCONNECTED) {
+        ESP_LOGI(TAG, "MSC device disconnected");
+    }
+}
+
+/**
  * @brief USB Host client event callback
  */
 static void usb_host_client_event_cb(const usb_host_client_event_msg_t *event_msg, void *arg)
@@ -84,6 +104,32 @@ static void usb_host_client_event_cb(const usb_host_client_event_msg_t *event_ms
                 ESP_LOGI(TAG, "Device opened successfully (handle: %p)", dev_hdl);
                 usb_device_connected = true;
                 led_control_set_state(LED_STATE_PREPARE);  /* LED to CYAN */
+
+                /* Try to install MSC device */
+                if (msc_initialized) {
+                    ret = msc_host_install_device(dev_addr, &msc_device);
+                    if (ret == ESP_OK) {
+                        ESP_LOGI(TAG, "MSC device installed successfully");
+
+                        /* Mount to VFS */
+                        const esp_vfs_fat_mount_config_t mount_config = {
+                            .format_if_mount_failed = false,
+                            .max_files = 3,
+                            .allocation_unit_size = 8192,
+                        };
+
+                        ret = msc_host_vfs_register(msc_device, USB_MOUNT_POINT, &mount_config, &vfs_handle);
+                        if (ret == ESP_OK) {
+                            ESP_LOGI(TAG, "USB drive mounted at %s", USB_MOUNT_POINT);
+                        } else {
+                            ESP_LOGE(TAG, "Failed to mount USB drive: %s", esp_err_to_name(ret));
+                            msc_host_uninstall_device(msc_device);
+                            msc_device = NULL;
+                        }
+                    } else {
+                        ESP_LOGW(TAG, "Not a MSC device or failed to install: %s", esp_err_to_name(ret));
+                    }
+                }
             } else {
                 ESP_LOGE(TAG, "Failed to open device: %s", esp_err_to_name(ret));
             }
@@ -91,6 +137,18 @@ static void usb_host_client_event_cb(const usb_host_client_event_msg_t *event_ms
 
         case USB_HOST_CLIENT_EVENT_DEV_GONE:
             ESP_LOGI(TAG, "USB device disconnected (handle: %p)", event_msg->dev_gone.dev_hdl);
+
+            /* Unmount and uninstall MSC device */
+            if (vfs_handle != NULL) {
+                ESP_LOGI(TAG, "Unmounting USB drive...");
+                msc_host_vfs_unregister(vfs_handle);
+                vfs_handle = NULL;
+            }
+
+            if (msc_device != NULL) {
+                msc_host_uninstall_device(msc_device);
+                msc_device = NULL;
+            }
 
             /* Close the device */
             if (dev_hdl != NULL) {
@@ -189,6 +247,24 @@ esp_err_t usb_host_init(void)
         return ESP_FAIL;
     }
 
+    /* Install MSC driver */
+    ESP_LOGI(TAG, "Installing MSC driver...");
+    const msc_host_driver_config_t msc_config = {
+        .create_backround_task = true,
+        .task_priority = 5,
+        .stack_size = 4096,
+        .callback = msc_event_cb,
+        .callback_arg = NULL,
+    };
+
+    ret = msc_host_install(&msc_config);
+    if (ret == ESP_OK) {
+        msc_initialized = true;
+        ESP_LOGI(TAG, "✓ MSC driver installed successfully");
+    } else {
+        ESP_LOGW(TAG, "Failed to install MSC driver: %s (continuing without MSC support)", esp_err_to_name(ret));
+    }
+
     usb_host_initialized = true;
     ESP_LOGI(TAG, "✓ USB Host initialized successfully");
 
@@ -205,6 +281,18 @@ esp_err_t usb_host_deinit(void)
     if (!usb_host_initialized) {
         ESP_LOGW(TAG, "USB Host not initialized");
         return ESP_OK;
+    }
+
+    /* Uninstall MSC driver */
+    if (msc_initialized) {
+        ESP_LOGI(TAG, "Uninstalling MSC driver...");
+        esp_err_t ret = msc_host_uninstall();
+        if (ret == ESP_OK) {
+            msc_initialized = false;
+            ESP_LOGI(TAG, "✓ MSC driver uninstalled");
+        } else {
+            ESP_LOGW(TAG, "Failed to uninstall MSC driver: %s", esp_err_to_name(ret));
+        }
     }
 
     /* Uninstall USB Host library */
@@ -238,5 +326,10 @@ bool usb_host_is_initialized(void)
     return usb_host_initialized;
 }
 
-
-
+/**
+ * @brief Get USB mount point
+ */
+const char* usb_host_get_mount_point(void)
+{
+    return (vfs_handle != NULL) ? USB_MOUNT_POINT : NULL;
+}

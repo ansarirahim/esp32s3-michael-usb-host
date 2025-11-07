@@ -15,6 +15,8 @@
  */
 
 #include <stdio.h>
+#include <dirent.h>
+#include <sys/stat.h>
 #include "esp_log.h"
 #include "esp_system.h"
 #include "freertos/FreeRTOS.h"
@@ -171,14 +173,60 @@ void app_main(void)
     ESP_LOGI(TAG, "=================================================");
     ESP_LOGI(TAG, "Phase 1: LED Control - COMPLETE ✓");
     ESP_LOGI(TAG, "Phase 2a: USB Host Init - COMPLETE ✓");
+    ESP_LOGI(TAG, "Phase 2b: USB MSC Driver - READY FOR TEST ✓");
     ESP_LOGI(TAG, "=================================================");
     ESP_LOGI(TAG, "Application running - waiting for USB events");
-    ESP_LOGI(TAG, "Insert/remove USB drive to test detection");
+    ESP_LOGI(TAG, "Insert USB drive to test MSC functionality");
 
     /* Keep application running - USB and LED tasks continue in background */
+    static bool files_listed = false;
+
     while (1) {
         vTaskDelay(pdMS_TO_TICKS(1000));
-        /* Application is idle - USB host task and LED animation task are running */
+
+        /* Check if USB drive is mounted and list files */
+        const char* mount_point = usb_host_get_mount_point();
+        if (mount_point != NULL) {
+            if (!files_listed) {
+                ESP_LOGI(TAG, "=================================================");
+                ESP_LOGI(TAG, "USB Drive Mounted - Listing Files");
+                ESP_LOGI(TAG, "=================================================");
+
+                DIR *dir = opendir(mount_point);
+                if (dir != NULL) {
+                    struct dirent *entry;
+                    int file_count = 0;
+
+                    while ((entry = readdir(dir)) != NULL) {
+                        char filepath[512];
+                        snprintf(filepath, sizeof(filepath), "%s/%s", mount_point, entry->d_name);
+
+                        struct stat st;
+                        if (stat(filepath, &st) == 0) {
+                            if (S_ISDIR(st.st_mode)) {
+                                ESP_LOGI(TAG, "[DIR]  %s", entry->d_name);
+                            } else {
+                                ESP_LOGI(TAG, "[FILE] %s (%ld bytes)", entry->d_name, st.st_size);
+                                file_count++;
+                            }
+                        }
+                    }
+
+                    closedir(dir);
+                    ESP_LOGI(TAG, "=================================================");
+                    ESP_LOGI(TAG, "Total files: %d", file_count);
+                    ESP_LOGI(TAG, "=================================================");
+                    ESP_LOGI(TAG, "✓ TEST PASSED: USB MSC file listing");
+                    tests_passed++;
+                    files_listed = true;
+                } else {
+                    ESP_LOGE(TAG, "Failed to open directory: %s", mount_point);
+                }
+            }
+        } else {
+            /* Reset flag when USB is disconnected */
+            files_listed = false;
+        }
     }
 }
 
