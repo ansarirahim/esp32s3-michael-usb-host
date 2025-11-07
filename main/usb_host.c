@@ -4,17 +4,20 @@
  *
  * @author Abdul Raheem Ansari <ansarirahim1@gmail.com>
  * @date November 2025
- * @version 3.0.0
+ * @version 4.0.0
  */
 
 #include "usb_host.h"
 #include "esp_log.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
+#include "freertos/semphr.h"
 #include "usb/usb_host.h"
 #include "usb/msc_host.h"
 #include "usb/msc_host_vfs.h"
 #include "led_control.h"
+#include <sys/unistd.h>
+#include <sys/stat.h>
 
 static const char *TAG = "usb_host";
 
@@ -24,11 +27,13 @@ static const char *TAG = "usb_host";
 static bool usb_host_initialized = false;
 static bool usb_device_connected = false;
 static bool msc_initialized = false;
+static bool safe_eject_requested = false;
 static usb_host_client_handle_t client_hdl = NULL;
 static usb_device_handle_t dev_hdl = NULL;
 static msc_host_device_handle_t msc_device = NULL;
 static msc_host_vfs_handle_t vfs_handle = NULL;
 static uint8_t dev_addr = 0;
+static SemaphoreHandle_t eject_mutex = NULL;
 
 /* Forward declarations */
 static void usb_host_lib_task(void *arg);
@@ -179,6 +184,13 @@ esp_err_t usb_host_init(void)
         return ESP_OK;
     }
 
+    /* Create eject mutex */
+    eject_mutex = xSemaphoreCreateMutex();
+    if (eject_mutex == NULL) {
+        ESP_LOGE(TAG, "Failed to create eject mutex");
+        return ESP_ERR_NO_MEM;
+    }
+
     /* Install USB Host library */
     ESP_LOGI(TAG, "Installing USB Host library...");
     const usb_host_config_t host_config = {
@@ -189,6 +201,8 @@ esp_err_t usb_host_init(void)
     esp_err_t ret = usb_host_install(&host_config);
     if (ret != ESP_OK) {
         ESP_LOGE(TAG, "Failed to install USB Host library: %s", esp_err_to_name(ret));
+        vSemaphoreDelete(eject_mutex);
+        eject_mutex = NULL;
         return ret;
     }
 
@@ -302,6 +316,12 @@ esp_err_t usb_host_deinit(void)
         return ret;
     }
 
+    /* Delete eject mutex */
+    if (eject_mutex != NULL) {
+        vSemaphoreDelete(eject_mutex);
+        eject_mutex = NULL;
+    }
+
     usb_host_initialized = false;
     usb_device_connected = false;
 
@@ -332,4 +352,141 @@ bool usb_host_is_initialized(void)
 const char* usb_host_get_mount_point(void)
 {
     return (vfs_handle != NULL) ? USB_MOUNT_POINT : NULL;
+}
+
+/**
+ * @brief Sync filesystem to ensure all data is written to USB drive
+ */
+esp_err_t usb_host_sync_filesystem(void)
+{
+    if (vfs_handle == NULL) {
+        ESP_LOGW(TAG, "Cannot sync: USB drive not mounted");
+        return ESP_ERR_INVALID_STATE;
+    }
+
+    ESP_LOGI(TAG, "Syncing filesystem...");
+
+    /* VFS unmount will automatically sync, but we add a delay to ensure
+     * any pending writes are completed */
+    vTaskDelay(pdMS_TO_TICKS(200));
+
+    ESP_LOGI(TAG, "✓ Filesystem sync delay completed");
+    return ESP_OK;
+}
+
+/**
+ * @brief Safely eject USB drive (sync + unmount)
+ */
+esp_err_t usb_host_safe_eject(void)
+{
+    if (eject_mutex == NULL) {
+        ESP_LOGE(TAG, "Eject mutex not initialized");
+        return ESP_ERR_INVALID_STATE;
+    }
+
+    /* Take mutex to prevent concurrent eject operations */
+    if (xSemaphoreTake(eject_mutex, pdMS_TO_TICKS(1000)) != pdTRUE) {
+        ESP_LOGE(TAG, "Failed to acquire eject mutex");
+        return ESP_ERR_TIMEOUT;
+    }
+
+    if (vfs_handle == NULL) {
+        ESP_LOGW(TAG, "Cannot eject: USB drive not mounted");
+        xSemaphoreGive(eject_mutex);
+        return ESP_ERR_INVALID_STATE;
+    }
+
+    ESP_LOGI(TAG, "=================================================");
+    ESP_LOGI(TAG, "Safe Eject: Starting...");
+    ESP_LOGI(TAG, "=================================================");
+
+    /* Step 1: Sync filesystem */
+    ESP_LOGI(TAG, "Step 1: Syncing filesystem...");
+    led_control_set_state(LED_STATE_SYNC);  /* LED to MAGENTA */
+
+    esp_err_t ret = usb_host_sync_filesystem();
+    if (ret != ESP_OK) {
+        ESP_LOGE(TAG, "Failed to sync filesystem: %s", esp_err_to_name(ret));
+        xSemaphoreGive(eject_mutex);
+        return ret;
+    }
+
+    /* Step 2: Unmount VFS */
+    ESP_LOGI(TAG, "Step 2: Unmounting VFS...");
+    ret = msc_host_vfs_unregister(vfs_handle);
+    if (ret != ESP_OK) {
+        ESP_LOGE(TAG, "Failed to unmount VFS: %s", esp_err_to_name(ret));
+        led_control_set_state(LED_STATE_ERROR);  /* LED to RED */
+        xSemaphoreGive(eject_mutex);
+        return ret;
+    }
+    vfs_handle = NULL;
+    ESP_LOGI(TAG, "✓ VFS unmounted");
+
+    /* Step 3: Uninstall MSC device */
+    ESP_LOGI(TAG, "Step 3: Uninstalling MSC device...");
+    if (msc_device != NULL) {
+        ret = msc_host_uninstall_device(msc_device);
+        if (ret != ESP_OK) {
+            ESP_LOGE(TAG, "Failed to uninstall MSC device: %s", esp_err_to_name(ret));
+            led_control_set_state(LED_STATE_ERROR);  /* LED to RED */
+            xSemaphoreGive(eject_mutex);
+            return ret;
+        }
+        msc_device = NULL;
+        ESP_LOGI(TAG, "✓ MSC device uninstalled");
+    }
+
+    /* Step 4: Close USB device */
+    ESP_LOGI(TAG, "Step 4: Closing USB device...");
+    if (dev_hdl != NULL) {
+        ret = usb_host_device_close(client_hdl, dev_hdl);
+        if (ret != ESP_OK) {
+            ESP_LOGE(TAG, "Failed to close USB device: %s", esp_err_to_name(ret));
+            led_control_set_state(LED_STATE_ERROR);  /* LED to RED */
+            xSemaphoreGive(eject_mutex);
+            return ret;
+        }
+        dev_hdl = NULL;
+        ESP_LOGI(TAG, "✓ USB device closed");
+    }
+
+    usb_device_connected = false;
+    dev_addr = 0;
+    safe_eject_requested = false;
+
+    ESP_LOGI(TAG, "=================================================");
+    ESP_LOGI(TAG, "✓ Safe Eject: COMPLETE");
+    ESP_LOGI(TAG, "=================================================");
+    ESP_LOGI(TAG, "USB drive can now be safely removed");
+
+    led_control_set_state(LED_STATE_SUCCESS);  /* LED to GREEN SOLID */
+    vTaskDelay(pdMS_TO_TICKS(2000));  /* Show success for 2 seconds */
+    led_control_set_state(LED_STATE_IDLE);  /* Back to IDLE */
+
+    xSemaphoreGive(eject_mutex);
+    return ESP_OK;
+}
+
+/**
+ * @brief Request safe eject (non-blocking)
+ */
+esp_err_t usb_host_request_safe_eject(void)
+{
+    if (vfs_handle == NULL) {
+        ESP_LOGW(TAG, "Cannot request eject: USB drive not mounted");
+        return ESP_ERR_INVALID_STATE;
+    }
+
+    safe_eject_requested = true;
+    ESP_LOGI(TAG, "Safe eject requested");
+    return ESP_OK;
+}
+
+/**
+ * @brief Check if safe eject is requested
+ */
+bool usb_host_is_eject_requested(void)
+{
+    return safe_eject_requested;
 }

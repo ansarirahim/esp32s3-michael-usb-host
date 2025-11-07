@@ -173,13 +173,17 @@ void app_main(void)
     ESP_LOGI(TAG, "=================================================");
     ESP_LOGI(TAG, "Phase 1: LED Control - COMPLETE ✓");
     ESP_LOGI(TAG, "Phase 2a: USB Host Init - COMPLETE ✓");
-    ESP_LOGI(TAG, "Phase 2b: USB MSC Driver - READY FOR TEST ✓");
+    ESP_LOGI(TAG, "Phase 2b: USB MSC Driver - COMPLETE ✓");
+    ESP_LOGI(TAG, "Phase 2d: Safe Eject - READY FOR TEST ✓");
     ESP_LOGI(TAG, "=================================================");
     ESP_LOGI(TAG, "Application running - waiting for USB events");
-    ESP_LOGI(TAG, "Insert USB drive to test MSC functionality");
+    ESP_LOGI(TAG, "Insert USB drive to test safe eject functionality");
+    ESP_LOGI(TAG, "Safe eject will trigger 10 seconds after file listing");
 
     /* Keep application running - USB and LED tasks continue in background */
     static bool files_listed = false;
+    static bool safe_eject_tested = false;
+    static TickType_t file_list_time = 0;
 
     while (1) {
         vTaskDelay(pdMS_TO_TICKS(1000));
@@ -219,13 +223,35 @@ void app_main(void)
                     ESP_LOGI(TAG, "✓ TEST PASSED: USB MSC file listing");
                     tests_passed++;
                     files_listed = true;
+                    file_list_time = xTaskGetTickCount();
                 } else {
                     ESP_LOGE(TAG, "Failed to open directory: %s", mount_point);
                 }
             }
+
+            /* Test safe eject 10 seconds after file listing */
+            if (files_listed && !safe_eject_tested) {
+                TickType_t elapsed = (xTaskGetTickCount() - file_list_time) / pdMS_TO_TICKS(1000);
+                if (elapsed >= 10) {
+                    ESP_LOGI(TAG, "=================================================");
+                    ESP_LOGI(TAG, "Testing Safe Eject...");
+                    ESP_LOGI(TAG, "=================================================");
+
+                    esp_err_t ret = usb_host_safe_eject();
+                    if (ret == ESP_OK) {
+                        ESP_LOGI(TAG, "✓ TEST PASSED: Safe eject successful");
+                        tests_passed++;
+                        safe_eject_tested = true;
+                    } else {
+                        ESP_LOGE(TAG, "✗ TEST FAILED: Safe eject failed: %s", esp_err_to_name(ret));
+                        tests_failed++;
+                    }
+                }
+            }
         } else {
-            /* Reset flag when USB is disconnected */
+            /* Reset flags when USB is disconnected */
             files_listed = false;
+            safe_eject_tested = false;
         }
     }
 }

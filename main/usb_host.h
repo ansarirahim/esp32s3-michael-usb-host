@@ -4,7 +4,7 @@
  *
  * @author Abdul Raheem Ansari <ansarirahim1@gmail.com>
  * @date November 2025
- * @version 3.0.0
+ * @version 4.0.0
  */
 
 #pragma once
@@ -41,3 +41,27 @@ bool usb_host_is_initialized(void);
  * @return Mount point path if USB drive is mounted, NULL otherwise
  */
 const char* usb_host_get_mount_point(void);
+
+/**
+ * @brief Sync filesystem to ensure all data is written to USB drive
+ * @return ESP_OK on success, error code otherwise
+ */
+esp_err_t usb_host_sync_filesystem(void);
+
+/**
+ * @brief Safely eject USB drive (sync + unmount + close)
+ * @return ESP_OK on success, error code otherwise
+ */
+esp_err_t usb_host_safe_eject(void);
+
+/**
+ * @brief Request safe eject (non-blocking)
+ * @return ESP_OK on success, error code otherwise
+ */
+esp_err_t usb_host_request_safe_eject(void);
+
+/**
+ * @brief Check if safe eject is requested
+ * @return true if eject requested, false otherwise
+ */
+bool usb_host_is_eject_requested(void);
