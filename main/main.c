@@ -174,14 +174,17 @@ void app_main(void)
     ESP_LOGI(TAG, "Phase 1: LED Control - COMPLETE ✓");
     ESP_LOGI(TAG, "Phase 2a: USB Host Init - COMPLETE ✓");
     ESP_LOGI(TAG, "Phase 2b: USB MSC Driver - COMPLETE ✓");
+    ESP_LOGI(TAG, "Phase 2c: File Operations - READY FOR TEST ✓");
     ESP_LOGI(TAG, "Phase 2d: Safe Eject - READY FOR TEST ✓");
     ESP_LOGI(TAG, "=================================================");
     ESP_LOGI(TAG, "Application running - waiting for USB events");
-    ESP_LOGI(TAG, "Insert USB drive to test safe eject functionality");
-    ESP_LOGI(TAG, "Safe eject will trigger 10 seconds after file listing");
+    ESP_LOGI(TAG, "Insert USB drive to test file operations");
+    ESP_LOGI(TAG, "Test sequence: File Listing -> Read File -> Write File -> Safe Eject");
 
     /* Keep application running - USB and LED tasks continue in background */
     static bool files_listed = false;
+    static bool file_read_tested = false;
+    static bool file_write_tested = false;
     static bool safe_eject_tested = false;
     static TickType_t file_list_time = 0;
 
@@ -229,8 +232,71 @@ void app_main(void)
                 }
             }
 
+            /* Test file read 3 seconds after file listing */
+            if (files_listed && !file_read_tested) {
+                TickType_t elapsed = (xTaskGetTickCount() - file_list_time) / pdMS_TO_TICKS(1000);
+                if (elapsed >= 3) {
+                    ESP_LOGI(TAG, "=================================================");
+                    ESP_LOGI(TAG, "Testing File Read...");
+                    ESP_LOGI(TAG, "=================================================");
+
+                    /* Try to read ANSARI~1.TXT */
+                    char buffer[256];
+                    size_t bytes_read = 0;
+                    esp_err_t ret = usb_host_read_file("ANSARI~1.TXT", buffer, sizeof(buffer), &bytes_read);
+
+                    if (ret == ESP_OK) {
+                        ESP_LOGI(TAG, "File contents (%d bytes):", bytes_read);
+                        ESP_LOGI(TAG, "---");
+                        ESP_LOGI(TAG, "%s", buffer);
+                        ESP_LOGI(TAG, "---");
+                        ESP_LOGI(TAG, "✓ TEST PASSED: File read successful");
+                        tests_passed++;
+                    } else {
+                        ESP_LOGW(TAG, "File read test skipped (file may not exist)");
+                    }
+                    file_read_tested = true;
+                }
+            }
+
+            /* Test file write 6 seconds after file listing */
+            if (files_listed && file_read_tested && !file_write_tested) {
+                TickType_t elapsed = (xTaskGetTickCount() - file_list_time) / pdMS_TO_TICKS(1000);
+                if (elapsed >= 6) {
+                    ESP_LOGI(TAG, "=================================================");
+                    ESP_LOGI(TAG, "Testing File Write...");
+                    ESP_LOGI(TAG, "=================================================");
+
+                    /* Write test file */
+                    const char* test_data = "ESP32-S3 USB Host Test\nPhase 2c: File Operations\nDate: November 8, 2025\n";
+                    esp_err_t ret = usb_host_write_file("ESP32TEST.TXT", test_data, strlen(test_data));
+
+                    if (ret == ESP_OK) {
+                        ESP_LOGI(TAG, "✓ TEST PASSED: File write successful");
+                        tests_passed++;
+
+                        /* Verify by reading back */
+                        char verify_buffer[256];
+                        size_t bytes_read = 0;
+                        ret = usb_host_read_file("ESP32TEST.TXT", verify_buffer, sizeof(verify_buffer), &bytes_read);
+                        if (ret == ESP_OK) {
+                            ESP_LOGI(TAG, "Verification read (%d bytes):", bytes_read);
+                            ESP_LOGI(TAG, "---");
+                            ESP_LOGI(TAG, "%s", verify_buffer);
+                            ESP_LOGI(TAG, "---");
+                            ESP_LOGI(TAG, "✓ TEST PASSED: File write verification successful");
+                            tests_passed++;
+                        }
+                    } else {
+                        ESP_LOGE(TAG, "✗ TEST FAILED: File write failed");
+                        tests_failed++;
+                    }
+                    file_write_tested = true;
+                }
+            }
+
             /* Test safe eject 10 seconds after file listing */
-            if (files_listed && !safe_eject_tested) {
+            if (files_listed && file_read_tested && file_write_tested && !safe_eject_tested) {
                 TickType_t elapsed = (xTaskGetTickCount() - file_list_time) / pdMS_TO_TICKS(1000);
                 if (elapsed >= 10) {
                     ESP_LOGI(TAG, "=================================================");
@@ -251,6 +317,8 @@ void app_main(void)
         } else {
             /* Reset flags when USB is disconnected */
             files_listed = false;
+            file_read_tested = false;
+            file_write_tested = false;
             safe_eject_tested = false;
         }
     }

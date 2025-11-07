@@ -4,7 +4,7 @@
  *
  * @author Abdul Raheem Ansari <ansarirahim1@gmail.com>
  * @date November 2025
- * @version 4.0.0
+ * @version 5.0.0
  */
 
 #include "usb_host.h"
@@ -489,4 +489,114 @@ esp_err_t usb_host_request_safe_eject(void)
 bool usb_host_is_eject_requested(void)
 {
     return safe_eject_requested;
+}
+
+/**
+ * @brief Read file from USB drive
+ */
+esp_err_t usb_host_read_file(const char* file_path, char* buffer, size_t buffer_size, size_t* bytes_read)
+{
+    if (vfs_handle == NULL) {
+        ESP_LOGE(TAG, "Cannot read file: USB drive not mounted");
+        return ESP_ERR_INVALID_STATE;
+    }
+
+    if (file_path == NULL || buffer == NULL || bytes_read == NULL) {
+        ESP_LOGE(TAG, "Invalid parameters");
+        return ESP_ERR_INVALID_ARG;
+    }
+
+    /* Build full path */
+    char full_path[256];
+    snprintf(full_path, sizeof(full_path), "%s/%s", USB_MOUNT_POINT, file_path);
+
+    ESP_LOGI(TAG, "Reading file: %s", full_path);
+
+    /* Open file for reading */
+    FILE* f = fopen(full_path, "r");
+    if (f == NULL) {
+        ESP_LOGE(TAG, "Failed to open file for reading: %s", full_path);
+        return ESP_FAIL;
+    }
+
+    /* Read file contents */
+    *bytes_read = fread(buffer, 1, buffer_size - 1, f);
+    buffer[*bytes_read] = '\0';  /* Null-terminate */
+
+    fclose(f);
+
+    ESP_LOGI(TAG, "✓ Read %d bytes from %s", *bytes_read, file_path);
+    return ESP_OK;
+}
+
+/**
+ * @brief Write file to USB drive
+ */
+esp_err_t usb_host_write_file(const char* file_path, const char* data, size_t data_size)
+{
+    if (vfs_handle == NULL) {
+        ESP_LOGE(TAG, "Cannot write file: USB drive not mounted");
+        return ESP_ERR_INVALID_STATE;
+    }
+
+    if (file_path == NULL || data == NULL) {
+        ESP_LOGE(TAG, "Invalid parameters");
+        return ESP_ERR_INVALID_ARG;
+    }
+
+    /* Build full path */
+    char full_path[256];
+    snprintf(full_path, sizeof(full_path), "%s/%s", USB_MOUNT_POINT, file_path);
+
+    ESP_LOGI(TAG, "Writing file: %s (%d bytes)", full_path, data_size);
+
+    /* Open file for writing */
+    FILE* f = fopen(full_path, "w");
+    if (f == NULL) {
+        ESP_LOGE(TAG, "Failed to open file for writing: %s", full_path);
+        return ESP_FAIL;
+    }
+
+    /* Write data */
+    size_t written = fwrite(data, 1, data_size, f);
+    fclose(f);
+
+    if (written != data_size) {
+        ESP_LOGE(TAG, "Write failed: wrote %d bytes, expected %d", written, data_size);
+        return ESP_FAIL;
+    }
+
+    ESP_LOGI(TAG, "✓ Wrote %d bytes to %s", written, file_path);
+    return ESP_OK;
+}
+
+/**
+ * @brief Get file size
+ */
+esp_err_t usb_host_get_file_size(const char* file_path, size_t* file_size)
+{
+    if (vfs_handle == NULL) {
+        ESP_LOGE(TAG, "Cannot get file size: USB drive not mounted");
+        return ESP_ERR_INVALID_STATE;
+    }
+
+    if (file_path == NULL || file_size == NULL) {
+        ESP_LOGE(TAG, "Invalid parameters");
+        return ESP_ERR_INVALID_ARG;
+    }
+
+    /* Build full path */
+    char full_path[256];
+    snprintf(full_path, sizeof(full_path), "%s/%s", USB_MOUNT_POINT, file_path);
+
+    /* Get file stats */
+    struct stat st;
+    if (stat(full_path, &st) != 0) {
+        ESP_LOGE(TAG, "Failed to get file stats: %s", full_path);
+        return ESP_FAIL;
+    }
+
+    *file_size = st.st_size;
+    ESP_LOGI(TAG, "File size: %s = %d bytes", file_path, *file_size);
+    return ESP_OK;
 }
