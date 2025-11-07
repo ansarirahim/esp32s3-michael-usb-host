@@ -1,0 +1,84 @@
+# ESP32-S3 USB Host Automator - SDK Configuration
+# Project: USB Host Mode Automation for Michael Steinmann
+# Date: November 2025
+
+# ============================================================================
+# CHIP CONFIGURATION
+# ============================================================================
+CONFIG_IDF_TARGET="esp32s3"
+CONFIG_IDF_TARGET_ESP32S3=y
+
+# ============================================================================
+# FLASH CONFIGURATION
+# ============================================================================
+CONFIG_ESPTOOLPY_FLASHMODE_DIO=y
+CONFIG_ESPTOOLPY_FLASHFREQ_80M=y
+CONFIG_ESPTOOLPY_FLASHSIZE_8MB=y
+
+# ============================================================================
+# PARTITION TABLE
+# ============================================================================
+CONFIG_PARTITION_TABLE_CUSTOM=y
+CONFIG_PARTITION_TABLE_CUSTOM_FILENAME="partitions.csv"
+
+# ============================================================================
+# USB CONFIGURATION
+# ============================================================================
+CONFIG_USB_OTG_SUPPORTED=y
+CONFIG_USB_HOST_CONTROL_TRANSFER_MAX_SIZE=256
+CONFIG_USB_HOST_HUB_REQUIRED=n
+
+# TinyUSB Configuration
+CONFIG_TINYUSB=y
+CONFIG_TINYUSB_TASK_STACK_SIZE=4096
+CONFIG_TINYUSB_TASK_PRIORITY=18
+
+# USB Host Configuration
+CONFIG_TINYUSB_HOST=y
+CONFIG_TINYUSB_HOST_MSC=y
+CONFIG_TINYUSB_HOST_HID=n
+CONFIG_TINYUSB_HOST_CDC=n
+CONFIG_TINYUSB_HOST_VENDOR=n
+
+# USB Device Configuration
+CONFIG_TINYUSB_DEVICE=y
+CONFIG_TINYUSB_DEVICE_MSC=y
+CONFIG_TINYUSB_DEVICE_CDC=n
+CONFIG_TINYUSB_DEVICE_HID=n
+
+# ============================================================================
+# FILESYSTEM CONFIGURATION
+# ============================================================================
+CONFIG_FATFS_USES_UTF8=y
+CONFIG_FATFS_LONG_FILENAMES=y
+CONFIG_FATFS_SECTOR_SIZE=512
+
+# ============================================================================
+# LOGGING CONFIGURATION
+# ============================================================================
+CONFIG_LOG_DEFAULT_LEVEL=3
+CONFIG_LOG_DEFAULT_LEVEL_INFO=y
+
+# ============================================================================
+# FREERTOS CONFIGURATION
+# ============================================================================
+CONFIG_FREERTOS_UNICORE=n
+CONFIG_FREERTOS_TASK_STACK_SIZE_DEFAULT=3072
+
+# ============================================================================
+# PSRAM CONFIGURATION
+# ============================================================================
+# PSRAM disabled - not all boards have PSRAM
+CONFIG_SPIRAM=n
+
+# ============================================================================
+# SECURITY CONFIGURATION
+# ============================================================================
+CONFIG_SECURE_BOOT_ENABLED=n
+CONFIG_SECURE_FLASH_ENC_ENABLED=n
+
+# ============================================================================
+# PERFORMANCE CONFIGURATION
+# ============================================================================
+CONFIG_ESP32S3_DEFAULT_CPU_FREQ_240=y
+
