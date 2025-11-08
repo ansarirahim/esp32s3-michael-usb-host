@@ -4,7 +4,7 @@
  *
  * @author Abdul Raheem Ansari <ansarirahim1@gmail.com>
  * @date November 2025
- * @version 6.0.0
+ * @version 7.0.0
  */
 
 #include "usb_host.h"
@@ -893,6 +893,327 @@ esp_err_t usb_host_delete_all_partitions(void)
     ESP_LOGI(TAG, "✓ MBR zeroed and verified");
     ESP_LOGI(TAG, "=================================================");
     ESP_LOGI(TAG, "USB drive is now ready for formatting");
+
+    return ESP_OK;
+}
+
+/**
+ * @brief Get total number of sectors on the USB drive
+ */
+esp_err_t usb_host_get_drive_capacity(uint32_t* total_sectors)
+{
+    if (total_sectors == NULL) {
+        ESP_LOGE(TAG, "Total sectors pointer is NULL");
+        return ESP_ERR_INVALID_ARG;
+    }
+
+    if (msc_device == NULL) {
+        ESP_LOGE(TAG, "MSC device not initialized");
+        return ESP_ERR_INVALID_STATE;
+    }
+
+    uint32_t block_size = 0;
+    uint32_t block_count = 0;
+
+    /* Read drive capacity using SCSI READ CAPACITY(10) */
+    esp_err_t ret = scsi_cmd_read_capacity(msc_device, &block_size, &block_count);
+    if (ret != ESP_OK) {
+        ESP_LOGE(TAG, "Failed to read drive capacity: %d", ret);
+        return ret;
+    }
+
+    ESP_LOGI(TAG, "Drive capacity: %lu blocks × %lu bytes = %llu bytes (%.2f MB)",
+             block_count, block_size, (uint64_t)block_count * block_size,
+             (float)((uint64_t)block_count * block_size) / (1024.0 * 1024.0));
+
+    *total_sectors = block_count;
+    return ESP_OK;
+}
+
+/**
+ * @brief Create a new MBR partition table with a single FAT32 partition
+ */
+esp_err_t usb_host_create_partition_table(uint32_t total_sectors)
+{
+    ESP_LOGW(TAG, "=================================================");
+    ESP_LOGW(TAG, "⚠️  WARNING: Creating new partition table");
+    ESP_LOGW(TAG, "⚠️  ALL DATA WILL BE LOST!");
+    ESP_LOGW(TAG, "=================================================");
+
+    if (msc_device == NULL) {
+        ESP_LOGE(TAG, "MSC device not initialized");
+        return ESP_ERR_INVALID_STATE;
+    }
+
+    /* Unmount VFS if mounted */
+    if (vfs_handle != NULL) {
+        ESP_LOGI(TAG, "Unmounting VFS before partition creation...");
+        esp_err_t ret = msc_host_vfs_unregister(vfs_handle);
+        if (ret != ESP_OK) {
+            ESP_LOGW(TAG, "Failed to unmount VFS: %d (continuing anyway)", ret);
+        }
+        vfs_handle = NULL;
+    }
+
+    /* Create MBR buffer */
+    uint8_t mbr[SECTOR_SIZE];
+    memset(mbr, 0, SECTOR_SIZE);
+
+    /* Calculate partition parameters */
+    uint32_t partition_start = 2048;  /* 1 MB offset for alignment */
+    uint32_t partition_size = total_sectors - partition_start;
+
+    ESP_LOGI(TAG, "Creating partition:");
+    ESP_LOGI(TAG, "  Start LBA: %lu", partition_start);
+    ESP_LOGI(TAG, "  Size: %lu sectors (%.2f MB)",
+             partition_size, (float)((uint64_t)partition_size * SECTOR_SIZE) / (1024.0 * 1024.0));
+
+    /* Create partition entry 1 at offset 0x1BE */
+    uint16_t entry_offset = MBR_PARTITION_TABLE_OFFSET;
+
+    /* Boot indicator (0x00 = non-bootable) */
+    mbr[entry_offset + 0] = 0x00;
+
+    /* CHS start (0xFFFFFF for LBA) */
+    mbr[entry_offset + 1] = 0xFF;
+    mbr[entry_offset + 2] = 0xFF;
+    mbr[entry_offset + 3] = 0xFF;
+
+    /* Partition type (0x0C = FAT32 LBA) */
+    mbr[entry_offset + 4] = 0x0C;
+
+    /* CHS end (0xFFFFFF for LBA) */
+    mbr[entry_offset + 5] = 0xFF;
+    mbr[entry_offset + 6] = 0xFF;
+    mbr[entry_offset + 7] = 0xFF;
+
+    /* LBA start (little-endian) */
+    mbr[entry_offset + 8] = (partition_start >> 0) & 0xFF;
+    mbr[entry_offset + 9] = (partition_start >> 8) & 0xFF;
+    mbr[entry_offset + 10] = (partition_start >> 16) & 0xFF;
+    mbr[entry_offset + 11] = (partition_start >> 24) & 0xFF;
+
+    /* Size in sectors (little-endian) */
+    mbr[entry_offset + 12] = (partition_size >> 0) & 0xFF;
+    mbr[entry_offset + 13] = (partition_size >> 8) & 0xFF;
+    mbr[entry_offset + 14] = (partition_size >> 16) & 0xFF;
+    mbr[entry_offset + 15] = (partition_size >> 24) & 0xFF;
+
+    /* Boot signature (0x55AA) */
+    mbr[MBR_BOOT_SIGNATURE_OFFSET] = 0x55;
+    mbr[MBR_BOOT_SIGNATURE_OFFSET + 1] = 0xAA;
+
+    /* Write MBR to sector 0 */
+    ESP_LOGI(TAG, "Writing MBR to sector 0...");
+    esp_err_t ret = usb_host_write_sector(0, mbr);
+    if (ret != ESP_OK) {
+        ESP_LOGE(TAG, "Failed to write MBR");
+        return ret;
+    }
+
+    /* Verify MBR */
+    uint8_t verify_mbr[SECTOR_SIZE];
+    ret = usb_host_read_sector(0, verify_mbr);
+    if (ret != ESP_OK) {
+        ESP_LOGE(TAG, "Failed to verify MBR");
+        return ret;
+    }
+
+    /* Check boot signature */
+    uint16_t boot_sig = (verify_mbr[MBR_BOOT_SIGNATURE_OFFSET + 1] << 8) | verify_mbr[MBR_BOOT_SIGNATURE_OFFSET];
+    if (boot_sig != MBR_BOOT_SIGNATURE) {
+        ESP_LOGE(TAG, "MBR verification failed: invalid boot signature 0x%04X", boot_sig);
+        return ESP_FAIL;
+    }
+
+    ESP_LOGI(TAG, "=================================================");
+    ESP_LOGI(TAG, "✓ MBR partition table created successfully");
+    ESP_LOGI(TAG, "✓ Partition 0: Type=0x0C (FAT32 LBA)");
+    ESP_LOGI(TAG, "✓ Start LBA: %lu", partition_start);
+    ESP_LOGI(TAG, "✓ Size: %lu sectors", partition_size);
+    ESP_LOGI(TAG, "=================================================");
+
+    return ESP_OK;
+}
+
+/**
+ * @brief Format a partition as FAT32
+ */
+esp_err_t usb_host_format_fat32(uint8_t partition_num, uint32_t start_lba, uint32_t size_sectors)
+{
+    ESP_LOGW(TAG, "=================================================");
+    ESP_LOGW(TAG, "⚠️  WARNING: Formatting partition as FAT32");
+    ESP_LOGW(TAG, "⚠️  ALL DATA WILL BE LOST!");
+    ESP_LOGW(TAG, "=================================================");
+
+    if (msc_device == NULL) {
+        ESP_LOGE(TAG, "MSC device not initialized");
+        return ESP_ERR_INVALID_STATE;
+    }
+
+    if (partition_num >= MBR_MAX_PARTITIONS) {
+        ESP_LOGE(TAG, "Invalid partition number: %d", partition_num);
+        return ESP_ERR_INVALID_ARG;
+    }
+
+    ESP_LOGI(TAG, "Formatting partition %d:", partition_num);
+    ESP_LOGI(TAG, "  Start LBA: %lu", start_lba);
+    ESP_LOGI(TAG, "  Size: %lu sectors (%.2f MB)",
+             size_sectors, (float)((uint64_t)size_sectors * SECTOR_SIZE) / (1024.0 * 1024.0));
+
+    /* Calculate FAT32 parameters */
+    uint8_t sectors_per_cluster = 8;  /* 4 KB clusters for most drives */
+    uint16_t reserved_sectors = 32;
+    uint8_t num_fats = 2;
+
+    /* Calculate sectors per FAT */
+    uint32_t data_sectors = size_sectors - reserved_sectors;
+    uint32_t fat_size = (data_sectors / (sectors_per_cluster * 256 + 2)) + 1;
+
+    /* Adjust for 2 FATs */
+    data_sectors = size_sectors - reserved_sectors - (fat_size * num_fats);
+    uint32_t cluster_count = data_sectors / sectors_per_cluster;
+
+    ESP_LOGI(TAG, "FAT32 parameters:");
+    ESP_LOGI(TAG, "  Sectors per cluster: %d", sectors_per_cluster);
+    ESP_LOGI(TAG, "  Reserved sectors: %d", reserved_sectors);
+    ESP_LOGI(TAG, "  Number of FATs: %d", num_fats);
+    ESP_LOGI(TAG, "  Sectors per FAT: %lu", fat_size);
+    ESP_LOGI(TAG, "  Cluster count: %lu", cluster_count);
+
+    /* Create FAT32 boot sector */
+    uint8_t boot_sector[SECTOR_SIZE];
+    memset(boot_sector, 0, SECTOR_SIZE);
+
+    /* Jump instruction */
+    boot_sector[0] = 0xEB;
+    boot_sector[1] = 0x58;
+    boot_sector[2] = 0x90;
+
+    /* OEM name */
+    memcpy(&boot_sector[3], "MSWIN4.1", 8);
+
+    /* Bytes per sector (512) */
+    boot_sector[11] = 0x00;
+    boot_sector[12] = 0x02;
+
+    /* Sectors per cluster */
+    boot_sector[13] = sectors_per_cluster;
+
+    /* Reserved sectors */
+    boot_sector[14] = reserved_sectors & 0xFF;
+    boot_sector[15] = (reserved_sectors >> 8) & 0xFF;
+
+    /* Number of FATs */
+    boot_sector[16] = num_fats;
+
+    /* Root entries (0 for FAT32) */
+    boot_sector[17] = 0x00;
+    boot_sector[18] = 0x00;
+
+    /* Total sectors (0 for FAT32) */
+    boot_sector[19] = 0x00;
+    boot_sector[20] = 0x00;
+
+    /* Media descriptor (0xF8 = hard disk) */
+    boot_sector[21] = 0xF8;
+
+    /* Sectors per FAT (0 for FAT32) */
+    boot_sector[22] = 0x00;
+    boot_sector[23] = 0x00;
+
+    /* Sectors per track */
+    boot_sector[24] = 0x3F;
+    boot_sector[25] = 0x00;
+
+    /* Number of heads */
+    boot_sector[26] = 0xFF;
+    boot_sector[27] = 0x00;
+
+    /* Hidden sectors (partition start LBA) */
+    boot_sector[28] = (start_lba >> 0) & 0xFF;
+    boot_sector[29] = (start_lba >> 8) & 0xFF;
+    boot_sector[30] = (start_lba >> 16) & 0xFF;
+    boot_sector[31] = (start_lba >> 24) & 0xFF;
+
+    /* Total sectors (partition size) */
+    boot_sector[32] = (size_sectors >> 0) & 0xFF;
+    boot_sector[33] = (size_sectors >> 8) & 0xFF;
+    boot_sector[34] = (size_sectors >> 16) & 0xFF;
+    boot_sector[35] = (size_sectors >> 24) & 0xFF;
+
+    /* Sectors per FAT */
+    boot_sector[36] = (fat_size >> 0) & 0xFF;
+    boot_sector[37] = (fat_size >> 8) & 0xFF;
+    boot_sector[38] = (fat_size >> 16) & 0xFF;
+    boot_sector[39] = (fat_size >> 24) & 0xFF;
+
+    /* Flags */
+    boot_sector[40] = 0x00;
+    boot_sector[41] = 0x00;
+
+    /* Version */
+    boot_sector[42] = 0x00;
+    boot_sector[43] = 0x00;
+
+    /* Root cluster (2) */
+    boot_sector[44] = 0x02;
+    boot_sector[45] = 0x00;
+    boot_sector[46] = 0x00;
+    boot_sector[47] = 0x00;
+
+    /* FSInfo sector (1) */
+    boot_sector[48] = 0x01;
+    boot_sector[49] = 0x00;
+
+    /* Backup boot sector (6) */
+    boot_sector[50] = 0x06;
+    boot_sector[51] = 0x00;
+
+    /* Drive number */
+    boot_sector[64] = 0x80;
+
+    /* Reserved */
+    boot_sector[65] = 0x00;
+
+    /* Extended boot signature */
+    boot_sector[66] = 0x29;
+
+    /* Volume serial number (random) */
+    boot_sector[67] = 0x12;
+    boot_sector[68] = 0x34;
+    boot_sector[69] = 0x56;
+    boot_sector[70] = 0x78;
+
+    /* Volume label */
+    memcpy(&boot_sector[71], "NO NAME    ", 11);
+
+    /* Filesystem type */
+    memcpy(&boot_sector[82], "FAT32   ", 8);
+
+    /* Boot signature */
+    boot_sector[510] = 0x55;
+    boot_sector[511] = 0xAA;
+
+    /* Write boot sector */
+    ESP_LOGI(TAG, "Writing boot sector to LBA %lu...", start_lba);
+    esp_err_t ret = usb_host_write_sector(start_lba, boot_sector);
+    if (ret != ESP_OK) {
+        ESP_LOGE(TAG, "Failed to write boot sector");
+        return ret;
+    }
+
+    /* Write backup boot sector */
+    ESP_LOGI(TAG, "Writing backup boot sector to LBA %lu...", start_lba + 6);
+    ret = usb_host_write_sector(start_lba + 6, boot_sector);
+    if (ret != ESP_OK) {
+        ESP_LOGE(TAG, "Failed to write backup boot sector");
+        return ret;
+    }
+
+    ESP_LOGI(TAG, "=================================================");
+    ESP_LOGI(TAG, "✓ FAT32 partition formatted successfully");
+    ESP_LOGI(TAG, "=================================================");
 
     return ESP_OK;
 }

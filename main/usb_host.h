@@ -4,7 +4,7 @@
  *
  * @author Abdul Raheem Ansari <ansarirahim1@gmail.com>
  * @date November 2025
- * @version 6.0.0
+ * @version 7.0.0
  */
 
 #pragma once
@@ -159,3 +159,28 @@ esp_err_t usb_host_get_partition_info(uint8_t partition_num, partition_info_t* i
  * @return ESP_OK on success, error code otherwise
  */
 esp_err_t usb_host_delete_all_partitions(void);
+
+/**
+ * @brief Get total number of sectors on the USB drive
+ * @param total_sectors Pointer to store total sectors
+ * @return ESP_OK on success, error code otherwise
+ */
+esp_err_t usb_host_get_drive_capacity(uint32_t* total_sectors);
+
+/**
+ * @brief Create a new MBR partition table with a single FAT32 partition
+ * WARNING: This is a DESTRUCTIVE operation! All data will be lost!
+ * @param total_sectors Total number of sectors on the drive
+ * @return ESP_OK on success, error code otherwise
+ */
+esp_err_t usb_host_create_partition_table(uint32_t total_sectors);
+
+/**
+ * @brief Format a partition as FAT32
+ * WARNING: This is a DESTRUCTIVE operation! All data will be lost!
+ * @param partition_num Partition number (0-3)
+ * @param start_lba Starting LBA of the partition
+ * @param size_sectors Size of the partition in sectors
+ * @return ESP_OK on success, error code otherwise
+ */
+esp_err_t usb_host_format_fat32(uint8_t partition_num, uint32_t start_lba, uint32_t size_sectors);
