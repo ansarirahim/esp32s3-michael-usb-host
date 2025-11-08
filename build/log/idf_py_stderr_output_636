@@ -1,0 +1,1058 @@
+Command: C:\Users\Abdul\.espressif\python_env\idf5.5_py3.11_env\Scripts\python.exe C:\Users\Abdul\esp-idf-v5.5.1\tools/idf_monitor.py -p COM11 -b 115200 --toolchain-prefix xtensa-esp32s3-elf- --target esp32s3 --revision 0 C:\Users\Abdul\Documents\GitHub\esp32s3-michael-usb-host\build\esp32s3_michael_usb_host.elf C:\Users\Abdul\Documents\GitHub\esp32s3-michael-usb-host\build\bootloader\bootloader.elf --force-color -m 'C:\Users\Abdul\.espressif\python_env\idf5.5_py3.11_env\Scripts\python.exe' 'C:\Users\Abdul\esp-idf-v5.5.1\tools\idf.py' '-p' 'COM11'
+[0;33m--- Warning: GDB cannot open serial ports accessed as COMx[0m
+[0;33m--- Using \\.\COM11 instead...[0m
+[0;33m--- esp-idf-monitor 1.8.0 on \\.\COM11 115200[0m
+[0;33m--- Quit: Ctrl+] | Menu: Ctrl+T | Help: Ctrl+T followed by Ctrl+H[0m
+[0m--- 0x403c8700: [0;33m_stext[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x403c8924: [0;33mcall_start_cpu0[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m25[0m
+[0m--- 0x420120f5: [0;33mtu_u16_low[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/common/tusb_common.h[0m[0m:[1;31m162[0m
+[0m--- (inlined by) [0;33mdwc2_int_handler_wrap[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/dwc2_esp32.h[0m[0m:[1;31m86[0m
+[0m--- 0x40377b70: [0;33m_xt_lowint1[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1240[0m
+[0m--- 0x4037fea6: [0;33m_frxt_int_enter[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/freertos/FreeRTOS-Kernel/portable/xtensa/portasm.S[0m[0m:[1;31m140[0m
+[0m--- 0x400570e8: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x400570f3: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x42029475: [0;33muart_hal_write_txfifo[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/hal/uart_hal_iram.c[0m[0m:[1;31m27[0m
+[0m--- 0x420120f5: [0;33mtu_u16_low[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/common/tusb_common.h[0m[0m:[1;31m162[0m
+[0m--- (inlined by) [0;33mdwc2_int_handler_wrap[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/dwc2_esp32.h[0m[0m:[1;31m86[0m
+[0m--- 0x420120f2: [0;33mtu_u16_low[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/common/tusb_common.h[0m[0m:[1;31m162[0m
+[0m--- (inlined by) [0;33mdwc2_int_handler_wrap[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/dwc2_esp32.h[0m[0m:[1;31m86[0m
+[0m--- 0x40377b6d: [0;33m_xt_lowint1[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1240[0m
+[0m--- 0x42015af1: [0;33mtuh_control_xfer[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m684[0m
+[0m--- 0x420168b6: [0;33m_get_descriptor[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1079[0m
+[0m--- 0x4201690b: [0;33mtuh_descriptor_get[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1084[0m
+[0m--- 0x4201695e: [0;33mtuh_descriptor_get_device[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1090[0m
+[0m--- 0x42016fc1: [0;33mprocess_enumeration[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1472[0m
+[0m--- 0x42017446: [0;33menum_new_device[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1685[0m
+[0m--- 0x4201578e: [0;33mtuh_task_ext[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m552[0m
+[0m--- 0x42010c3f: [0;33mtuh_task[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.h[0m[0m:[1;31m166[0m
+[0m--- (inlined by) [0;33musb_host_task[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/main/usb_host.c[0m[0m:[1;31m40[0m
+[0m--- 0x4037a680: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/include/xt_utils.h[0m[0m:[1;31m83[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x4037a67d: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/include/xt_utils.h[0m[0m:[1;31m82[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x4202f675: [0;33mesp_vApplicationIdleHook[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_system/freertos_hooks.c[0m[0m:[1;31m58[0m
+[0m--- 0x40382425: [0;33mprvIdleTask[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/freertos/FreeRTOS-Kernel/tasks.c[0m[0m:[1;31m4350[0m
+[0m--- 0x4037e61a: [0;33mesp_restart_noos[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_system/port/soc/esp32s3/system_internal.c[0m[0m:[1;31m162[0m
+[0m--- 0x403c8700: [0;33m_stext[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x403c8924: [0;33mcall_start_cpu0[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m25[0m
+[0m--- 0x42013d4d: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x400570e8: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x400570f3: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x42029475: [0;33muart_hal_write_txfifo[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/hal/uart_hal_iram.c[0m[0m:[1;31m27[0m
+[0m--- 0x42013d4d: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x42013d4a: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x42015012: [0;33mhcd_int_handler[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m1348[0m
+[0m--- 0x4201211d: [0;33mdwc2_int_handler_wrap[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/dwc2_esp32.h[0m[0m:[1;31m95[0m
+[0m--- 0x40377b6d: [0;33m_xt_lowint1[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1240[0m
+[0m--- 0x42015af1: [0;33mtuh_control_xfer[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m684[0m
+[0m--- 0x420168b6: [0;33m_get_descriptor[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1079[0m
+[0m--- 0x4201690b: [0;33mtuh_descriptor_get[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1084[0m
+[0m--- 0x4201695e: [0;33mtuh_descriptor_get_device[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1090[0m
+[0m--- 0x42016fc1: [0;33mprocess_enumeration[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1472[0m
+[0m--- 0x42017446: [0;33menum_new_device[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1685[0m
+[0m--- 0x4201578e: [0;33mtuh_task_ext[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m552[0m
+[0m--- 0x42010c3f: [0;33mtuh_task[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.h[0m[0m:[1;31m166[0m
+[0m--- (inlined by) [0;33musb_host_task[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/main/usb_host.c[0m[0m:[1;31m40[0m
+[0m--- 0x4037a680: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/include/xt_utils.h[0m[0m:[1;31m83[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x4037a67d: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/include/xt_utils.h[0m[0m:[1;31m82[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x4202f675: [0;33mesp_vApplicationIdleHook[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_system/freertos_hooks.c[0m[0m:[1;31m58[0m
+[0m--- 0x40382425: [0;33mprvIdleTask[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/freertos/FreeRTOS-Kernel/tasks.c[0m[0m:[1;31m4350[0m
+[0m--- 0x4037e61a: [0;33mesp_restart_noos[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_system/port/soc/esp32s3/system_internal.c[0m[0m:[1;31m162[0m
+[0m--- 0x403c8700: [0;33m_stext[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x403c8924: [0;33mcall_start_cpu0[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m25[0m
+[0m--- 0x42013d4d: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x400570e8: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x400570f3: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x42029475: [0;33muart_hal_write_txfifo[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/hal/uart_hal_iram.c[0m[0m:[1;31m27[0m
+[0m--- 0x42013d4d: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x42013d4a: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x42015012: [0;33mhcd_int_handler[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m1348[0m
+[0m--- 0x4201211d: [0;33mdwc2_int_handler_wrap[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/dwc2_esp32.h[0m[0m:[1;31m95[0m
+[0m--- 0x40377b6d: [0;33m_xt_lowint1[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1240[0m
+[0m--- 0x42015af1: [0;33mtuh_control_xfer[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m684[0m
+[0m--- 0x420168b6: [0;33m_get_descriptor[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1079[0m
+[0m--- 0x4201690b: [0;33mtuh_descriptor_get[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1084[0m
+[0m--- 0x4201695e: [0;33mtuh_descriptor_get_device[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1090[0m
+[0m--- 0x42016fc1: [0;33mprocess_enumeration[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1472[0m
+[0m--- 0x42017446: [0;33menum_new_device[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1685[0m
+[0m--- 0x4201578e: [0;33mtuh_task_ext[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m552[0m
+[0m--- 0x42010c3f: [0;33mtuh_task[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.h[0m[0m:[1;31m166[0m
+[0m--- (inlined by) [0;33musb_host_task[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/main/usb_host.c[0m[0m:[1;31m40[0m
+[0m--- 0x4037a680: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/include/xt_utils.h[0m[0m:[1;31m83[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x4037a67d: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/include/xt_utils.h[0m[0m:[1;31m82[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x4202f675: [0;33mesp_vApplicationIdleHook[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_system/freertos_hooks.c[0m[0m:[1;31m58[0m
+[0m--- 0x40382425: [0;33mprvIdleTask[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/freertos/FreeRTOS-Kernel/tasks.c[0m[0m:[1;31m4350[0m
+[0m--- 0x4037e61a: [0;33mesp_restart_noos[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_system/port/soc/esp32s3/system_internal.c[0m[0m:[1;31m162[0m
+[0m--- 0x403c8700: [0;33m_stext[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x403c8924: [0;33mcall_start_cpu0[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m25[0m
+[0m--- 0x42013d4d: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x400570e8: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x400570f3: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x42029475: [0;33muart_hal_write_txfifo[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/hal/uart_hal_iram.c[0m[0m:[1;31m27[0m
+[0m--- 0x42013d4d: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x42013d4a: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x42015012: [0;33mhcd_int_handler[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m1348[0m
+[0m--- 0x4201211d: [0;33mdwc2_int_handler_wrap[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/dwc2_esp32.h[0m[0m:[1;31m95[0m
+[0m--- 0x40377b6d: [0;33m_xt_lowint1[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1240[0m
+[0m--- 0x42015af1: [0;33mtuh_control_xfer[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m684[0m
+[0m--- 0x420168b6: [0;33m_get_descriptor[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1079[0m
+[0m--- 0x4201690b: [0;33mtuh_descriptor_get[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1084[0m
+[0m--- 0x4201695e: [0;33mtuh_descriptor_get_device[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1090[0m
+[0m--- 0x42016fc1: [0;33mprocess_enumeration[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1472[0m
+[0m--- 0x42017446: [0;33menum_new_device[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1685[0m
+[0m--- 0x4201578e: [0;33mtuh_task_ext[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m552[0m
+[0m--- 0x42010c3f: [0;33mtuh_task[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.h[0m[0m:[1;31m166[0m
+[0m--- (inlined by) [0;33musb_host_task[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/main/usb_host.c[0m[0m:[1;31m40[0m
+[0m--- 0x4037a680: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/include/xt_utils.h[0m[0m:[1;31m83[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x4037a67d: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/include/xt_utils.h[0m[0m:[1;31m82[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x4202f675: [0;33mesp_vApplicationIdleHook[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_system/freertos_hooks.c[0m[0m:[1;31m58[0m
+[0m--- 0x40382425: [0;33mprvIdleTask[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/freertos/FreeRTOS-Kernel/tasks.c[0m[0m:[1;31m4350[0m
+[0m--- 0x4037e61a: [0;33mesp_restart_noos[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_system/port/soc/esp32s3/system_internal.c[0m[0m:[1;31m162[0m
+[0m--- 0x403c8700: [0;33m_stext[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x403c8924: [0;33mcall_start_cpu0[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m25[0m
+[0m--- 0x42013d4d: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x400570e8: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x400570f3: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x42029475: [0;33muart_hal_write_txfifo[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/hal/uart_hal_iram.c[0m[0m:[1;31m27[0m
+[0m--- 0x42013d4d: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x42013d4a: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x42015012: [0;33mhcd_int_handler[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m1348[0m
+[0m--- 0x4201211d: [0;33mdwc2_int_handler_wrap[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/dwc2_esp32.h[0m[0m:[1;31m95[0m
+[0m--- 0x40377b6d: [0;33m_xt_lowint1[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1240[0m
+[0m--- 0x42015af1: [0;33mtuh_control_xfer[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m684[0m
+[0m--- 0x420168b6: [0;33m_get_descriptor[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1079[0m
+[0m--- 0x4201690b: [0;33mtuh_descriptor_get[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1084[0m
+[0m--- 0x4201695e: [0;33mtuh_descriptor_get_device[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1090[0m
+[0m--- 0x42016fc1: [0;33mprocess_enumeration[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1472[0m
+[0m--- 0x42017446: [0;33menum_new_device[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1685[0m
+[0m--- 0x4201578e: [0;33mtuh_task_ext[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m552[0m
+[0m--- 0x42010c3f: [0;33mtuh_task[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.h[0m[0m:[1;31m166[0m
+[0m--- (inlined by) [0;33musb_host_task[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/main/usb_host.c[0m[0m:[1;31m40[0m
+[0m--- 0x4037a680: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/include/xt_utils.h[0m[0m:[1;31m83[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x4037a67d: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/include/xt_utils.h[0m[0m:[1;31m82[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x4202f675: [0;33mesp_vApplicationIdleHook[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_system/freertos_hooks.c[0m[0m:[1;31m58[0m
+[0m--- 0x40382425: [0;33mprvIdleTask[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/freertos/FreeRTOS-Kernel/tasks.c[0m[0m:[1;31m4350[0m
+[0m--- 0x4037e61a: [0;33mesp_restart_noos[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_system/port/soc/esp32s3/system_internal.c[0m[0m:[1;31m162[0m
+[0m--- 0x403c8700: [0;33m_stext[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x403c8924: [0;33mcall_start_cpu0[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m25[0m
+[0m--- 0x42013d4d: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x400570e8: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x400570f3: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x42029475: [0;33muart_hal_write_txfifo[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/hal/uart_hal_iram.c[0m[0m:[1;31m27[0m
+[0m--- 0x42013d4d: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x42013d4a: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x42015012: [0;33mhcd_int_handler[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m1348[0m
+[0m--- 0x4201211d: [0;33mdwc2_int_handler_wrap[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/dwc2_esp32.h[0m[0m:[1;31m95[0m
+[0m--- 0x40377b6d: [0;33m_xt_lowint1[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1240[0m
+[0m--- 0x42015af1: [0;33mtuh_control_xfer[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m684[0m
+[0m--- 0x420168b6: [0;33m_get_descriptor[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1079[0m
+[0m--- 0x4201690b: [0;33mtuh_descriptor_get[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1084[0m
+[0m--- 0x4201695e: [0;33mtuh_descriptor_get_device[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1090[0m
+[0m--- 0x42016fc1: [0;33mprocess_enumeration[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1472[0m
+[0m--- 0x42017446: [0;33menum_new_device[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1685[0m
+[0m--- 0x4201578e: [0;33mtuh_task_ext[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m552[0m
+[0m--- 0x42010c3f: [0;33mtuh_task[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.h[0m[0m:[1;31m166[0m
+[0m--- (inlined by) [0;33musb_host_task[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/main/usb_host.c[0m[0m:[1;31m40[0m
+[0m--- 0x4037a680: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/include/xt_utils.h[0m[0m:[1;31m83[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x4037a67d: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/include/xt_utils.h[0m[0m:[1;31m82[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x4202f675: [0;33mesp_vApplicationIdleHook[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_system/freertos_hooks.c[0m[0m:[1;31m58[0m
+[0m--- 0x40382425: [0;33mprvIdleTask[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/freertos/FreeRTOS-Kernel/tasks.c[0m[0m:[1;31m4350[0m
+[0m--- 0x4037e61a: [0;33mesp_restart_noos[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_system/port/soc/esp32s3/system_internal.c[0m[0m:[1;31m162[0m
+[0m--- 0x403c8700: [0;33m_stext[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x403c8924: [0;33mcall_start_cpu0[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m25[0m
+[0m--- 0x42013d50: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x400570e8: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x400570f3: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x42029475: [0;33muart_hal_write_txfifo[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/hal/uart_hal_iram.c[0m[0m:[1;31m27[0m
+[0m--- 0x42013d50: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x42013d4d: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x42015012: [0;33mhcd_int_handler[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m1348[0m
+[0m--- 0x4201211d: [0;33mdwc2_int_handler_wrap[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/dwc2_esp32.h[0m[0m:[1;31m95[0m
+[0m--- 0x40377b6d: [0;33m_xt_lowint1[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1240[0m
+[0m--- 0x42015af1: [0;33mtuh_control_xfer[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m684[0m
+[0m--- 0x420168b6: [0;33m_get_descriptor[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1079[0m
+[0m--- 0x4201690b: [0;33mtuh_descriptor_get[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1084[0m
+[0m--- 0x4201695e: [0;33mtuh_descriptor_get_device[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1090[0m
+[0m--- 0x42016fc1: [0;33mprocess_enumeration[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1472[0m
+[0m--- 0x42017446: [0;33menum_new_device[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1685[0m
+[0m--- 0x4201578e: [0;33mtuh_task_ext[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m552[0m
+[0m--- 0x42010c3f: [0;33mtuh_task[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.h[0m[0m:[1;31m166[0m
+[0m--- (inlined by) [0;33musb_host_task[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/main/usb_host.c[0m[0m:[1;31m40[0m
+[0m--- 0x4037a680: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/include/xt_utils.h[0m[0m:[1;31m83[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x4037a67d: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/include/xt_utils.h[0m[0m:[1;31m82[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x4202f675: [0;33mesp_vApplicationIdleHook[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_system/freertos_hooks.c[0m[0m:[1;31m58[0m
+[0m--- 0x40382425: [0;33mprvIdleTask[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/freertos/FreeRTOS-Kernel/tasks.c[0m[0m:[1;31m4350[0m
+[0m--- 0x4037e61a: [0;33mesp_restart_noos[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_system/port/soc/esp32s3/system_internal.c[0m[0m:[1;31m162[0m
+[0m--- 0x403c8700: [0;33m_stext[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x403c8924: [0;33mcall_start_cpu0[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m25[0m
+[0m--- 0x42013d4d: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x400570e8: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x400570f3: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x42029475: [0;33muart_hal_write_txfifo[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/hal/uart_hal_iram.c[0m[0m:[1;31m27[0m
+[0m--- 0x42013d4d: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x42013d4a: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x42015012: [0;33mhcd_int_handler[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m1348[0m
+[0m--- 0x4201211d: [0;33mdwc2_int_handler_wrap[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/dwc2_esp32.h[0m[0m:[1;31m95[0m
+[0m--- 0x40377b6d: [0;33m_xt_lowint1[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1240[0m
+[0m--- 0x42015af1: [0;33mtuh_control_xfer[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m684[0m
+[0m--- 0x420168b6: [0;33m_get_descriptor[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1079[0m
+[0m--- 0x4201690b: [0;33mtuh_descriptor_get[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1084[0m
+[0m--- 0x4201695e: [0;33mtuh_descriptor_get_device[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1090[0m
+[0m--- 0x42016fc1: [0;33mprocess_enumeration[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1472[0m
+[0m--- 0x42017446: [0;33menum_new_device[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1685[0m
+[0m--- 0x4201578e: [0;33mtuh_task_ext[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m552[0m
+[0m--- 0x42010c3f: [0;33mtuh_task[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.h[0m[0m:[1;31m166[0m
+[0m--- (inlined by) [0;33musb_host_task[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/main/usb_host.c[0m[0m:[1;31m40[0m
+[0m--- 0x4037a680: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/include/xt_utils.h[0m[0m:[1;31m83[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x4037a67d: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/include/xt_utils.h[0m[0m:[1;31m82[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x4202f675: [0;33mesp_vApplicationIdleHook[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_system/freertos_hooks.c[0m[0m:[1;31m58[0m
+[0m--- 0x40382425: [0;33mprvIdleTask[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/freertos/FreeRTOS-Kernel/tasks.c[0m[0m:[1;31m4350[0m
+[0m--- 0x4037e61a: [0;33mesp_restart_noos[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_system/port/soc/esp32s3/system_internal.c[0m[0m:[1;31m162[0m
+[0m--- 0x403c8700: [0;33m_stext[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x403c8924: [0;33mcall_start_cpu0[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m25[0m
+[0m--- 0x42013d4d: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x400570e8: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x400570f3: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x42029475: [0;33muart_hal_write_txfifo[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/hal/uart_hal_iram.c[0m[0m:[1;31m27[0m
+[0m--- 0x42013d4d: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x42013d4a: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x42015012: [0;33mhcd_int_handler[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m1348[0m
+[0m--- 0x4201211d: [0;33mdwc2_int_handler_wrap[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/dwc2_esp32.h[0m[0m:[1;31m95[0m
+[0m--- 0x40377b6d: [0;33m_xt_lowint1[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1240[0m
+[0m--- 0x42015af1: [0;33mtuh_control_xfer[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m684[0m
+[0m--- 0x420168b6: [0;33m_get_descriptor[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1079[0m
+[0m--- 0x4201690b: [0;33mtuh_descriptor_get[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1084[0m
+[0m--- 0x4201695e: [0;33mtuh_descriptor_get_device[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1090[0m
+[0m--- 0x42016fc1: [0;33mprocess_enumeration[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1472[0m
+[0m--- 0x42017446: [0;33menum_new_device[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1685[0m
+[0m--- 0x4201578e: [0;33mtuh_task_ext[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m552[0m
+[0m--- 0x42010c3f: [0;33mtuh_task[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.h[0m[0m:[1;31m166[0m
+[0m--- (inlined by) [0;33musb_host_task[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/main/usb_host.c[0m[0m:[1;31m40[0m
+[0m--- 0x4037a680: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/include/xt_utils.h[0m[0m:[1;31m83[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x4037a67d: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/include/xt_utils.h[0m[0m:[1;31m82[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x4202f675: [0;33mesp_vApplicationIdleHook[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_system/freertos_hooks.c[0m[0m:[1;31m58[0m
+[0m--- 0x40382425: [0;33mprvIdleTask[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/freertos/FreeRTOS-Kernel/tasks.c[0m[0m:[1;31m4350[0m
+[0m--- 0x4037e61a: [0;33mesp_restart_noos[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_system/port/soc/esp32s3/system_internal.c[0m[0m:[1;31m162[0m
+[0m--- 0x403c8700: [0;33m_stext[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x403c8924: [0;33mcall_start_cpu0[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m25[0m
+[0m--- 0x42013d50: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x400570e8: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x400570f3: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x42029475: [0;33muart_hal_write_txfifo[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/hal/uart_hal_iram.c[0m[0m:[1;31m27[0m
+[0m--- 0x42013d50: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x42013d4d: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x42015012: [0;33mhcd_int_handler[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m1348[0m
+[0m--- 0x4201211d: [0;33mdwc2_int_handler_wrap[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/dwc2_esp32.h[0m[0m:[1;31m95[0m
+[0m--- 0x40377b6d: [0;33m_xt_lowint1[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1240[0m
+[0m--- 0x42015af1: [0;33mtuh_control_xfer[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m684[0m
+[0m--- 0x420168b6: [0;33m_get_descriptor[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1079[0m
+[0m--- 0x4201690b: [0;33mtuh_descriptor_get[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1084[0m
+[0m--- 0x4201695e: [0;33mtuh_descriptor_get_device[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1090[0m
+[0m--- 0x42016fc1: [0;33mprocess_enumeration[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1472[0m
+[0m--- 0x42017446: [0;33menum_new_device[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1685[0m
+[0m--- 0x4201578e: [0;33mtuh_task_ext[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m552[0m
+[0m--- 0x42010c3f: [0;33mtuh_task[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.h[0m[0m:[1;31m166[0m
+[0m--- (inlined by) [0;33musb_host_task[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/main/usb_host.c[0m[0m:[1;31m40[0m
+[0m--- 0x4037a680: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/include/xt_utils.h[0m[0m:[1;31m83[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x4037a67d: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/include/xt_utils.h[0m[0m:[1;31m82[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x4202f675: [0;33mesp_vApplicationIdleHook[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_system/freertos_hooks.c[0m[0m:[1;31m58[0m
+[0m--- 0x40382425: [0;33mprvIdleTask[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/freertos/FreeRTOS-Kernel/tasks.c[0m[0m:[1;31m4350[0m
+[0m--- 0x4037e61a: [0;33mesp_restart_noos[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_system/port/soc/esp32s3/system_internal.c[0m[0m:[1;31m162[0m
+[0m--- 0x403c8700: [0;33m_stext[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x403c8924: [0;33mcall_start_cpu0[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m25[0m
+[0m--- 0x42013d4d: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x400570e8: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x400570f3: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x42029475: [0;33muart_hal_write_txfifo[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/hal/uart_hal_iram.c[0m[0m:[1;31m27[0m
+[0m--- 0x42013d4d: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x42013d4a: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x42015012: [0;33mhcd_int_handler[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m1348[0m
+[0m--- 0x4201211d: [0;33mdwc2_int_handler_wrap[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/dwc2_esp32.h[0m[0m:[1;31m95[0m
+[0m--- 0x40377b6d: [0;33m_xt_lowint1[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1240[0m
+[0m--- 0x42015af1: [0;33mtuh_control_xfer[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m684[0m
+[0m--- 0x420168b6: [0;33m_get_descriptor[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1079[0m
+[0m--- 0x4201690b: [0;33mtuh_descriptor_get[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1084[0m
+[0m--- 0x4201695e: [0;33mtuh_descriptor_get_device[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1090[0m
+[0m--- 0x42016fc1: [0;33mprocess_enumeration[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1472[0m
+[0m--- 0x42017446: [0;33menum_new_device[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1685[0m
+[0m--- 0x4201578e: [0;33mtuh_task_ext[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m552[0m
+[0m--- 0x42010c3f: [0;33mtuh_task[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.h[0m[0m:[1;31m166[0m
+[0m--- (inlined by) [0;33musb_host_task[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/main/usb_host.c[0m[0m:[1;31m40[0m
+[0m--- 0x4037a680: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/include/xt_utils.h[0m[0m:[1;31m83[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x4037a67d: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/include/xt_utils.h[0m[0m:[1;31m82[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x4202f675: [0;33mesp_vApplicationIdleHook[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_system/freertos_hooks.c[0m[0m:[1;31m58[0m
+[0m--- 0x40382425: [0;33mprvIdleTask[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/freertos/FreeRTOS-Kernel/tasks.c[0m[0m:[1;31m4350[0m
+[0m--- 0x4037e61a: [0;33mesp_restart_noos[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_system/port/soc/esp32s3/system_internal.c[0m[0m:[1;31m162[0m
+[0m--- 0x403c8700: [0;33m_stext[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x403c8924: [0;33mcall_start_cpu0[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m25[0m
+[0m--- 0x42013d4d: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x400570e8: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x400570f3: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x42029475: [0;33muart_hal_write_txfifo[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/hal/uart_hal_iram.c[0m[0m:[1;31m27[0m
+[0m--- 0x42013d4d: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x42013d4a: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x42015012: [0;33mhcd_int_handler[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m1348[0m
+[0m--- 0x4201211d: [0;33mdwc2_int_handler_wrap[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/dwc2_esp32.h[0m[0m:[1;31m95[0m
+[0m--- 0x40377b6d: [0;33m_xt_lowint1[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1240[0m
+[0m--- 0x42015af1: [0;33mtuh_control_xfer[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m684[0m
+[0m--- 0x420168b6: [0;33m_get_descriptor[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1079[0m
+[0m--- 0x4201690b: [0;33mtuh_descriptor_get[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1084[0m
+[0m--- 0x4201695e: [0;33mtuh_descriptor_get_device[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1090[0m
+[0m--- 0x42016fc1: [0;33mprocess_enumeration[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1472[0m
+[0m--- 0x42017446: [0;33menum_new_device[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1685[0m
+[0m--- 0x4201578e: [0;33mtuh_task_ext[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m552[0m
+[0m--- 0x42010c3f: [0;33mtuh_task[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.h[0m[0m:[1;31m166[0m
+[0m--- (inlined by) [0;33musb_host_task[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/main/usb_host.c[0m[0m:[1;31m40[0m
+[0m--- 0x4037a680: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/include/xt_utils.h[0m[0m:[1;31m83[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x4037a67d: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/include/xt_utils.h[0m[0m:[1;31m82[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x4202f675: [0;33mesp_vApplicationIdleHook[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_system/freertos_hooks.c[0m[0m:[1;31m58[0m
+[0m--- 0x40382425: [0;33mprvIdleTask[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/freertos/FreeRTOS-Kernel/tasks.c[0m[0m:[1;31m4350[0m
+[0m--- 0x4037e61a: [0;33mesp_restart_noos[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_system/port/soc/esp32s3/system_internal.c[0m[0m:[1;31m162[0m
+[0m--- 0x403c8700: [0;33m_stext[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x403c8924: [0;33mcall_start_cpu0[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m25[0m
+[0m--- 0x42013d50: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x400570e8: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x400570f3: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x42029475: [0;33muart_hal_write_txfifo[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/hal/uart_hal_iram.c[0m[0m:[1;31m27[0m
+[0m--- 0x42013d50: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x42013d4d: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x42015012: [0;33mhcd_int_handler[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m1348[0m
+[0m--- 0x4201211d: [0;33mdwc2_int_handler_wrap[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/dwc2_esp32.h[0m[0m:[1;31m95[0m
+[0m--- 0x40377b6d: [0;33m_xt_lowint1[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1240[0m
+[0m--- 0x42015af1: [0;33mtuh_control_xfer[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m684[0m
+[0m--- 0x420168b6: [0;33m_get_descriptor[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1079[0m
+[0m--- 0x4201690b: [0;33mtuh_descriptor_get[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1084[0m
+[0m--- 0x4201695e: [0;33mtuh_descriptor_get_device[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1090[0m
+[0m--- 0x42016fc1: [0;33mprocess_enumeration[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1472[0m
+[0m--- 0x42017446: [0;33menum_new_device[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1685[0m
+[0m--- 0x4201578e: [0;33mtuh_task_ext[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m552[0m
+[0m--- 0x42010c3f: [0;33mtuh_task[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.h[0m[0m:[1;31m166[0m
+[0m--- (inlined by) [0;33musb_host_task[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/main/usb_host.c[0m[0m:[1;31m40[0m
+[0m--- 0x4037a680: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/include/xt_utils.h[0m[0m:[1;31m83[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x4037a67d: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/include/xt_utils.h[0m[0m:[1;31m82[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x4202f675: [0;33mesp_vApplicationIdleHook[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_system/freertos_hooks.c[0m[0m:[1;31m58[0m
+[0m--- 0x40382425: [0;33mprvIdleTask[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/freertos/FreeRTOS-Kernel/tasks.c[0m[0m:[1;31m4350[0m
+[0m--- 0x4037e61a: [0;33mesp_restart_noos[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_system/port/soc/esp32s3/system_internal.c[0m[0m:[1;31m162[0m
+[0m--- 0x403c8700: [0;33m_stext[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x403c8924: [0;33mcall_start_cpu0[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m25[0m
+[0m--- 0x42013d4d: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x400570e8: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x400570f3: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x42029475: [0;33muart_hal_write_txfifo[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/hal/uart_hal_iram.c[0m[0m:[1;31m27[0m
+[0m--- 0x42013d4d: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x42013d4a: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x42015012: [0;33mhcd_int_handler[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m1348[0m
+[0m--- 0x4201211d: [0;33mdwc2_int_handler_wrap[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/dwc2_esp32.h[0m[0m:[1;31m95[0m
+[0m--- 0x40377b6d: [0;33m_xt_lowint1[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1240[0m
+[0m--- 0x42015af1: [0;33mtuh_control_xfer[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m684[0m
+[0m--- 0x420168b6: [0;33m_get_descriptor[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1079[0m
+[0m--- 0x4201690b: [0;33mtuh_descriptor_get[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1084[0m
+[0m--- 0x4201695e: [0;33mtuh_descriptor_get_device[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1090[0m
+[0m--- 0x42016fc1: [0;33mprocess_enumeration[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1472[0m
+[0m--- 0x42017446: [0;33menum_new_device[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1685[0m
+[0m--- 0x4201578e: [0;33mtuh_task_ext[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m552[0m
+[0m--- 0x42010c3f: [0;33mtuh_task[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.h[0m[0m:[1;31m166[0m
+[0m--- (inlined by) [0;33musb_host_task[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/main/usb_host.c[0m[0m:[1;31m40[0m
+[0m--- 0x4037a680: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/include/xt_utils.h[0m[0m:[1;31m83[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x4037a67d: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/include/xt_utils.h[0m[0m:[1;31m82[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x4202f675: [0;33mesp_vApplicationIdleHook[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_system/freertos_hooks.c[0m[0m:[1;31m58[0m
+[0m--- 0x40382425: [0;33mprvIdleTask[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/freertos/FreeRTOS-Kernel/tasks.c[0m[0m:[1;31m4350[0m
+[0m--- 0x4037e61a: [0;33mesp_restart_noos[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_system/port/soc/esp32s3/system_internal.c[0m[0m:[1;31m162[0m
+[0m--- 0x403c8700: [0;33m_stext[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x403c8924: [0;33mcall_start_cpu0[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m25[0m
+[0m--- 0x42013d4d: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x400570e8: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x400570f3: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x42029475: [0;33muart_hal_write_txfifo[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/hal/uart_hal_iram.c[0m[0m:[1;31m27[0m
+[0m--- 0x42013d4d: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x42013d4a: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x42015012: [0;33mhcd_int_handler[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m1348[0m
+[0m--- 0x4201211d: [0;33mdwc2_int_handler_wrap[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/dwc2_esp32.h[0m[0m:[1;31m95[0m
+[0m--- 0x40377b6d: [0;33m_xt_lowint1[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1240[0m
+[0m--- 0x42015af1: [0;33mtuh_control_xfer[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m684[0m
+[0m--- 0x420168b6: [0;33m_get_descriptor[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1079[0m
+[0m--- 0x4201690b: [0;33mtuh_descriptor_get[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1084[0m
+[0m--- 0x4201695e: [0;33mtuh_descriptor_get_device[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1090[0m
+[0m--- 0x42016fc1: [0;33mprocess_enumeration[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1472[0m
+[0m--- 0x42017446: [0;33menum_new_device[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1685[0m
+[0m--- 0x4201578e: [0;33mtuh_task_ext[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m552[0m
+[0m--- 0x42010c3f: [0;33mtuh_task[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.h[0m[0m:[1;31m166[0m
+[0m--- (inlined by) [0;33musb_host_task[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/main/usb_host.c[0m[0m:[1;31m40[0m
+[0m--- 0x4037a680: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/include/xt_utils.h[0m[0m:[1;31m83[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x4037a67d: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/include/xt_utils.h[0m[0m:[1;31m82[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x4202f675: [0;33mesp_vApplicationIdleHook[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_system/freertos_hooks.c[0m[0m:[1;31m58[0m
+[0m--- 0x40382425: [0;33mprvIdleTask[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/freertos/FreeRTOS-Kernel/tasks.c[0m[0m:[1;31m4350[0m
+[0m--- 0x4037e61a: [0;33mesp_restart_noos[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_system/port/soc/esp32s3/system_internal.c[0m[0m:[1;31m162[0m
+[0m--- 0x403c8700: [0;33m_stext[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x403c8924: [0;33mcall_start_cpu0[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m25[0m
+[0m--- 0x42013d4d: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x400570e8: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x400570f3: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x42029475: [0;33muart_hal_write_txfifo[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/hal/uart_hal_iram.c[0m[0m:[1;31m27[0m
+[0m--- 0x42013d4d: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x42013d4a: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x42015012: [0;33mhcd_int_handler[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m1348[0m
+[0m--- 0x4201211d: [0;33mdwc2_int_handler_wrap[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/dwc2_esp32.h[0m[0m:[1;31m95[0m
+[0m--- 0x40377b6d: [0;33m_xt_lowint1[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1240[0m
+[0m--- 0x42015af1: [0;33mtuh_control_xfer[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m684[0m
+[0m--- 0x420168b6: [0;33m_get_descriptor[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1079[0m
+[0m--- 0x4201690b: [0;33mtuh_descriptor_get[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1084[0m
+[0m--- 0x4201695e: [0;33mtuh_descriptor_get_device[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1090[0m
+[0m--- 0x42016fc1: [0;33mprocess_enumeration[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1472[0m
+[0m--- 0x42017446: [0;33menum_new_device[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1685[0m
+[0m--- 0x4201578e: [0;33mtuh_task_ext[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m552[0m
+[0m--- 0x42010c3f: [0;33mtuh_task[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.h[0m[0m:[1;31m166[0m
+[0m--- (inlined by) [0;33musb_host_task[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/main/usb_host.c[0m[0m:[1;31m40[0m
+[0m--- 0x4037a680: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/include/xt_utils.h[0m[0m:[1;31m83[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x4037a67d: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/include/xt_utils.h[0m[0m:[1;31m82[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x4202f675: [0;33mesp_vApplicationIdleHook[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_system/freertos_hooks.c[0m[0m:[1;31m58[0m
+[0m--- 0x40382425: [0;33mprvIdleTask[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/freertos/FreeRTOS-Kernel/tasks.c[0m[0m:[1;31m4350[0m
+[0m--- 0x4037e61a: [0;33mesp_restart_noos[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_system/port/soc/esp32s3/system_internal.c[0m[0m:[1;31m162[0m
+[0m--- 0x403c8700: [0;33m_stext[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x403c8924: [0;33mcall_start_cpu0[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m25[0m
+[0m--- 0x42013d50: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x400570e8: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x400570f3: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x42029475: [0;33muart_hal_write_txfifo[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/hal/uart_hal_iram.c[0m[0m:[1;31m27[0m
+[0m--- 0x42013d50: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x42013d4d: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x42015012: [0;33mhcd_int_handler[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m1348[0m
+[0m--- 0x4201211d: [0;33mdwc2_int_handler_wrap[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/dwc2_esp32.h[0m[0m:[1;31m95[0m
+[0m--- 0x40377b6d: [0;33m_xt_lowint1[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1240[0m
+[0m--- 0x42015af1: [0;33mtuh_control_xfer[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m684[0m
+[0m--- 0x420168b6: [0;33m_get_descriptor[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1079[0m
+[0m--- 0x4201690b: [0;33mtuh_descriptor_get[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1084[0m
+[0m--- 0x4201695e: [0;33mtuh_descriptor_get_device[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1090[0m
+[0m--- 0x42016fc1: [0;33mprocess_enumeration[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1472[0m
+[0m--- 0x42017446: [0;33menum_new_device[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1685[0m
+[0m--- 0x4201578e: [0;33mtuh_task_ext[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m552[0m
+[0m--- 0x42010c3f: [0;33mtuh_task[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.h[0m[0m:[1;31m166[0m
+[0m--- (inlined by) [0;33musb_host_task[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/main/usb_host.c[0m[0m:[1;31m40[0m
+[0m--- 0x4037a680: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/include/xt_utils.h[0m[0m:[1;31m83[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x4037a67d: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/include/xt_utils.h[0m[0m:[1;31m82[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x4202f675: [0;33mesp_vApplicationIdleHook[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_system/freertos_hooks.c[0m[0m:[1;31m58[0m
+[0m--- 0x40382425: [0;33mprvIdleTask[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/freertos/FreeRTOS-Kernel/tasks.c[0m[0m:[1;31m4350[0m
+[0m--- 0x4037e61a: [0;33mesp_restart_noos[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_system/port/soc/esp32s3/system_internal.c[0m[0m:[1;31m162[0m
+[0m--- 0x403c8700: [0;33m_stext[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x403c8924: [0;33mcall_start_cpu0[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m25[0m
+[0m--- 0x42013d4d: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x400570e8: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x400570f3: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x42029475: [0;33muart_hal_write_txfifo[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/hal/uart_hal_iram.c[0m[0m:[1;31m27[0m
+[0m--- 0x42013d4d: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x42013d4a: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x42015012: [0;33mhcd_int_handler[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m1348[0m
+[0m--- 0x4201211d: [0;33mdwc2_int_handler_wrap[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/dwc2_esp32.h[0m[0m:[1;31m95[0m
+[0m--- 0x40377b6d: [0;33m_xt_lowint1[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1240[0m
+[0m--- 0x42015af1: [0;33mtuh_control_xfer[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m684[0m
+[0m--- 0x420168b6: [0;33m_get_descriptor[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1079[0m
+[0m--- 0x4201690b: [0;33mtuh_descriptor_get[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1084[0m
+[0m--- 0x4201695e: [0;33mtuh_descriptor_get_device[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1090[0m
+[0m--- 0x42016fc1: [0;33mprocess_enumeration[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1472[0m
+[0m--- 0x42017446: [0;33menum_new_device[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1685[0m
+[0m--- 0x4201578e: [0;33mtuh_task_ext[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m552[0m
+[0m--- 0x42010c3f: [0;33mtuh_task[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.h[0m[0m:[1;31m166[0m
+[0m--- (inlined by) [0;33musb_host_task[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/main/usb_host.c[0m[0m:[1;31m40[0m
+[0m--- 0x4037a680: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/include/xt_utils.h[0m[0m:[1;31m83[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x4037a67d: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/include/xt_utils.h[0m[0m:[1;31m82[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x4202f675: [0;33mesp_vApplicationIdleHook[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_system/freertos_hooks.c[0m[0m:[1;31m58[0m
+[0m--- 0x40382425: [0;33mprvIdleTask[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/freertos/FreeRTOS-Kernel/tasks.c[0m[0m:[1;31m4350[0m
+[0m--- 0x4037e61a: [0;33mesp_restart_noos[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_system/port/soc/esp32s3/system_internal.c[0m[0m:[1;31m162[0m
+[0m--- 0x403c8700: [0;33m_stext[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x403c8924: [0;33mcall_start_cpu0[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m25[0m
+[0m--- 0x42013d4d: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x400570e8: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x400570f3: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x42029475: [0;33muart_hal_write_txfifo[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/hal/uart_hal_iram.c[0m[0m:[1;31m27[0m
+[0m--- 0x42013d4d: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x42013d4a: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x42015012: [0;33mhcd_int_handler[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m1348[0m
+[0m--- 0x4201211d: [0;33mdwc2_int_handler_wrap[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/dwc2_esp32.h[0m[0m:[1;31m95[0m
+[0m--- 0x40377b6d: [0;33m_xt_lowint1[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1240[0m
+[0m--- 0x42015af1: [0;33mtuh_control_xfer[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m684[0m
+[0m--- 0x420168b6: [0;33m_get_descriptor[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1079[0m
+[0m--- 0x4201690b: [0;33mtuh_descriptor_get[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1084[0m
+[0m--- 0x4201695e: [0;33mtuh_descriptor_get_device[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1090[0m
+[0m--- 0x42016fc1: [0;33mprocess_enumeration[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1472[0m
+[0m--- 0x42017446: [0;33menum_new_device[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1685[0m
+[0m--- 0x4201578e: [0;33mtuh_task_ext[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m552[0m
+[0m--- 0x42010c3f: [0;33mtuh_task[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.h[0m[0m:[1;31m166[0m
+[0m--- (inlined by) [0;33musb_host_task[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/main/usb_host.c[0m[0m:[1;31m40[0m
+[0m--- 0x4037a680: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/include/xt_utils.h[0m[0m:[1;31m83[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x4037a67d: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/include/xt_utils.h[0m[0m:[1;31m82[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x4202f675: [0;33mesp_vApplicationIdleHook[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_system/freertos_hooks.c[0m[0m:[1;31m58[0m
+[0m--- 0x40382425: [0;33mprvIdleTask[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/freertos/FreeRTOS-Kernel/tasks.c[0m[0m:[1;31m4350[0m
+[0m--- 0x4037e61a: [0;33mesp_restart_noos[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_system/port/soc/esp32s3/system_internal.c[0m[0m:[1;31m162[0m
+[0m--- 0x403c8700: [0;33m_stext[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x403c8924: [0;33mcall_start_cpu0[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m25[0m
+[0m--- 0x42013d4d: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x400570e8: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x400570f3: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x42029475: [0;33muart_hal_write_txfifo[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/hal/uart_hal_iram.c[0m[0m:[1;31m27[0m
+[0m--- 0x42013d4d: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x42013d4a: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x42015012: [0;33mhcd_int_handler[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m1348[0m
+[0m--- 0x4201211d: [0;33mdwc2_int_handler_wrap[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/dwc2_esp32.h[0m[0m:[1;31m95[0m
+[0m--- 0x40377b6d: [0;33m_xt_lowint1[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1240[0m
+[0m--- 0x42015af1: [0;33mtuh_control_xfer[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m684[0m
+[0m--- 0x420168b6: [0;33m_get_descriptor[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1079[0m
+[0m--- 0x4201690b: [0;33mtuh_descriptor_get[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1084[0m
+[0m--- 0x4201695e: [0;33mtuh_descriptor_get_device[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1090[0m
+[0m--- 0x42016fc1: [0;33mprocess_enumeration[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1472[0m
+[0m--- 0x42017446: [0;33menum_new_device[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1685[0m
+[0m--- 0x4201578e: [0;33mtuh_task_ext[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m552[0m
+[0m--- 0x42010c3f: [0;33mtuh_task[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.h[0m[0m:[1;31m166[0m
+[0m--- (inlined by) [0;33musb_host_task[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/main/usb_host.c[0m[0m:[1;31m40[0m
+[0m--- 0x4037a680: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/include/xt_utils.h[0m[0m:[1;31m83[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x4037a67d: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/include/xt_utils.h[0m[0m:[1;31m82[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x4202f675: [0;33mesp_vApplicationIdleHook[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_system/freertos_hooks.c[0m[0m:[1;31m58[0m
+[0m--- 0x40382425: [0;33mprvIdleTask[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/freertos/FreeRTOS-Kernel/tasks.c[0m[0m:[1;31m4350[0m
+[0m--- 0x4037e61a: [0;33mesp_restart_noos[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_system/port/soc/esp32s3/system_internal.c[0m[0m:[1;31m162[0m
+[0m--- 0x403c8700: [0;33m_stext[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x403c8924: [0;33mcall_start_cpu0[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m25[0m
+[0m--- 0x42013d4d: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x400570e8: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x400570f3: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x42029475: [0;33muart_hal_write_txfifo[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/hal/uart_hal_iram.c[0m[0m:[1;31m27[0m
+[0m--- 0x42013d4d: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x42013d4a: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x42015012: [0;33mhcd_int_handler[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m1348[0m
+[0m--- 0x4201211d: [0;33mdwc2_int_handler_wrap[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/dwc2_esp32.h[0m[0m:[1;31m95[0m
+[0m--- 0x40377b6d: [0;33m_xt_lowint1[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1240[0m
+[0m--- 0x42015af1: [0;33mtuh_control_xfer[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m684[0m
+[0m--- 0x420168b6: [0;33m_get_descriptor[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1079[0m
+[0m--- 0x4201690b: [0;33mtuh_descriptor_get[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1084[0m
+[0m--- 0x4201695e: [0;33mtuh_descriptor_get_device[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1090[0m
+[0m--- 0x42016fc1: [0;33mprocess_enumeration[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1472[0m
+[0m--- 0x42017446: [0;33menum_new_device[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1685[0m
+[0m--- 0x4201578e: [0;33mtuh_task_ext[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m552[0m
+[0m--- 0x42010c3f: [0;33mtuh_task[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.h[0m[0m:[1;31m166[0m
+[0m--- (inlined by) [0;33musb_host_task[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/main/usb_host.c[0m[0m:[1;31m40[0m
+[0m--- 0x4037a680: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/include/xt_utils.h[0m[0m:[1;31m83[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x4037a67d: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/include/xt_utils.h[0m[0m:[1;31m82[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x4202f675: [0;33mesp_vApplicationIdleHook[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_system/freertos_hooks.c[0m[0m:[1;31m58[0m
+[0m--- 0x40382425: [0;33mprvIdleTask[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/freertos/FreeRTOS-Kernel/tasks.c[0m[0m:[1;31m4350[0m
+[0m--- 0x4037e61a: [0;33mesp_restart_noos[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_system/port/soc/esp32s3/system_internal.c[0m[0m:[1;31m162[0m
+[0m--- 0x403c8700: [0;33m_stext[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x403c8924: [0;33mcall_start_cpu0[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m25[0m
+[0m--- 0x42013d50: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x400570e8: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x400570f3: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x42029475: [0;33muart_hal_write_txfifo[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/hal/uart_hal_iram.c[0m[0m:[1;31m27[0m
+[0m--- 0x42013d50: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x42013d4d: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x42015012: [0;33mhcd_int_handler[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m1348[0m
+[0m--- 0x4201211d: [0;33mdwc2_int_handler_wrap[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/dwc2_esp32.h[0m[0m:[1;31m95[0m
+[0m--- 0x40377b6d: [0;33m_xt_lowint1[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1240[0m
+[0m--- 0x42015af1: [0;33mtuh_control_xfer[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m684[0m
+[0m--- 0x420168b6: [0;33m_get_descriptor[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1079[0m
+[0m--- 0x4201690b: [0;33mtuh_descriptor_get[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1084[0m
+[0m--- 0x4201695e: [0;33mtuh_descriptor_get_device[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1090[0m
+[0m--- 0x42016fc1: [0;33mprocess_enumeration[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1472[0m
+[0m--- 0x42017446: [0;33menum_new_device[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1685[0m
+[0m--- 0x4201578e: [0;33mtuh_task_ext[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m552[0m
+[0m--- 0x42010c3f: [0;33mtuh_task[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.h[0m[0m:[1;31m166[0m
+[0m--- (inlined by) [0;33musb_host_task[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/main/usb_host.c[0m[0m:[1;31m40[0m
+[0m--- 0x4037a680: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/include/xt_utils.h[0m[0m:[1;31m83[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x4037a67d: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/include/xt_utils.h[0m[0m:[1;31m82[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x4202f675: [0;33mesp_vApplicationIdleHook[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_system/freertos_hooks.c[0m[0m:[1;31m58[0m
+[0m--- 0x40382425: [0;33mprvIdleTask[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/freertos/FreeRTOS-Kernel/tasks.c[0m[0m:[1;31m4350[0m
+[0m--- 0x4037e61a: [0;33mesp_restart_noos[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_system/port/soc/esp32s3/system_internal.c[0m[0m:[1;31m162[0m
+[0m--- 0x403c8700: [0;33m_stext[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x403c8924: [0;33mcall_start_cpu0[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m25[0m
+[0m--- 0x42013d50: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x400570e8: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x400570f3: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x42029475: [0;33muart_hal_write_txfifo[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/hal/uart_hal_iram.c[0m[0m:[1;31m27[0m
+[0m--- 0x42013d50: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x42013d4d: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x42015012: [0;33mhcd_int_handler[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m1348[0m
+[0m--- 0x4201211d: [0;33mdwc2_int_handler_wrap[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/dwc2_esp32.h[0m[0m:[1;31m95[0m
+[0m--- 0x40377b6d: [0;33m_xt_lowint1[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1240[0m
+[0m--- 0x42015af1: [0;33mtuh_control_xfer[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m684[0m
+[0m--- 0x420168b6: [0;33m_get_descriptor[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1079[0m
+[0m--- 0x4201690b: [0;33mtuh_descriptor_get[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1084[0m
+[0m--- 0x4201695e: [0;33mtuh_descriptor_get_device[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1090[0m
+[0m--- 0x42016fc1: [0;33mprocess_enumeration[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1472[0m
+[0m--- 0x42017446: [0;33menum_new_device[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1685[0m
+[0m--- 0x4201578e: [0;33mtuh_task_ext[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m552[0m
+[0m--- 0x42010c3f: [0;33mtuh_task[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.h[0m[0m:[1;31m166[0m
+[0m--- (inlined by) [0;33musb_host_task[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/main/usb_host.c[0m[0m:[1;31m40[0m
+[0m--- 0x4037a680: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/include/xt_utils.h[0m[0m:[1;31m83[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x4037a67d: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/include/xt_utils.h[0m[0m:[1;31m82[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x4202f675: [0;33mesp_vApplicationIdleHook[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_system/freertos_hooks.c[0m[0m:[1;31m58[0m
+[0m--- 0x40382425: [0;33mprvIdleTask[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/freertos/FreeRTOS-Kernel/tasks.c[0m[0m:[1;31m4350[0m
+[0m--- 0x4037e61a: [0;33mesp_restart_noos[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_system/port/soc/esp32s3/system_internal.c[0m[0m:[1;31m162[0m
+[0m--- 0x403c8700: [0;33m_stext[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x403c8924: [0;33mcall_start_cpu0[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m25[0m
+[0m--- 0x42013d4d: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x400570e8: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x400570f3: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x42029475: [0;33muart_hal_write_txfifo[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/hal/uart_hal_iram.c[0m[0m:[1;31m27[0m
+[0m--- 0x42013d4d: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x42013d4a: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x42015012: [0;33mhcd_int_handler[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m1348[0m
+[0m--- 0x4201211d: [0;33mdwc2_int_handler_wrap[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/dwc2_esp32.h[0m[0m:[1;31m95[0m
+[0m--- 0x40377b6d: [0;33m_xt_lowint1[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1240[0m
+[0m--- 0x42015af1: [0;33mtuh_control_xfer[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m684[0m
+[0m--- 0x420168b6: [0;33m_get_descriptor[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1079[0m
+[0m--- 0x4201690b: [0;33mtuh_descriptor_get[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1084[0m
+[0m--- 0x4201695e: [0;33mtuh_descriptor_get_device[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1090[0m
+[0m--- 0x42016fc1: [0;33mprocess_enumeration[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1472[0m
+[0m--- 0x42017446: [0;33menum_new_device[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1685[0m
+[0m--- 0x4201578e: [0;33mtuh_task_ext[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m552[0m
+[0m--- 0x42010c3f: [0;33mtuh_task[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.h[0m[0m:[1;31m166[0m
+[0m--- (inlined by) [0;33musb_host_task[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/main/usb_host.c[0m[0m:[1;31m40[0m
+[0m--- 0x4037a680: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/include/xt_utils.h[0m[0m:[1;31m83[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x4037a67d: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/include/xt_utils.h[0m[0m:[1;31m82[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x4202f675: [0;33mesp_vApplicationIdleHook[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_system/freertos_hooks.c[0m[0m:[1;31m58[0m
+[0m--- 0x40382425: [0;33mprvIdleTask[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/freertos/FreeRTOS-Kernel/tasks.c[0m[0m:[1;31m4350[0m
+[0m--- 0x4037e61a: [0;33mesp_restart_noos[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_system/port/soc/esp32s3/system_internal.c[0m[0m:[1;31m162[0m
+[0m--- 0x403c8700: [0;33m_stext[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x403c8924: [0;33mcall_start_cpu0[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m25[0m
+[0m--- 0x42013d4d: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x400570e8: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x400570f3: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x42029475: [0;33muart_hal_write_txfifo[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/hal/uart_hal_iram.c[0m[0m:[1;31m27[0m
+[0m--- 0x42013d4d: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x42013d4a: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x42015012: [0;33mhcd_int_handler[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m1348[0m
+[0m--- 0x4201211d: [0;33mdwc2_int_handler_wrap[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/dwc2_esp32.h[0m[0m:[1;31m95[0m
+[0m--- 0x40377b6d: [0;33m_xt_lowint1[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1240[0m
+[0m--- 0x42015af1: [0;33mtuh_control_xfer[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m684[0m
+[0m--- 0x420168b6: [0;33m_get_descriptor[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1079[0m
+[0m--- 0x4201690b: [0;33mtuh_descriptor_get[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1084[0m
+[0m--- 0x4201695e: [0;33mtuh_descriptor_get_device[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1090[0m
+[0m--- 0x42016fc1: [0;33mprocess_enumeration[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1472[0m
+[0m--- 0x42017446: [0;33menum_new_device[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1685[0m
+[0m--- 0x4201578e: [0;33mtuh_task_ext[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m552[0m
+[0m--- 0x42010c3f: [0;33mtuh_task[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.h[0m[0m:[1;31m166[0m
+[0m--- (inlined by) [0;33musb_host_task[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/main/usb_host.c[0m[0m:[1;31m40[0m
+[0m--- 0x4037a680: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/include/xt_utils.h[0m[0m:[1;31m83[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x4037a67d: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/include/xt_utils.h[0m[0m:[1;31m82[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x4202f675: [0;33mesp_vApplicationIdleHook[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_system/freertos_hooks.c[0m[0m:[1;31m58[0m
+[0m--- 0x40382425: [0;33mprvIdleTask[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/freertos/FreeRTOS-Kernel/tasks.c[0m[0m:[1;31m4350[0m
+[0m--- 0x4037e61a: [0;33mesp_restart_noos[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_system/port/soc/esp32s3/system_internal.c[0m[0m:[1;31m162[0m
+[0m--- 0x403c8700: [0;33m_stext[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x403c8924: [0;33mcall_start_cpu0[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m25[0m
+[0m--- 0x42013d50: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x400570e8: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x400570f3: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x42029475: [0;33muart_hal_write_txfifo[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/hal/uart_hal_iram.c[0m[0m:[1;31m27[0m
+[0m--- 0x42013d50: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x42013d4d: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x42015012: [0;33mhcd_int_handler[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m1348[0m
+[0m--- 0x4201211d: [0;33mdwc2_int_handler_wrap[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/dwc2_esp32.h[0m[0m:[1;31m95[0m
+[0m--- 0x40377b6d: [0;33m_xt_lowint1[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1240[0m
+[0m--- 0x42015af1: [0;33mtuh_control_xfer[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m684[0m
+[0m--- 0x420168b6: [0;33m_get_descriptor[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1079[0m
+[0m--- 0x4201690b: [0;33mtuh_descriptor_get[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1084[0m
+[0m--- 0x4201695e: [0;33mtuh_descriptor_get_device[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1090[0m
+[0m--- 0x42016fc1: [0;33mprocess_enumeration[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1472[0m
+[0m--- 0x42017446: [0;33menum_new_device[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1685[0m
+[0m--- 0x4201578e: [0;33mtuh_task_ext[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m552[0m
+[0m--- 0x42010c3f: [0;33mtuh_task[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.h[0m[0m:[1;31m166[0m
+[0m--- (inlined by) [0;33musb_host_task[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/main/usb_host.c[0m[0m:[1;31m40[0m
+[0m--- 0x4037a680: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/include/xt_utils.h[0m[0m:[1;31m83[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x4037a67d: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/include/xt_utils.h[0m[0m:[1;31m82[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x4202f675: [0;33mesp_vApplicationIdleHook[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_system/freertos_hooks.c[0m[0m:[1;31m58[0m
+[0m--- 0x40382425: [0;33mprvIdleTask[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/freertos/FreeRTOS-Kernel/tasks.c[0m[0m:[1;31m4350[0m
+[0m--- 0x4037e61a: [0;33mesp_restart_noos[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_system/port/soc/esp32s3/system_internal.c[0m[0m:[1;31m162[0m
+[0m--- 0x403c8700: [0;33m_stext[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x403c8924: [0;33mcall_start_cpu0[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m25[0m
+[0m--- 0x42013d4d: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x400570e8: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x400570f3: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x42029475: [0;33muart_hal_write_txfifo[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/hal/uart_hal_iram.c[0m[0m:[1;31m27[0m
+[0m--- 0x42013d4d: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x42013d4a: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x42015012: [0;33mhcd_int_handler[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m1348[0m
+[0m--- 0x4201211d: [0;33mdwc2_int_handler_wrap[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/dwc2_esp32.h[0m[0m:[1;31m95[0m
+[0m--- 0x40377b6d: [0;33m_xt_lowint1[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1240[0m
+[0m--- 0x42015af1: [0;33mtuh_control_xfer[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m684[0m
+[0m--- 0x420168b6: [0;33m_get_descriptor[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1079[0m
+[0m--- 0x4201690b: [0;33mtuh_descriptor_get[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1084[0m
+[0m--- 0x4201695e: [0;33mtuh_descriptor_get_device[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1090[0m
+[0m--- 0x42016fc1: [0;33mprocess_enumeration[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1472[0m
+[0m--- 0x42017446: [0;33menum_new_device[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1685[0m
+[0m--- 0x4201578e: [0;33mtuh_task_ext[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m552[0m
+[0m--- 0x42010c3f: [0;33mtuh_task[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.h[0m[0m:[1;31m166[0m
+[0m--- (inlined by) [0;33musb_host_task[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/main/usb_host.c[0m[0m:[1;31m40[0m
+[0m--- 0x4037a680: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/include/xt_utils.h[0m[0m:[1;31m83[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x4037a67d: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/include/xt_utils.h[0m[0m:[1;31m82[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x4202f675: [0;33mesp_vApplicationIdleHook[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_system/freertos_hooks.c[0m[0m:[1;31m58[0m
+[0m--- 0x40382425: [0;33mprvIdleTask[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/freertos/FreeRTOS-Kernel/tasks.c[0m[0m:[1;31m4350[0m
+[0m--- 0x4037e61a: [0;33mesp_restart_noos[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_system/port/soc/esp32s3/system_internal.c[0m[0m:[1;31m162[0m
+[0m--- 0x403c8700: [0;33m_stext[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x403c8924: [0;33mcall_start_cpu0[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m25[0m
+[0m--- 0x42013d4d: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x400570e8: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x400570f3: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x42029475: [0;33muart_hal_write_txfifo[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/hal/uart_hal_iram.c[0m[0m:[1;31m27[0m
+[0m--- 0x42013d4d: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x42013d4a: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x42015012: [0;33mhcd_int_handler[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m1348[0m
+[0m--- 0x4201211d: [0;33mdwc2_int_handler_wrap[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/dwc2_esp32.h[0m[0m:[1;31m95[0m
+[0m--- 0x40377b6d: [0;33m_xt_lowint1[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1240[0m
+[0m--- 0x42015af1: [0;33mtuh_control_xfer[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m684[0m
+[0m--- 0x420168b6: [0;33m_get_descriptor[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1079[0m
+[0m--- 0x4201690b: [0;33mtuh_descriptor_get[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1084[0m
+[0m--- 0x4201695e: [0;33mtuh_descriptor_get_device[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1090[0m
+[0m--- 0x42016fc1: [0;33mprocess_enumeration[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1472[0m
+[0m--- 0x42017446: [0;33menum_new_device[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1685[0m
+[0m--- 0x4201578e: [0;33mtuh_task_ext[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m552[0m
+[0m--- 0x42010c3f: [0;33mtuh_task[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.h[0m[0m:[1;31m166[0m
+[0m--- (inlined by) [0;33musb_host_task[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/main/usb_host.c[0m[0m:[1;31m40[0m
+[0m--- 0x4037a680: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/include/xt_utils.h[0m[0m:[1;31m83[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x4037a67d: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/include/xt_utils.h[0m[0m:[1;31m82[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x4202f675: [0;33mesp_vApplicationIdleHook[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_system/freertos_hooks.c[0m[0m:[1;31m58[0m
+[0m--- 0x40382425: [0;33mprvIdleTask[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/freertos/FreeRTOS-Kernel/tasks.c[0m[0m:[1;31m4350[0m
+[0m--- 0x4037e61a: [0;33mesp_restart_noos[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_system/port/soc/esp32s3/system_internal.c[0m[0m:[1;31m162[0m
+[0m--- 0x403c8700: [0;33m_stext[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x403c8924: [0;33mcall_start_cpu0[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m25[0m
+[0m--- 0x42013d4d: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x400570e8: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x400570f3: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x42029475: [0;33muart_hal_write_txfifo[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/hal/uart_hal_iram.c[0m[0m:[1;31m27[0m
+[0m--- 0x42013d4d: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x42013d4a: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x42015012: [0;33mhcd_int_handler[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m1348[0m
+[0m--- 0x4201211d: [0;33mdwc2_int_handler_wrap[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/dwc2_esp32.h[0m[0m:[1;31m95[0m
+[0m--- 0x40377b6d: [0;33m_xt_lowint1[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1240[0m
+[0m--- 0x42015af1: [0;33mtuh_control_xfer[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m684[0m
+[0m--- 0x420168b6: [0;33m_get_descriptor[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1079[0m
+[0m--- 0x4201690b: [0;33mtuh_descriptor_get[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1084[0m
+[0m--- 0x4201695e: [0;33mtuh_descriptor_get_device[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1090[0m
+[0m--- 0x42016fc1: [0;33mprocess_enumeration[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1472[0m
+[0m--- 0x42017446: [0;33menum_new_device[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1685[0m
+[0m--- 0x4201578e: [0;33mtuh_task_ext[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m552[0m
+[0m--- 0x42010c3f: [0;33mtuh_task[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.h[0m[0m:[1;31m166[0m
+[0m--- (inlined by) [0;33musb_host_task[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/main/usb_host.c[0m[0m:[1;31m40[0m
+[0m--- 0x4037a680: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/include/xt_utils.h[0m[0m:[1;31m83[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x4037a67d: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/include/xt_utils.h[0m[0m:[1;31m82[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x4202f675: [0;33mesp_vApplicationIdleHook[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_system/freertos_hooks.c[0m[0m:[1;31m58[0m
+[0m--- 0x40382425: [0;33mprvIdleTask[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/freertos/FreeRTOS-Kernel/tasks.c[0m[0m:[1;31m4350[0m
+[0m--- 0x4037e61a: [0;33mesp_restart_noos[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_system/port/soc/esp32s3/system_internal.c[0m[0m:[1;31m162[0m
+[0m--- 0x403c8700: [0;33m_stext[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x403c8924: [0;33mcall_start_cpu0[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m25[0m
+[0m--- 0x42013d50: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x400570e8: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x400570f3: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x42029475: [0;33muart_hal_write_txfifo[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/hal/uart_hal_iram.c[0m[0m:[1;31m27[0m
+[0m--- 0x42013d50: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x42013d4d: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x42015012: [0;33mhcd_int_handler[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m1348[0m
+[0m--- 0x4201211d: [0;33mdwc2_int_handler_wrap[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/dwc2_esp32.h[0m[0m:[1;31m95[0m
+[0m--- 0x40377b6d: [0;33m_xt_lowint1[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1240[0m
+[0m--- 0x42015af1: [0;33mtuh_control_xfer[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m684[0m
+[0m--- 0x420168b6: [0;33m_get_descriptor[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1079[0m
+[0m--- 0x4201690b: [0;33mtuh_descriptor_get[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1084[0m
+[0m--- 0x4201695e: [0;33mtuh_descriptor_get_device[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1090[0m
+[0m--- 0x42016fc1: [0;33mprocess_enumeration[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1472[0m
+[0m--- 0x42017446: [0;33menum_new_device[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1685[0m
+[0m--- 0x4201578e: [0;33mtuh_task_ext[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m552[0m
+[0m--- 0x42010c3f: [0;33mtuh_task[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.h[0m[0m:[1;31m166[0m
+[0m--- (inlined by) [0;33musb_host_task[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/main/usb_host.c[0m[0m:[1;31m40[0m
+[0m--- 0x4037a680: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/include/xt_utils.h[0m[0m:[1;31m83[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x4037a67d: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/include/xt_utils.h[0m[0m:[1;31m82[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x4202f675: [0;33mesp_vApplicationIdleHook[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_system/freertos_hooks.c[0m[0m:[1;31m58[0m
+[0m--- 0x40382425: [0;33mprvIdleTask[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/freertos/FreeRTOS-Kernel/tasks.c[0m[0m:[1;31m4350[0m
+[0m--- 0x4037e61a: [0;33mesp_restart_noos[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_system/port/soc/esp32s3/system_internal.c[0m[0m:[1;31m162[0m
+[0m--- 0x403c8700: [0;33m_stext[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x403c8924: [0;33mcall_start_cpu0[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m25[0m
+[0m--- 0x42013d4d: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x400570e8: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x400570f3: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x42029475: [0;33muart_hal_write_txfifo[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/hal/uart_hal_iram.c[0m[0m:[1;31m27[0m
+[0m--- 0x42013d4d: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x42013d4a: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x42015012: [0;33mhcd_int_handler[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m1348[0m
+[0m--- 0x4201211d: [0;33mdwc2_int_handler_wrap[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/dwc2_esp32.h[0m[0m:[1;31m95[0m
+[0m--- 0x40377b6d: [0;33m_xt_lowint1[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1240[0m
+[0m--- 0x42015af1: [0;33mtuh_control_xfer[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m684[0m
+[0m--- 0x420168b6: [0;33m_get_descriptor[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1079[0m
+[0m--- 0x4201690b: [0;33mtuh_descriptor_get[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1084[0m
+[0m--- 0x4201695e: [0;33mtuh_descriptor_get_device[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1090[0m
+[0m--- 0x42016fc1: [0;33mprocess_enumeration[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1472[0m
+[0m--- 0x42017446: [0;33menum_new_device[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1685[0m
+[0m--- 0x4201578e: [0;33mtuh_task_ext[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m552[0m
+[0m--- 0x42010c3f: [0;33mtuh_task[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.h[0m[0m:[1;31m166[0m
+[0m--- (inlined by) [0;33musb_host_task[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/main/usb_host.c[0m[0m:[1;31m40[0m
+[0m--- 0x4037a680: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/include/xt_utils.h[0m[0m:[1;31m83[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x4037a67d: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/include/xt_utils.h[0m[0m:[1;31m82[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x4202f675: [0;33mesp_vApplicationIdleHook[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_system/freertos_hooks.c[0m[0m:[1;31m58[0m
+[0m--- 0x40382425: [0;33mprvIdleTask[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/freertos/FreeRTOS-Kernel/tasks.c[0m[0m:[1;31m4350[0m
+[0m--- 0x4037e61a: [0;33mesp_restart_noos[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_system/port/soc/esp32s3/system_internal.c[0m[0m:[1;31m162[0m
+[0m--- 0x403c8700: [0;33m_stext[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x403c8924: [0;33mcall_start_cpu0[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m25[0m
+[0m--- 0x42013d50: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x400570e8: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x400570f3: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x42029475: [0;33muart_hal_write_txfifo[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/hal/uart_hal_iram.c[0m[0m:[1;31m27[0m
+[0m--- 0x42013d50: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x42013d4d: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x42015012: [0;33mhcd_int_handler[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m1348[0m
+[0m--- 0x4201211d: [0;33mdwc2_int_handler_wrap[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/dwc2_esp32.h[0m[0m:[1;31m95[0m
+[0m--- 0x40377b6d: [0;33m_xt_lowint1[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1240[0m
+[0m--- 0x42015af1: [0;33mtuh_control_xfer[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m684[0m
+[0m--- 0x420168b6: [0;33m_get_descriptor[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1079[0m
+[0m--- 0x4201690b: [0;33mtuh_descriptor_get[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1084[0m
+[0m--- 0x4201695e: [0;33mtuh_descriptor_get_device[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1090[0m
+[0m--- 0x42016fc1: [0;33mprocess_enumeration[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1472[0m
+[0m--- 0x42017446: [0;33menum_new_device[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1685[0m
+[0m--- 0x4201578e: [0;33mtuh_task_ext[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m552[0m
+[0m--- 0x42010c3f: [0;33mtuh_task[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.h[0m[0m:[1;31m166[0m
+[0m--- (inlined by) [0;33musb_host_task[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/main/usb_host.c[0m[0m:[1;31m40[0m
+[0m--- 0x4037a680: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/include/xt_utils.h[0m[0m:[1;31m83[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x4037a67d: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/include/xt_utils.h[0m[0m:[1;31m82[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x4202f675: [0;33mesp_vApplicationIdleHook[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_system/freertos_hooks.c[0m[0m:[1;31m58[0m
+[0m--- 0x40382425: [0;33mprvIdleTask[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/freertos/FreeRTOS-Kernel/tasks.c[0m[0m:[1;31m4350[0m
+[0m--- 0x4037e61a: [0;33mesp_restart_noos[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_system/port/soc/esp32s3/system_internal.c[0m[0m:[1;31m162[0m
+[0m--- 0x403c8700: [0;33m_stext[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x403c8924: [0;33mcall_start_cpu0[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m25[0m
+[0m--- 0x42013d50: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x400570e8: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x400570f3: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x42029475: [0;33muart_hal_write_txfifo[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/hal/uart_hal_iram.c[0m[0m:[1;31m27[0m
+[0m--- 0x42013d50: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x42013d4d: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x42015012: [0;33mhcd_int_handler[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m1348[0m
+[0m--- 0x4201211d: [0;33mdwc2_int_handler_wrap[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/dwc2_esp32.h[0m[0m:[1;31m95[0m
+[0m--- 0x40377b6d: [0;33m_xt_lowint1[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1240[0m
+[0m--- 0x42015af1: [0;33mtuh_control_xfer[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m684[0m
+[0m--- 0x420168b6: [0;33m_get_descriptor[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1079[0m
+[0m--- 0x4201690b: [0;33mtuh_descriptor_get[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1084[0m
+[0m--- 0x4201695e: [0;33mtuh_descriptor_get_device[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1090[0m
+[0m--- 0x42016fc1: [0;33mprocess_enumeration[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1472[0m
+[0m--- 0x42017446: [0;33menum_new_device[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1685[0m
+[0m--- 0x4201578e: [0;33mtuh_task_ext[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m552[0m
+[0m--- 0x42010c3f: [0;33mtuh_task[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.h[0m[0m:[1;31m166[0m
+[0m--- (inlined by) [0;33musb_host_task[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/main/usb_host.c[0m[0m:[1;31m40[0m
+[0m--- 0x4037a680: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/include/xt_utils.h[0m[0m:[1;31m83[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x4037a67d: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/include/xt_utils.h[0m[0m:[1;31m82[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x4202f675: [0;33mesp_vApplicationIdleHook[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_system/freertos_hooks.c[0m[0m:[1;31m58[0m
+[0m--- 0x40382425: [0;33mprvIdleTask[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/freertos/FreeRTOS-Kernel/tasks.c[0m[0m:[1;31m4350[0m
+[0m--- 0x4037e61a: [0;33mesp_restart_noos[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_system/port/soc/esp32s3/system_internal.c[0m[0m:[1;31m162[0m
+[0m--- 0x403c8700: [0;33m_stext[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x403c8924: [0;33mcall_start_cpu0[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m25[0m
+[0m--- 0x42013d4d: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x400570e8: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x400570f3: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x42029475: [0;33muart_hal_write_txfifo[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/hal/uart_hal_iram.c[0m[0m:[1;31m27[0m
+[0m--- 0x42013d4d: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x42013d4a: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x42015012: [0;33mhcd_int_handler[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m1348[0m
+[0m--- 0x4201211d: [0;33mdwc2_int_handler_wrap[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/dwc2_esp32.h[0m[0m:[1;31m95[0m
+[0m--- 0x40377b6d: [0;33m_xt_lowint1[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1240[0m
+[0m--- 0x42015af1: [0;33mtuh_control_xfer[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m684[0m
+[0m--- 0x420168b6: [0;33m_get_descriptor[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1079[0m
+[0m--- 0x4201690b: [0;33mtuh_descriptor_get[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1084[0m
+[0m--- 0x4201695e: [0;33mtuh_descriptor_get_device[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1090[0m
+[0m--- 0x42016fc1: [0;33mprocess_enumeration[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1472[0m
+[0m--- 0x42017446: [0;33menum_new_device[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1685[0m
+[0m--- 0x4201578e: [0;33mtuh_task_ext[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m552[0m
+[0m--- 0x42010c3f: [0;33mtuh_task[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.h[0m[0m:[1;31m166[0m
+[0m--- (inlined by) [0;33musb_host_task[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/main/usb_host.c[0m[0m:[1;31m40[0m
+[0m--- 0x4037a680: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/include/xt_utils.h[0m[0m:[1;31m83[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x4037a67d: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/include/xt_utils.h[0m[0m:[1;31m82[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x4202f675: [0;33mesp_vApplicationIdleHook[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_system/freertos_hooks.c[0m[0m:[1;31m58[0m
+[0m--- 0x40382425: [0;33mprvIdleTask[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/freertos/FreeRTOS-Kernel/tasks.c[0m[0m:[1;31m4350[0m
+[0m--- 0x4037e61a: [0;33mesp_restart_noos[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_system/port/soc/esp32s3/system_internal.c[0m[0m:[1;31m162[0m
+[0m--- 0x403c8700: [0;33m_stext[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x403c8924: [0;33mcall_start_cpu0[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m25[0m
+[0m--- 0x42013d50: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x400570e8: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x400570f3: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x42029475: [0;33muart_hal_write_txfifo[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/hal/uart_hal_iram.c[0m[0m:[1;31m27[0m
+[0m--- 0x42013d50: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x42013d4d: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x42015012: [0;33mhcd_int_handler[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m1348[0m
+[0m--- 0x4201211d: [0;33mdwc2_int_handler_wrap[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/dwc2_esp32.h[0m[0m:[1;31m95[0m
+[0m--- 0x40377b6d: [0;33m_xt_lowint1[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1240[0m
+[0m--- 0x42015af1: [0;33mtuh_control_xfer[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m684[0m
+[0m--- 0x420168b6: [0;33m_get_descriptor[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1079[0m
+[0m--- 0x4201690b: [0;33mtuh_descriptor_get[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1084[0m
+[0m--- 0x4201695e: [0;33mtuh_descriptor_get_device[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1090[0m
+[0m--- 0x42016fc1: [0;33mprocess_enumeration[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1472[0m
+[0m--- 0x42017446: [0;33menum_new_device[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1685[0m
+[0m--- 0x4201578e: [0;33mtuh_task_ext[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m552[0m
+[0m--- 0x42010c3f: [0;33mtuh_task[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.h[0m[0m:[1;31m166[0m
+[0m--- (inlined by) [0;33musb_host_task[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/main/usb_host.c[0m[0m:[1;31m40[0m
+[0m--- 0x4037a680: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/include/xt_utils.h[0m[0m:[1;31m83[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x4037a67d: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/include/xt_utils.h[0m[0m:[1;31m82[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x4202f675: [0;33mesp_vApplicationIdleHook[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_system/freertos_hooks.c[0m[0m:[1;31m58[0m
+[0m--- 0x40382425: [0;33mprvIdleTask[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/freertos/FreeRTOS-Kernel/tasks.c[0m[0m:[1;31m4350[0m
+[0m--- 0x4037e61a: [0;33mesp_restart_noos[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_system/port/soc/esp32s3/system_internal.c[0m[0m:[1;31m162[0m
+[0m--- 0x403c8700: [0;33m_stext[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x403c8924: [0;33mcall_start_cpu0[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m25[0m
+[0m--- 0x42013d4d: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x400570e8: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x400570f3: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x42029475: [0;33muart_hal_write_txfifo[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/hal/uart_hal_iram.c[0m[0m:[1;31m27[0m
+[0m--- 0x42013d4d: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x42013d4a: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x42015012: [0;33mhcd_int_handler[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m1348[0m
+[0m--- 0x4201211d: [0;33mdwc2_int_handler_wrap[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/dwc2_esp32.h[0m[0m:[1;31m95[0m
+[0m--- 0x40377b6d: [0;33m_xt_lowint1[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1240[0m
+[0m--- 0x42015af1: [0;33mtuh_control_xfer[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m684[0m
+[0m--- 0x420168b6: [0;33m_get_descriptor[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1079[0m
+[0m--- 0x4201690b: [0;33mtuh_descriptor_get[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1084[0m
+[0m--- 0x4201695e: [0;33mtuh_descriptor_get_device[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1090[0m
+[0m--- 0x42016fc1: [0;33mprocess_enumeration[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1472[0m
+[0m--- 0x42017446: [0;33menum_new_device[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1685[0m
+[0m--- 0x4201578e: [0;33mtuh_task_ext[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m552[0m
+[0m--- 0x42010c3f: [0;33mtuh_task[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.h[0m[0m:[1;31m166[0m
+[0m--- (inlined by) [0;33musb_host_task[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/main/usb_host.c[0m[0m:[1;31m40[0m
+[0m--- 0x4037a680: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/include/xt_utils.h[0m[0m:[1;31m83[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x4037a67d: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/include/xt_utils.h[0m[0m:[1;31m82[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x4202f675: [0;33mesp_vApplicationIdleHook[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_system/freertos_hooks.c[0m[0m:[1;31m58[0m
+[0m--- 0x40382425: [0;33mprvIdleTask[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/freertos/FreeRTOS-Kernel/tasks.c[0m[0m:[1;31m4350[0m
+[0m--- 0x4037e61a: [0;33mesp_restart_noos[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_system/port/soc/esp32s3/system_internal.c[0m[0m:[1;31m162[0m
+[0m--- 0x403c8700: [0;33m_stext[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x403c8924: [0;33mcall_start_cpu0[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m25[0m
+[0m--- 0x42013d4d: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x400570e8: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x400570f3: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x42029475: [0;33muart_hal_write_txfifo[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/hal/uart_hal_iram.c[0m[0m:[1;31m27[0m
+[0m--- 0x42013d4d: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x42013d4a: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x42015012: [0;33mhcd_int_handler[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m1348[0m
+[0m--- 0x4201211d: [0;33mdwc2_int_handler_wrap[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/dwc2_esp32.h[0m[0m:[1;31m95[0m
+[0m--- 0x40377b6d: [0;33m_xt_lowint1[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1240[0m
+[0m--- 0x42015af1: [0;33mtuh_control_xfer[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m684[0m
+[0m--- 0x420168b6: [0;33m_get_descriptor[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1079[0m
+[0m--- 0x4201690b: [0;33mtuh_descriptor_get[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1084[0m
+[0m--- 0x4201695e: [0;33mtuh_descriptor_get_device[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1090[0m
+[0m--- 0x42016fc1: [0;33mprocess_enumeration[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1472[0m
+[0m--- 0x42017446: [0;33menum_new_device[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1685[0m
+[0m--- 0x4201578e: [0;33mtuh_task_ext[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m552[0m
+[0m--- 0x42010c3f: [0;33mtuh_task[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.h[0m[0m:[1;31m166[0m
+[0m--- (inlined by) [0;33musb_host_task[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/main/usb_host.c[0m[0m:[1;31m40[0m
+[0m--- 0x4037a680: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/include/xt_utils.h[0m[0m:[1;31m83[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x4037a67d: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/include/xt_utils.h[0m[0m:[1;31m82[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x4202f675: [0;33mesp_vApplicationIdleHook[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_system/freertos_hooks.c[0m[0m:[1;31m58[0m
+[0m--- 0x40382425: [0;33mprvIdleTask[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/freertos/FreeRTOS-Kernel/tasks.c[0m[0m:[1;31m4350[0m
+[0m--- 0x4037e61a: [0;33mesp_restart_noos[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_system/port/soc/esp32s3/system_internal.c[0m[0m:[1;31m162[0m
+[0m--- 0x403c8700: [0;33m_stext[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x403c8924: [0;33mcall_start_cpu0[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m25[0m
+[0m--- 0x42013d50: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x400570e8: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x400570f3: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x42029475: [0;33muart_hal_write_txfifo[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/hal/uart_hal_iram.c[0m[0m:[1;31m27[0m
+[0m--- 0x42013d50: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x42013d4d: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x42015012: [0;33mhcd_int_handler[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m1348[0m
+[0m--- 0x4201211d: [0;33mdwc2_int_handler_wrap[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/dwc2_esp32.h[0m[0m:[1;31m95[0m
+[0m--- 0x40377b6d: [0;33m_xt_lowint1[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1240[0m
+[0m--- 0x42015af1: [0;33mtuh_control_xfer[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m684[0m
+[0m--- 0x420168b6: [0;33m_get_descriptor[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1079[0m
+[0m--- 0x4201690b: [0;33mtuh_descriptor_get[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1084[0m
+[0m--- 0x4201695e: [0;33mtuh_descriptor_get_device[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1090[0m
+[0m--- 0x42016fc1: [0;33mprocess_enumeration[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1472[0m
+[0m--- 0x42017446: [0;33menum_new_device[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1685[0m
+[0m--- 0x4201578e: [0;33mtuh_task_ext[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m552[0m
+[0m--- 0x42010c3f: [0;33mtuh_task[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.h[0m[0m:[1;31m166[0m
+[0m--- (inlined by) [0;33musb_host_task[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/main/usb_host.c[0m[0m:[1;31m40[0m
+[0m--- 0x4037a680: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/include/xt_utils.h[0m[0m:[1;31m83[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x4037a67d: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/include/xt_utils.h[0m[0m:[1;31m82[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x4202f675: [0;33mesp_vApplicationIdleHook[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_system/freertos_hooks.c[0m[0m:[1;31m58[0m
+[0m--- 0x40382425: [0;33mprvIdleTask[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/freertos/FreeRTOS-Kernel/tasks.c[0m[0m:[1;31m4350[0m
+[0m--- 0x4037e61a: [0;33mesp_restart_noos[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_system/port/soc/esp32s3/system_internal.c[0m[0m:[1;31m162[0m
+[0m--- 0x403c8700: [0;33m_stext[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x403c8924: [0;33mcall_start_cpu0[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m25[0m
+[0m--- 0x42013d4d: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x400570e8: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x400570f3: [0;33mmemset[0m[0m in [0;32mROM[0m
+[0m--- 0x42029475: [0;33muart_hal_write_txfifo[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/hal/uart_hal_iram.c[0m[0m:[1;31m27[0m
+[0m--- 0x42013d4d: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x42013d4a: [0;33mhandle_txfifo_empty[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m822[0m
+[0m--- 0x42015012: [0;33mhcd_int_handler[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/hcd_dwc2.c[0m[0m:[1;31m1348[0m
+[0m--- 0x4201211d: [0;33mdwc2_int_handler_wrap[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/portable/synopsys/dwc2/dwc2_esp32.h[0m[0m:[1;31m95[0m
+[0m--- 0x40377b6d: [0;33m_xt_lowint1[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1240[0m
+[0m--- 0x42015af1: [0;33mtuh_control_xfer[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m684[0m
+[0m--- 0x420168b6: [0;33m_get_descriptor[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1079[0m
+[0m--- 0x4201690b: [0;33mtuh_descriptor_get[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1084[0m
+[0m--- 0x4201695e: [0;33mtuh_descriptor_get_device[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1090[0m
+[0m--- 0x42016fc1: [0;33mprocess_enumeration[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1472[0m
+[0m--- 0x42017446: [0;33menum_new_device[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m1685[0m
+[0m--- 0x4201578e: [0;33mtuh_task_ext[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.c[0m[0m:[1;31m552[0m
+[0m--- 0x42010c3f: [0;33mtuh_task[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb/src/host/usbh.h[0m[0m:[1;31m166[0m
+[0m--- (inlined by) [0;33musb_host_task[0m[0m at [0;32mC:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/main/usb_host.c[0m[0m:[1;31m40[0m
+[0m--- 0x4037a680: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/include/xt_utils.h[0m[0m:[1;31m83[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x4037a67d: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/xtensa/include/xt_utils.h[0m[0m:[1;31m82[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/Users/Abdul/esp-idf-v5.5.1/components/esp_hw_support/cpu.c[0m

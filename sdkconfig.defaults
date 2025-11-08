@@ -55,10 +55,19 @@ CONFIG_TINYUSB_DEVICE_HID=n
 # ============================================================================
 # FILESYSTEM CONFIGURATION
 # ============================================================================
+# FAT Filesystem
 CONFIG_FATFS_SECTOR_512=y
 CONFIG_FATFS_LFN_HEAP=y
 CONFIG_FATFS_MAX_LFN=255
 CONFIG_FATFS_FS_LOCK=4
+
+# SPIFFS Filesystem
+CONFIG_SPIFFS_MAX_PARTITIONS=1
+CONFIG_SPIFFS_USE_MAGIC=y
+CONFIG_SPIFFS_USE_MAGIC_LENGTH=y
+CONFIG_SPIFFS_CACHE=y
+CONFIG_SPIFFS_CACHE_WR=y
+CONFIG_SPIFFS_PAGE_CHECK=y
 
 # ============================================================================
 # FREERTOS CONFIGURATION

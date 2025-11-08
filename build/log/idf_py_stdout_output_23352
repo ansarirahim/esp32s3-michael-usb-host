@@ -1,0 +1,97 @@
+Command: cmake -G Ninja -DPYTHON_DEPS_CHECKED=1 -DPYTHON=C:\Users\Abdul\.espressif\python_env\idf5.5_py3.11_env\Scripts\python.exe -DESP_PLATFORM=1 -DCCACHE_ENABLE=1 C:\Users\Abdul\Documents\GitHub\esp32s3-michael-usb-host
+-- IDF_TARGET is not set, guessed 'esp32s3' from sdkconfig 'C:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/sdkconfig'
+-- Found Git: C:/Program Files/Git/cmd/git.exe (found version "2.43.0.windows.1")
+-- Minimal build - OFF
+-- ccache will be used for faster recompilation
+-- The C compiler identification is GNU 14.2.0
+-- The CXX compiler identification is GNU 14.2.0
+-- The ASM compiler identification is GNU
+-- Found assembler: C:/Users/Abdul/.espressif/tools/xtensa-esp-elf/esp-14.2.0_20241119/xtensa-esp-elf/bin/xtensa-esp32s3-elf-gcc.exe
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: C:/Users/Abdul/.espressif/tools/xtensa-esp-elf/esp-14.2.0_20241119/xtensa-esp-elf/bin/xtensa-esp32s3-elf-gcc.exe - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: C:/Users/Abdul/.espressif/tools/xtensa-esp-elf/esp-14.2.0_20241119/xtensa-esp-elf/bin/xtensa-esp32s3-elf-g++.exe - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Building ESP-IDF components for target esp32s3
+NOTICE: Processing 2 dependencies:
+NOTICE: [1/2] espressif/tinyusb (0.18.0~6)
+NOTICE: [2/2] idf (5.5.1)
+-- Project sdkconfig file C:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/sdkconfig
+Loading defaults file C:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/sdkconfig.defaults...
+C:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/sdkconfig.defaults:83 CONFIG_SECURE_BOOT_ENABLED was replaced with CONFIG_SECURE_BOOT_V1_ENABLED 
+C:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/sdkconfig.defaults:89 CONFIG_ESP32S3_DEFAULT_CPU_FREQ_240 was replaced with CONFIG_ESP_DEFAULT_CPU_FREQ_MHZ_240 
+C:\Users\Abdul\AppData\Local\Temp\kconfgen_tmpppzj4ehe:5 line was updated to # ============================================================================n
+C:\Users\Abdul\AppData\Local\Temp\kconfgen_tmpppzj4ehe:7 line was updated to # ============================================================================n
+C:\Users\Abdul\AppData\Local\Temp\kconfgen_tmpppzj4ehe:11 line was updated to # ============================================================================n
+C:\Users\Abdul\AppData\Local\Temp\kconfgen_tmpppzj4ehe:13 line was updated to # ============================================================================n
+C:\Users\Abdul\AppData\Local\Temp\kconfgen_tmpppzj4ehe:18 line was updated to # ============================================================================n
+C:\Users\Abdul\AppData\Local\Temp\kconfgen_tmpppzj4ehe:20 line was updated to # ============================================================================n
+C:\Users\Abdul\AppData\Local\Temp\kconfgen_tmpppzj4ehe:24 line was updated to # ============================================================================n
+C:\Users\Abdul\AppData\Local\Temp\kconfgen_tmpppzj4ehe:26 line was updated to # ============================================================================n
+C:\Users\Abdul\AppData\Local\Temp\kconfgen_tmpppzj4ehe:31 line was updated to # ============================================================================n
+C:\Users\Abdul\AppData\Local\Temp\kconfgen_tmpppzj4ehe:33 line was updated to # ============================================================================n
+C:\Users\Abdul\AppData\Local\Temp\kconfgen_tmpppzj4ehe:55 line was updated to # ============================================================================n
+C:\Users\Abdul\AppData\Local\Temp\kconfgen_tmpppzj4ehe:57 line was updated to # ============================================================================n
+C:\Users\Abdul\AppData\Local\Temp\kconfgen_tmpppzj4ehe:62 line was updated to # ============================================================================n
+C:\Users\Abdul\AppData\Local\Temp\kconfgen_tmpppzj4ehe:64 line was updated to # ============================================================================n
+C:\Users\Abdul\AppData\Local\Temp\kconfgen_tmpppzj4ehe:68 line was updated to # ============================================================================n
+C:\Users\Abdul\AppData\Local\Temp\kconfgen_tmpppzj4ehe:70 line was updated to # ============================================================================n
+C:\Users\Abdul\AppData\Local\Temp\kconfgen_tmpppzj4ehe:74 line was updated to # ============================================================================n
+C:\Users\Abdul\AppData\Local\Temp\kconfgen_tmpppzj4ehe:76 line was updated to # ============================================================================n
+C:\Users\Abdul\AppData\Local\Temp\kconfgen_tmpppzj4ehe:80 line was updated to # ============================================================================n
+C:\Users\Abdul\AppData\Local\Temp\kconfgen_tmpppzj4ehe:82 line was updated to # ============================================================================n
+C:\Users\Abdul\AppData\Local\Temp\kconfgen_tmpppzj4ehe:86 line was updated to # ============================================================================n
+C:\Users\Abdul\AppData\Local\Temp\kconfgen_tmpppzj4ehe:88 line was updated to # ============================================================================n
+warning: unknown kconfig symbol 'USB_HOST_HUB_REQUIRED' assigned to 'n' in C:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/sdkconfig.defaults
+warning: unknown kconfig symbol 'TINYUSB' assigned to 'y' in C:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/sdkconfig.defaults
+warning: unknown kconfig symbol 'TINYUSB_TASK_STACK_SIZE' assigned to '4096' in C:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/sdkconfig.defaults
+warning: unknown kconfig symbol 'TINYUSB_TASK_PRIORITY' assigned to '18' in C:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/sdkconfig.defaults
+warning: unknown kconfig symbol 'TINYUSB_HOST' assigned to 'y' in C:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/sdkconfig.defaults
+warning: unknown kconfig symbol 'TINYUSB_HOST_MSC' assigned to 'y' in C:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/sdkconfig.defaults
+warning: unknown kconfig symbol 'TINYUSB_HOST_HID' assigned to 'n' in C:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/sdkconfig.defaults
+warning: unknown kconfig symbol 'TINYUSB_HOST_CDC' assigned to 'n' in C:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/sdkconfig.defaults
+warning: unknown kconfig symbol 'TINYUSB_HOST_VENDOR' assigned to 'n' in C:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/sdkconfig.defaults
+warning: unknown kconfig symbol 'TINYUSB_DEVICE' assigned to 'y' in C:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/sdkconfig.defaults
+warning: unknown kconfig symbol 'TINYUSB_DEVICE_MSC' assigned to 'y' in C:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/sdkconfig.defaults
+warning: unknown kconfig symbol 'TINYUSB_DEVICE_CDC' assigned to 'n' in C:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/sdkconfig.defaults
+warning: unknown kconfig symbol 'TINYUSB_DEVICE_HID' assigned to 'n' in C:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/sdkconfig.defaults
+warning: unknown kconfig symbol 'FATFS_USES_UTF8' assigned to 'y' in C:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/sdkconfig.defaults
+warning: unknown kconfig symbol 'FATFS_LONG_FILENAMES' assigned to 'y' in C:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/sdkconfig.defaults
+warning: unknown kconfig symbol 'FATFS_SECTOR_SIZE' assigned to '512' in C:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/sdkconfig.defaults
+warning: unknown kconfig symbol 'FREERTOS_TASK_STACK_SIZE_DEFAULT' assigned to '3072' in C:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/sdkconfig.defaults
+-- Compiler supported targets: xtensa-esp-elf
+-- Found Python3: C:/Users/Abdul/.espressif/python_env/idf5.5_py3.11_env/Scripts/python.exe (found version "3.11.9") found components: Interpreter
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+-- Found Threads: TRUE
+-- Performing Test C_COMPILER_SUPPORTS_WFORMAT_SIGNEDNESS
+-- Performing Test C_COMPILER_SUPPORTS_WFORMAT_SIGNEDNESS - Success
+-- USING O3
+-- App "esp32s3_michael_usb_host" version: f0b866d-dirty
+-- Adding linker script C:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/build/esp-idf/esp_system/ld/memory.ld
+-- Adding linker script C:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/build/esp-idf/esp_system/ld/sections.ld.in
+-- Adding linker script C:/Users/Abdul/esp-idf-v5.5.1/components/esp_rom/esp32s3/ld/esp32s3.rom.ld
+-- Adding linker script C:/Users/Abdul/esp-idf-v5.5.1/components/esp_rom/esp32s3/ld/esp32s3.rom.api.ld
+-- Adding linker script C:/Users/Abdul/esp-idf-v5.5.1/components/esp_rom/esp32s3/ld/esp32s3.rom.bt_funcs.ld
+-- Adding linker script C:/Users/Abdul/esp-idf-v5.5.1/components/esp_rom/esp32s3/ld/esp32s3.rom.libgcc.ld
+-- Adding linker script C:/Users/Abdul/esp-idf-v5.5.1/components/esp_rom/esp32s3/ld/esp32s3.rom.wdt.ld
+-- Adding linker script C:/Users/Abdul/esp-idf-v5.5.1/components/esp_rom/esp32s3/ld/esp32s3.rom.version.ld
+-- Adding linker script C:/Users/Abdul/esp-idf-v5.5.1/components/esp_rom/esp32s3/ld/esp32s3.rom.ble_master.ld
+-- Adding linker script C:/Users/Abdul/esp-idf-v5.5.1/components/esp_rom/esp32s3/ld/esp32s3.rom.ble_50.ld
+-- Adding linker script C:/Users/Abdul/esp-idf-v5.5.1/components/esp_rom/esp32s3/ld/esp32s3.rom.ble_smp.ld
+-- Adding linker script C:/Users/Abdul/esp-idf-v5.5.1/components/esp_rom/esp32s3/ld/esp32s3.rom.ble_dtm.ld
+-- Adding linker script C:/Users/Abdul/esp-idf-v5.5.1/components/esp_rom/esp32s3/ld/esp32s3.rom.ble_test.ld
+-- Adding linker script C:/Users/Abdul/esp-idf-v5.5.1/components/esp_rom/esp32s3/ld/esp32s3.rom.ble_scan.ld
+-- Adding linker script C:/Users/Abdul/esp-idf-v5.5.1/components/esp_rom/esp32s3/ld/esp32s3.rom.libc.ld
+-- Adding linker script C:/Users/Abdul/esp-idf-v5.5.1/components/esp_rom/esp32s3/ld/esp32s3.rom.newlib.ld
+-- Adding linker script C:/Users/Abdul/esp-idf-v5.5.1/components/soc/esp32s3/ld/esp32s3.peripherals.ld
+-- Components: app_trace app_update bootloader bootloader_support bt cmock console cxx driver efuse esp-tls esp_adc esp_app_format esp_bootloader_format esp_coex esp_common esp_driver_ana_cmpr esp_driver_bitscrambler esp_driver_cam esp_driver_dac esp_driver_gpio esp_driver_gptimer esp_driver_i2c esp_driver_i2s esp_driver_isp esp_driver_jpeg esp_driver_ledc esp_driver_mcpwm esp_driver_parlio esp_driver_pcnt esp_driver_ppa esp_driver_rmt esp_driver_sdio esp_driver_sdm esp_driver_sdmmc esp_driver_sdspi esp_driver_spi esp_driver_touch_sens esp_driver_tsens esp_driver_twai esp_driver_uart esp_driver_usb_serial_jtag esp_eth esp_event esp_gdbstub esp_hid esp_http_client esp_http_server esp_https_ota esp_https_server esp_hw_support esp_lcd esp_local_ctrl esp_mm esp_netif esp_netif_stack esp_partition esp_phy esp_pm esp_psram esp_ringbuf esp_rom esp_security esp_system esp_timer esp_vfs_console esp_wifi espcoredump espressif__tinyusb esptool_py fatfs freertos hal heap http_parser idf_test ieee802154 json log lwip main mbedtls mqtt newlib nvs_flash nvs_sec_provider openthread partition_table perfmon protobuf-c protocomm pthread rt sdmmc soc spi_flash spiffs tcp_transport touch_element ulp unity usb vfs wear_levelling wifi_provisioning wpa_supplicant xtensa
+-- Component paths: C:/Users/Abdul/esp-idf-v5.5.1/components/app_trace C:/Users/Abdul/esp-idf-v5.5.1/components/app_update C:/Users/Abdul/esp-idf-v5.5.1/components/bootloader C:/Users/Abdul/esp-idf-v5.5.1/components/bootloader_support C:/Users/Abdul/esp-idf-v5.5.1/components/bt C:/Users/Abdul/esp-idf-v5.5.1/components/cmock C:/Users/Abdul/esp-idf-v5.5.1/components/console C:/Users/Abdul/esp-idf-v5.5.1/components/cxx C:/Users/Abdul/esp-idf-v5.5.1/components/driver C:/Users/Abdul/esp-idf-v5.5.1/components/efuse C:/Users/Abdul/esp-idf-v5.5.1/components/esp-tls C:/Users/Abdul/esp-idf-v5.5.1/components/esp_adc C:/Users/Abdul/esp-idf-v5.5.1/components/esp_app_format C:/Users/Abdul/esp-idf-v5.5.1/components/esp_bootloader_format C:/Users/Abdul/esp-idf-v5.5.1/components/esp_coex C:/Users/Abdul/esp-idf-v5.5.1/components/esp_common C:/Users/Abdul/esp-idf-v5.5.1/components/esp_driver_ana_cmpr C:/Users/Abdul/esp-idf-v5.5.1/components/esp_driver_bitscrambler C:/Users/Abdul/esp-idf-v5.5.1/components/esp_driver_cam C:/Users/Abdul/esp-idf-v5.5.1/components/esp_driver_dac C:/Users/Abdul/esp-idf-v5.5.1/components/esp_driver_gpio C:/Users/Abdul/esp-idf-v5.5.1/components/esp_driver_gptimer C:/Users/Abdul/esp-idf-v5.5.1/components/esp_driver_i2c C:/Users/Abdul/esp-idf-v5.5.1/components/esp_driver_i2s C:/Users/Abdul/esp-idf-v5.5.1/components/esp_driver_isp C:/Users/Abdul/esp-idf-v5.5.1/components/esp_driver_jpeg C:/Users/Abdul/esp-idf-v5.5.1/components/esp_driver_ledc C:/Users/Abdul/esp-idf-v5.5.1/components/esp_driver_mcpwm C:/Users/Abdul/esp-idf-v5.5.1/components/esp_driver_parlio C:/Users/Abdul/esp-idf-v5.5.1/components/esp_driver_pcnt C:/Users/Abdul/esp-idf-v5.5.1/components/esp_driver_ppa C:/Users/Abdul/esp-idf-v5.5.1/components/esp_driver_rmt C:/Users/Abdul/esp-idf-v5.5.1/components/esp_driver_sdio C:/Users/Abdul/esp-idf-v5.5.1/components/esp_driver_sdm C:/Users/Abdul/esp-idf-v5.5.1/components/esp_driver_sdmmc C:/Users/Abdul/esp-idf-v5.5.1/components/esp_driver_sdspi C:/Users/Abdul/esp-idf-v5.5.1/components/esp_driver_spi C:/Users/Abdul/esp-idf-v5.5.1/components/esp_driver_touch_sens C:/Users/Abdul/esp-idf-v5.5.1/components/esp_driver_tsens C:/Users/Abdul/esp-idf-v5.5.1/components/esp_driver_twai C:/Users/Abdul/esp-idf-v5.5.1/components/esp_driver_uart C:/Users/Abdul/esp-idf-v5.5.1/components/esp_driver_usb_serial_jtag C:/Users/Abdul/esp-idf-v5.5.1/components/esp_eth C:/Users/Abdul/esp-idf-v5.5.1/components/esp_event C:/Users/Abdul/esp-idf-v5.5.1/components/esp_gdbstub C:/Users/Abdul/esp-idf-v5.5.1/components/esp_hid C:/Users/Abdul/esp-idf-v5.5.1/components/esp_http_client C:/Users/Abdul/esp-idf-v5.5.1/components/esp_http_server C:/Users/Abdul/esp-idf-v5.5.1/components/esp_https_ota C:/Users/Abdul/esp-idf-v5.5.1/components/esp_https_server C:/Users/Abdul/esp-idf-v5.5.1/components/esp_hw_support C:/Users/Abdul/esp-idf-v5.5.1/components/esp_lcd C:/Users/Abdul/esp-idf-v5.5.1/components/esp_local_ctrl C:/Users/Abdul/esp-idf-v5.5.1/components/esp_mm C:/Users/Abdul/esp-idf-v5.5.1/components/esp_netif C:/Users/Abdul/esp-idf-v5.5.1/components/esp_netif_stack C:/Users/Abdul/esp-idf-v5.5.1/components/esp_partition C:/Users/Abdul/esp-idf-v5.5.1/components/esp_phy C:/Users/Abdul/esp-idf-v5.5.1/components/esp_pm C:/Users/Abdul/esp-idf-v5.5.1/components/esp_psram C:/Users/Abdul/esp-idf-v5.5.1/components/esp_ringbuf C:/Users/Abdul/esp-idf-v5.5.1/components/esp_rom C:/Users/Abdul/esp-idf-v5.5.1/components/esp_security C:/Users/Abdul/esp-idf-v5.5.1/components/esp_system C:/Users/Abdul/esp-idf-v5.5.1/components/esp_timer C:/Users/Abdul/esp-idf-v5.5.1/components/esp_vfs_console C:/Users/Abdul/esp-idf-v5.5.1/components/esp_wifi C:/Users/Abdul/esp-idf-v5.5.1/components/espcoredump C:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/managed_components/espressif__tinyusb C:/Users/Abdul/esp-idf-v5.5.1/components/esptool_py C:/Users/Abdul/esp-idf-v5.5.1/components/fatfs C:/Users/Abdul/esp-idf-v5.5.1/components/freertos C:/Users/Abdul/esp-idf-v5.5.1/components/hal C:/Users/Abdul/esp-idf-v5.5.1/components/heap C:/Users/Abdul/esp-idf-v5.5.1/components/http_parser C:/Users/Abdul/esp-idf-v5.5.1/components/idf_test C:/Users/Abdul/esp-idf-v5.5.1/components/ieee802154 C:/Users/Abdul/esp-idf-v5.5.1/components/json C:/Users/Abdul/esp-idf-v5.5.1/components/log C:/Users/Abdul/esp-idf-v5.5.1/components/lwip C:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/main C:/Users/Abdul/esp-idf-v5.5.1/components/mbedtls C:/Users/Abdul/esp-idf-v5.5.1/components/mqtt C:/Users/Abdul/esp-idf-v5.5.1/components/newlib C:/Users/Abdul/esp-idf-v5.5.1/components/nvs_flash C:/Users/Abdul/esp-idf-v5.5.1/components/nvs_sec_provider C:/Users/Abdul/esp-idf-v5.5.1/components/openthread C:/Users/Abdul/esp-idf-v5.5.1/components/partition_table C:/Users/Abdul/esp-idf-v5.5.1/components/perfmon C:/Users/Abdul/esp-idf-v5.5.1/components/protobuf-c C:/Users/Abdul/esp-idf-v5.5.1/components/protocomm C:/Users/Abdul/esp-idf-v5.5.1/components/pthread C:/Users/Abdul/esp-idf-v5.5.1/components/rt C:/Users/Abdul/esp-idf-v5.5.1/components/sdmmc C:/Users/Abdul/esp-idf-v5.5.1/components/soc C:/Users/Abdul/esp-idf-v5.5.1/components/spi_flash C:/Users/Abdul/esp-idf-v5.5.1/components/spiffs C:/Users/Abdul/esp-idf-v5.5.1/components/tcp_transport C:/Users/Abdul/esp-idf-v5.5.1/components/touch_element C:/Users/Abdul/esp-idf-v5.5.1/components/ulp C:/Users/Abdul/esp-idf-v5.5.1/components/unity C:/Users/Abdul/esp-idf-v5.5.1/components/usb C:/Users/Abdul/esp-idf-v5.5.1/components/vfs C:/Users/Abdul/esp-idf-v5.5.1/components/wear_levelling C:/Users/Abdul/esp-idf-v5.5.1/components/wifi_provisioning C:/Users/Abdul/esp-idf-v5.5.1/components/wpa_supplicant C:/Users/Abdul/esp-idf-v5.5.1/components/xtensa
+-- Configuring done (36.6s)
+-- Generating done (4.8s)
+-- Build files have been written to: C:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/build

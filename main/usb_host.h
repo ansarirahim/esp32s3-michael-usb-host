@@ -4,7 +4,7 @@
  *
  * @author Abdul Raheem Ansari <ansarirahim1@gmail.com>
  * @date November 2025
- * @version 7.0.0
+ * @version 9.0.0
  */
 
 #pragma once
@@ -184,3 +184,25 @@ esp_err_t usb_host_create_partition_table(uint32_t total_sectors);
  * @return ESP_OK on success, error code otherwise
  */
 esp_err_t usb_host_format_fat32(uint8_t partition_num, uint32_t start_lba, uint32_t size_sectors);
+
+// ============================================================================
+// PHASE 3C: FILE COPY FUNCTIONS
+// ============================================================================
+
+/**
+ * @brief Copy a file from internal storage to USB drive
+ * @param filename Filename (without path, e.g., "README.TXT")
+ * @param src_mount_point Source mount point (e.g., "/spiffs")
+ * @param dst_mount_point Destination mount point (e.g., "/usb")
+ * @return ESP_OK on success, error code otherwise
+ */
+esp_err_t usb_host_copy_file(const char* filename, const char* src_mount_point, const char* dst_mount_point);
+
+/**
+ * @brief Copy all files from internal storage to USB drive
+ * @param src_mount_point Source mount point (e.g., "/spiffs")
+ * @param dst_mount_point Destination mount point (e.g., "/usb")
+ * @param files_copied Pointer to store number of files copied (optional, can be NULL)
+ * @return ESP_OK on success, error code otherwise
+ */
+esp_err_t usb_host_copy_all_files(const char* src_mount_point, const char* dst_mount_point, uint32_t* files_copied);

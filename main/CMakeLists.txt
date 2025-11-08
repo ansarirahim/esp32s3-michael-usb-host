@@ -11,6 +11,7 @@ idf_component_register(
         "usb_host.c"
         "usb_device.c"
         "usb_host_automator.c"
+        "internal_storage.c"
     INCLUDE_DIRS
         "."
     REQUIRES
@@ -18,6 +19,7 @@ idf_component_register(
         "driver"
         "esp_rom"
         "usb"
+        "spiffs"
 )
 
 # Add main directory to include path for tinyusb config
