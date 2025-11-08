@@ -12,6 +12,7 @@ idf_component_register(
         "usb_device.c"
         "usb_host_automator.c"
         "internal_storage.c"
+        "workflow.c"
     INCLUDE_DIRS
         "."
     REQUIRES

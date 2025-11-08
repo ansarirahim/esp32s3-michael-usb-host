@@ -18,6 +18,7 @@
 #include "esp_private/msc_scsi_bot.h"
 #include "led_control.h"
 #include "internal_storage.h"
+#include "workflow.h"
 #include <sys/unistd.h>
 #include <sys/stat.h>
 #include <errno.h>
@@ -154,6 +155,9 @@ static void usb_host_client_event_cb(const usb_host_client_event_msg_t *event_ms
                         ret = msc_host_vfs_register(msc_device, USB_MOUNT_POINT, &mount_config, &vfs_handle);
                         if (ret == ESP_OK) {
                             ESP_LOGI(TAG, "USB drive mounted at %s", USB_MOUNT_POINT);
+
+                            /* Notify workflow automation */
+                            workflow_notify_usb_mounted();
                         } else {
                             ESP_LOGE(TAG, "Failed to mount USB drive: %s (0x%x)", esp_err_to_name(ret), ret);
 
@@ -203,6 +207,9 @@ static void usb_host_client_event_cb(const usb_host_client_event_msg_t *event_ms
                                         ret = msc_host_vfs_register(msc_device, USB_MOUNT_POINT, &mount_config, &vfs_handle);
                                         if (ret == ESP_OK) {
                                             ESP_LOGI(TAG, "✓ Newly formatted USB drive mounted successfully at %s", USB_MOUNT_POINT);
+
+                                            /* Notify workflow automation */
+                                            workflow_notify_usb_mounted();
                                         } else {
                                             ESP_LOGW(TAG, "Newly formatted drive mount failed: %s", esp_err_to_name(ret));
                                             ESP_LOGW(TAG, "This is normal - please unplug and replug the USB drive");
@@ -458,6 +465,14 @@ bool usb_host_is_initialized(void)
 const char* usb_host_get_mount_point(void)
 {
     return (vfs_handle != NULL) ? USB_MOUNT_POINT : NULL;
+}
+
+/**
+ * @brief Check if USB drive is mounted
+ */
+bool usb_host_is_mounted(void)
+{
+    return (vfs_handle != NULL);
 }
 
 /**

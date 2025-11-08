@@ -1,7 +1,7 @@
 {
     "version":            "1.2",
     "project_name":       "esp32s3_michael_usb_host",
-    "project_version":    "bf44e97-dirty",
+    "project_version":    "74f118c-dirty",
     "project_path":       "C:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host",
     "idf_path":           "C:/Users/Abdul/esp-idf-v5.5.1",
     "build_dir":          "C:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/build",
@@ -1240,7 +1240,7 @@
             "managed_reqs": [],
             "managed_priv_reqs": [ "espressif__usb_host_msc" ],
             "file": "C:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/build/esp-idf/main/libmain.a",
-            "sources": [ "C:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/main/main.c", "C:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/main/board_pins.c", "C:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/main/led_control.c", "C:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/main/filesystem.c", "C:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/main/usb_host.c", "C:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/main/usb_device.c", "C:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/main/usb_host_automator.c", "C:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/main/internal_storage.c" ],
+            "sources": [ "C:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/main/main.c", "C:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/main/board_pins.c", "C:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/main/led_control.c", "C:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/main/filesystem.c", "C:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/main/usb_host.c", "C:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/main/usb_device.c", "C:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/main/usb_host_automator.c", "C:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/main/internal_storage.c", "C:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/main/workflow.c" ],
             "include_dirs": [ "." ]
         },
         "mbedtls": {

@@ -65,6 +65,12 @@ bool usb_host_is_initialized(void);
 const char* usb_host_get_mount_point(void);
 
 /**
+ * @brief Check if USB drive is mounted
+ * @return true if mounted, false otherwise
+ */
+bool usb_host_is_mounted(void);
+
+/**
  * @brief Sync filesystem to ensure all data is written to USB drive
  * @return ESP_OK on success, error code otherwise
  */
