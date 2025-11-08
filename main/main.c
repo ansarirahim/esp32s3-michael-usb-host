@@ -176,10 +176,18 @@ void app_main(void)
     ESP_LOGI(TAG, "Phase 2b: USB MSC Driver - COMPLETE ✓");
     ESP_LOGI(TAG, "Phase 2c: File Operations - READY FOR TEST ✓");
     ESP_LOGI(TAG, "Phase 2d: Safe Eject - READY FOR TEST ✓");
+    /* Phase 3b test control - SET TO true TO ENABLE DESTRUCTIVE TESTS */
+    static const bool ENABLE_PHASE_3B_TESTS = true;  /* ⚠️ WARNING: WILL ERASE USB DRIVE! */
+
     ESP_LOGI(TAG, "=================================================");
     ESP_LOGI(TAG, "Application running - waiting for USB events");
     ESP_LOGI(TAG, "Insert USB drive to test file operations");
-    ESP_LOGI(TAG, "Test sequence: File Listing -> Read File -> Write File -> Safe Eject -> Partition Detection");
+    if (ENABLE_PHASE_3B_TESTS) {
+        ESP_LOGW(TAG, "⚠️  PHASE 3B TESTS ENABLED - USB DRIVE WILL BE ERASED!");
+        ESP_LOGI(TAG, "Test sequence: File Ops -> Partition Detection -> DELETE/FORMAT -> Safe Eject");
+    } else {
+        ESP_LOGI(TAG, "Test sequence: File Ops -> Partition Detection -> Safe Eject");
+    }
 
     /* Keep application running - USB and LED tasks continue in background */
     static bool files_listed = false;
@@ -187,6 +195,9 @@ void app_main(void)
     static bool file_write_tested = false;
     static bool safe_eject_tested = false;
     static bool partition_detected = false;
+    static bool partition_deleted = false;
+    static bool partition_created = false;
+    static bool partition_formatted = false;
     static TickType_t file_list_time = 0;
 
     while (1) {
@@ -354,10 +365,77 @@ void app_main(void)
                 }
             }
 
-            /* Test safe eject 20 seconds after file listing (after partition detection) */
-            if (files_listed && file_read_tested && file_write_tested && partition_detected && !safe_eject_tested) {
+            /* Test Phase 3b: Partition Creation & Formatting (20 seconds after file listing) */
+            if (ENABLE_PHASE_3B_TESTS && files_listed && file_read_tested && file_write_tested &&
+                partition_detected && !partition_deleted && !partition_created && !partition_formatted) {
                 TickType_t elapsed = (xTaskGetTickCount() - file_list_time) / pdMS_TO_TICKS(1000);
                 if (elapsed >= 20) {
+                    ESP_LOGW(TAG, "=================================================");
+                    ESP_LOGW(TAG, "⚠️  PHASE 3B: DESTRUCTIVE TESTS STARTING!");
+                    ESP_LOGW(TAG, "⚠️  ALL DATA ON USB DRIVE WILL BE LOST!");
+                    ESP_LOGW(TAG, "=================================================");
+
+                    /* Test 1: Get drive capacity */
+                    uint32_t total_sectors = 0;
+                    esp_err_t ret = usb_host_get_drive_capacity(&total_sectors);
+                    if (ret == ESP_OK) {
+                        ESP_LOGI(TAG, "✓ Drive capacity: %lu sectors", total_sectors);
+                        tests_passed++;
+
+                        /* Test 2: Delete all partitions */
+                        ESP_LOGI(TAG, "Deleting all partitions...");
+                        ret = usb_host_delete_all_partitions();
+                        if (ret == ESP_OK) {
+                            ESP_LOGI(TAG, "✓ All partitions deleted");
+                            tests_passed++;
+                            partition_deleted = true;
+
+                            /* Test 3: Create new MBR partition table */
+                            ESP_LOGI(TAG, "Creating new MBR partition table...");
+                            ret = usb_host_create_partition_table(total_sectors);
+                            if (ret == ESP_OK) {
+                                ESP_LOGI(TAG, "✓ MBR partition table created");
+                                tests_passed++;
+                                partition_created = true;
+
+                                /* Test 4: Format partition as FAT32 */
+                                uint32_t start_lba = 2048;
+                                uint32_t size_sectors = total_sectors - start_lba;
+                                ESP_LOGI(TAG, "Formatting partition as FAT32...");
+                                ret = usb_host_format_fat32(0, start_lba, size_sectors);
+                                if (ret == ESP_OK) {
+                                    ESP_LOGI(TAG, "✓ Partition formatted as FAT32");
+                                    tests_passed++;
+                                    partition_formatted = true;
+
+                                    ESP_LOGI(TAG, "=================================================");
+                                    ESP_LOGI(TAG, "✓ PHASE 3B COMPLETE!");
+                                    ESP_LOGI(TAG, "=================================================");
+                                    ESP_LOGI(TAG, "Please remove and re-insert USB drive to test new partition");
+                                } else {
+                                    ESP_LOGE(TAG, "✗ Failed to format partition: %s", esp_err_to_name(ret));
+                                    tests_failed++;
+                                }
+                            } else {
+                                ESP_LOGE(TAG, "✗ Failed to create partition table: %s", esp_err_to_name(ret));
+                                tests_failed++;
+                            }
+                        } else {
+                            ESP_LOGE(TAG, "✗ Failed to delete partitions: %s", esp_err_to_name(ret));
+                            tests_failed++;
+                        }
+                    } else {
+                        ESP_LOGE(TAG, "✗ Failed to get drive capacity: %s", esp_err_to_name(ret));
+                        tests_failed++;
+                    }
+                }
+            }
+
+            /* Test safe eject 30 seconds after file listing (after Phase 3b if enabled) */
+            if (files_listed && file_read_tested && file_write_tested && partition_detected && !safe_eject_tested) {
+                TickType_t elapsed = (xTaskGetTickCount() - file_list_time) / pdMS_TO_TICKS(1000);
+                uint32_t eject_delay = ENABLE_PHASE_3B_TESTS ? 30 : 20;
+                if (elapsed >= eject_delay) {
                     ESP_LOGI(TAG, "=================================================");
                     ESP_LOGI(TAG, "Testing Safe Eject...");
                     ESP_LOGI(TAG, "=================================================");
@@ -380,6 +458,9 @@ void app_main(void)
             file_write_tested = false;
             safe_eject_tested = false;
             partition_detected = false;
+            partition_deleted = false;
+            partition_created = false;
+            partition_formatted = false;
         }
     }
 }

@@ -4,7 +4,7 @@
  *
  * @author Abdul Raheem Ansari <ansarirahim1@gmail.com>
  * @date November 2025
- * @version 7.0.0
+ * @version 8.0.0
  */
 
 #pragma once
