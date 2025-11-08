@@ -50,3 +50,10 @@ bool internal_storage_is_mounted(void);
  */
 esp_err_t internal_storage_list_files(uint32_t* file_count);
 
+/**
+ * @brief Read FAT volume label from fatlabel.txt
+ * @param label_buffer Buffer to store the label (must be at least 12 bytes)
+ * @param buffer_size Size of the label buffer
+ * @return ESP_OK on success, error code otherwise
+ */
+esp_err_t internal_storage_read_label(char* label_buffer, size_t buffer_size);

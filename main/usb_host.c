@@ -17,6 +17,7 @@
 #include "usb/msc_host_vfs.h"
 #include "esp_private/msc_scsi_bot.h"
 #include "led_control.h"
+#include "internal_storage.h"
 #include <sys/unistd.h>
 #include <sys/stat.h>
 #include <errno.h>
@@ -177,11 +178,18 @@ static void usb_host_client_event_cb(const usb_host_client_event_msg_t *event_ms
                                 if (format_ret == ESP_OK) {
                                     ESP_LOGI(TAG, "✓ Partition table created successfully");
 
+                                    /* Read volume label from SPIFFS */
+                                    char volume_label[12];
+                                    if (internal_storage_read_label(volume_label, sizeof(volume_label)) != ESP_OK) {
+                                        ESP_LOGW(TAG, "Failed to read label, using default");
+                                        snprintf(volume_label, sizeof(volume_label), "ESP32S3");
+                                    }
+
                                     /* Step 2: Format as FAT32 */
                                     ESP_LOGI(TAG, "Step 2/2: Formatting partition as FAT32...");
                                     uint32_t start_lba = 2048;  /* Standard 1MB alignment */
                                     uint32_t size_sectors = total_sectors - start_lba;
-                                    format_ret = usb_host_format_fat32(0, start_lba, size_sectors);
+                                    format_ret = usb_host_format_fat32(0, start_lba, size_sectors, volume_label);
                                     if (format_ret == ESP_OK) {
                                         ESP_LOGI(TAG, "✓ FAT32 formatting completed successfully");
                                         ESP_LOGI(TAG, "=================================================");
@@ -1133,7 +1141,7 @@ esp_err_t usb_host_create_partition_table(uint32_t total_sectors)
 /**
  * @brief Format a partition as FAT32
  */
-esp_err_t usb_host_format_fat32(uint8_t partition_num, uint32_t start_lba, uint32_t size_sectors)
+esp_err_t usb_host_format_fat32(uint8_t partition_num, uint32_t start_lba, uint32_t size_sectors, const char* volume_label)
 {
     ESP_LOGW(TAG, "=================================================");
     ESP_LOGW(TAG, "⚠️  WARNING: Formatting partition as FAT32");
@@ -1148,6 +1156,18 @@ esp_err_t usb_host_format_fat32(uint8_t partition_num, uint32_t start_lba, uint3
     if (partition_num >= MBR_MAX_PARTITIONS) {
         ESP_LOGE(TAG, "Invalid partition number: %d", partition_num);
         return ESP_ERR_INVALID_ARG;
+    }
+
+    /* Prepare volume label (11 characters, space-padded) */
+    char fat_label[12];  /* 11 chars + null terminator */
+    if (volume_label && strlen(volume_label) > 0) {
+        /* Copy label and pad with spaces */
+        snprintf(fat_label, sizeof(fat_label), "%-11.11s", volume_label);
+        ESP_LOGI(TAG, "Volume label: '%s'", volume_label);
+    } else {
+        /* Use default label */
+        snprintf(fat_label, sizeof(fat_label), "NO NAME    ");
+        ESP_LOGI(TAG, "Volume label: (default)");
     }
 
     ESP_LOGI(TAG, "Formatting partition %d:", partition_num);
@@ -1300,8 +1320,8 @@ esp_err_t usb_host_format_fat32(uint8_t partition_num, uint32_t start_lba, uint3
     boot_sector[69] = 0x56;
     boot_sector[70] = 0x78;
 
-    /* Volume label */
-    memcpy(&boot_sector[71], "NO NAME    ", 11);
+    /* Volume label (use parameter) */
+    memcpy(&boot_sector[71], fat_label, 11);
 
     /* Filesystem type */
     memcpy(&boot_sector[82], "FAT32   ", 8);
@@ -1423,14 +1443,15 @@ esp_err_t usb_host_format_fat32(uint8_t partition_num, uint32_t start_lba, uint3
         char name[11];          /* Volume label name */
         uint8_t attr;           /* File attributes (0x08 for volume label) */
         uint8_t reserved[21];   /* Reserved bytes, must be zero */
-    } __attribute__((packed)) volume_label = {
-        .name = "ESP32S3    ",  /* 11 chars: "ESP32S3" + 4 spaces */
-        .attr = 0x08,           /* Volume label attribute */
-        .reserved = {0}         /* Zero out all reserved bytes */
-    };
-    
+    } __attribute__((packed)) volume_label_entry;
+
+    /* Copy label from parameter */
+    memcpy(volume_label_entry.name, fat_label, 11);
+    volume_label_entry.attr = 0x08;  /* Volume label attribute */
+    memset(volume_label_entry.reserved, 0, sizeof(volume_label_entry.reserved));
+
     /* Copy volume label to first directory entry */
-    memcpy(root_dir, &volume_label, sizeof(volume_label));
+    memcpy(root_dir, &volume_label_entry, sizeof(volume_label_entry));
     
     /* Write root directory clusters */
     for (int i = 0; i < sectors_per_cluster; i++) {
@@ -1593,6 +1614,12 @@ esp_err_t usb_host_copy_all_files(const char* src_mount_point, const char* dst_m
         /* Skip directories (SPIFFS doesn't have real directories, but just in case) */
         if (entry->d_type == DT_DIR) {
             ESP_LOGW(TAG, "Skipping directory: %s", entry->d_name);
+            continue;
+        }
+
+        /* Skip fatlabel.txt - don't copy config file to USB */
+        if (strcmp(entry->d_name, "fatlabel.txt") == 0) {
+            ESP_LOGI(TAG, "Skipping config file: %s (not copied to USB)", entry->d_name);
             continue;
         }
 

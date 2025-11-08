@@ -181,9 +181,10 @@ esp_err_t usb_host_create_partition_table(uint32_t total_sectors);
  * @param partition_num Partition number (0-3)
  * @param start_lba Starting LBA of the partition
  * @param size_sectors Size of the partition in sectors
+ * @param volume_label Volume label (max 11 characters, NULL for default "NO NAME")
  * @return ESP_OK on success, error code otherwise
  */
-esp_err_t usb_host_format_fat32(uint8_t partition_num, uint32_t start_lba, uint32_t size_sectors);
+esp_err_t usb_host_format_fat32(uint8_t partition_num, uint32_t start_lba, uint32_t size_sectors, const char* volume_label);
 
 // ============================================================================
 // PHASE 3C: FILE COPY FUNCTIONS

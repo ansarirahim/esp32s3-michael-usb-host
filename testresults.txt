@@ -23,34 +23,34 @@ I (63) boot:  1 phy_init         RF data          01 01 0000f000 00001000
 I (70) boot:  2 factory          factory app      00 00 00010000 000c0000
 I (76) boot:  3 storage          Unknown data     01 81 000d0000 00040000
 I (83) boot: End of partition table
-I (86) esp_image: segment 0: paddr=00010020 vaddr=3c060020 size=196e0h (104160)                                                                              map
-I (112) esp_image: segment 1: paddr=00029708 vaddr=3fca1400 size=03390h ( 13200)                                                                              load
-I (115) esp_image: segment 2: paddr=0002caa0 vaddr=40374000 size=03578h ( 13688)                                                                              load
-I (119) esp_image: segment 3: paddr=00030020 vaddr=42000020 size=57138h (356664)                                                                              map
-I (186) esp_image: segment 4: paddr=00087160 vaddr=40377578 size=19da4h (105892)                                                                              load
-I (209) esp_image: segment 5: paddr=000a0f0c vaddr=50000000 size=00020h (    32)                                                                              load
-I (220) boot: Loaded app from partition at offset 0x10000
-I (220) boot: Disabling RNG early entropy source...
-I (231) cpu_start: Multicore app
-I (240) cpu_start: Pro cpu start user code
-I (240) cpu_start: cpu freq: 240000000 Hz
+I (86) esp_image: segment 0: paddr=00010020 vaddr=3c060020 size=19ab0h (105136) map
+I (112) esp_image: segment 1: paddr=00029ad8 vaddr=3fca1400 size=03390h ( 13200) load
+I (115) esp_image: segment 2: paddr=0002ce70 vaddr=40374000 size=031a8h ( 12712) load
+I (119) esp_image: segment 3: paddr=00030020 vaddr=42000020 size=57954h (358740) map
+I (187) esp_image: segment 4: paddr=0008797c vaddr=403771a8 size=1a174h (106868) load
+I (210) esp_image: segment 5: paddr=000a1af8 vaddr=50000000 size=00020h (    32) load
+I (221) boot: Loaded app from partition at offset 0x10000
+I (221) boot: Disabling RNG early entropy source...
+I (232) cpu_start: Multicore app
+I (241) cpu_start: Pro cpu start user code
+I (241) cpu_start: cpu freq: 240000000 Hz
 I (241) app_init: Application information:
 I (241) app_init: Project name:     esp32s3_michael_usb_host
-I (246) app_init: App version:      18e3424-dirty
-I (250) app_init: Compile time:     Nov  8 2025 07:23:56
-I (255) app_init: ELF file SHA256:  eb31e3c20...
-I (260) app_init: ESP-IDF:          v5.5.1-dirty
-I (264) efuse_init: Min chip rev:     v0.0
-I (268) efuse_init: Max chip rev:     v0.99
-I (272) efuse_init: Chip rev:         v0.2
-I (276) heap_init: Initializing. RAM available for dynamic allocation:
-I (282) heap_init: At 3FCA5180 len 00044590 (273 KiB): RAM
-I (287) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM
-I (292) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM
-I (297) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM
-I (304) spi_flash: detected chip: gd
-I (306) spi_flash: flash io: dio
-I (309) sleep_gpio: Configure to isolate all GPIO pins in sleep state
+I (247) app_init: App version:      bf44e97-dirty
+I (251) app_init: Compile time:     Nov  8 2025 16:40:30
+I (256) app_init: ELF file SHA256:  cbba62394...
+I (261) app_init: ESP-IDF:          v5.5.1-dirty
+I (265) efuse_init: Min chip rev:     v0.0
+I (269) efuse_init: Max chip rev:     v0.99
+I (273) efuse_init: Chip rev:         v0.2
+I (277) heap_init: Initializing. RAM available for dynamic allocation:
+I (283) heap_init: At 3FCA5180 len 00044590 (273 KiB): RAM
+I (288) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM
+I (293) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM
+I (298) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM
+I (305) spi_flash: detected chip: gd
+I (307) spi_flash: flash io: dio
+I (310) sleep_gpio: Configure to isolate all GPIO pins in sleep state
 I (316) sleep_gpio: Enable automatic switching of GPIO sleep configuration
 I (323) main_task: Started on CPU0
 I (363) main_task: Calling app_main()
@@ -102,910 +102,908 @@ I (653) internal_storage: ✓ SPIFFS mounted successfully
 I (653) internal_storage:   Mount point: /spiffs
 I (663) internal_storage:   Partition: storage
 I (663) internal_storage:   Total: 233681 bytes
-I (673) internal_storage:   Used: 8032 bytes
-I (673) internal_storage:   Free: 225649 bytes
+I (673) internal_storage:   Used: 8534 bytes
+I (673) internal_storage:   Free: 225147 bytes
 I (673) internal_storage: =================================================
 I (683) app: ✓ Internal storage initialized successfully
 I (693) app: Creating sample files in SPIFFS...
 I (693) internal_storage: =================================================
 I (703) internal_storage: Creating sample files in SPIFFS...
 I (703) internal_storage: =================================================
-I (763) led: LED animation task running
-I (773) internal_storage: ✓ Created README.TXT (276 bytes)
+I (773) led: LED animation task running
+I (783) internal_storage: ✓ Created README.TXT (276 bytes)
 I (783) internal_storage: ✓ Created CONFIG.INI (126 bytes)
-I (853) internal_storage: ✓ Created DATA.BIN (1024 bytes)
+I (813) internal_storage: ✓ Created DATA.BIN (1024 bytes)
 I (863) internal_storage: ✓ Created LOG.TXT (436 bytes)
-I (1053) usb_host: New USB device connected (address: 1)
-I (1053) usb_host: Device opened successfully (handle: 0x3fcad73c)
-I (1053) led: LED state changed: PREPARE
-I (1063) usb_host: MSC device installed successfully
-I (1063) usb_host: Mounting VFS with max_files=3
-I (1093) internal_storage: ✓ Created TEST.DAT (4096 bytes)
-I (1103) internal_storage: =================================================
-I (1103) internal_storage: ✓ All sample files created successfully
-I (1103) internal_storage: =================================================
-I (1113) app: ✓ Sample files created successfully
-I (1113) app: Listing files in SPIFFS:
+I (1063) usb_host: New USB device connected (address: 1)
+I (1063) usb_host: Device opened successfully (handle: 0x3fcad73c)
+I (1063) led: LED state changed: PREPARE
+I (1073) usb_host: MSC device installed successfully
+I (1073) usb_host: Mounting VFS with max_files=3
+I (1103) internal_storage: ✓ Created TEST.DAT (4096 bytes)
+I (1113) internal_storage: ✓ Created fatlabel.txt (11 bytes) - Label: 'MICHAEL-USB'
+I (1113) internal_storage: =================================================
+I (1113) internal_storage: ✓ All sample files created successfully
 I (1123) internal_storage: =================================================
-I (1123) internal_storage: Listing files in SPIFFS...
+I (1123) app: ✓ Sample files created successfully
+I (1133) app: Listing files in SPIFFS:
 I (1133) internal_storage: =================================================
-I (1143) internal_storage: [FILE] README.TXT (276 bytes)
-I (1143) internal_storage: [FILE] CONFIG.INI (126 bytes)
-I (1153) internal_storage: [FILE] DATA.BIN (1024 bytes)
-I (1153) internal_storage: [FILE] LOG.TXT (436 bytes)
-I (1163) internal_storage: [FILE] TEST.DAT (4096 bytes)
-I (1163) internal_storage: =================================================
-I (1173) internal_storage: Total files: 5
-I (1173) internal_storage: Total size: 5958 bytes
+I (1143) internal_storage: Listing files in SPIFFS...
+I (1143) internal_storage: =================================================
+I (1153) internal_storage: [FILE] README.TXT (276 bytes)
+I (1153) internal_storage: [FILE] CONFIG.INI (126 bytes)
+I (1163) internal_storage: [FILE] DATA.BIN (1024 bytes)
+I (1163) internal_storage: [FILE] LOG.TXT (436 bytes)
+I (1173) internal_storage: [FILE] TEST.DAT (4096 bytes)
+I (1173) internal_storage: [FILE] fatlabel.txt (11 bytes)
 I (1183) internal_storage: =================================================
-I (1183) app: ✓ Total files in SPIFFS: 5
-I (1193) app: =================================================
-I (1193) app: Running Automated Tests
-I (1193) app: =================================================
-I (1203) app: Test 1: USB Host Initialization
-I (1203) app: ✓ TEST PASSED: USB Host should be initialized
-I (1213) app: Test 2: USB Device Detection (waiting 10 seconds)
-I (1223) app: >>> Please insert USB drive now <<<
+I (1193) internal_storage: Total files: 6
+I (1193) internal_storage: Total size: 5969 bytes
+I (1193) internal_storage: =================================================
+I (1203) app: ✓ Total files in SPIFFS: 6
+I (1203) app: =================================================
+I (1213) app: Running Automated Tests
+I (1213) app: =================================================
+I (1223) app: Test 1: USB Host Initialization
+I (1223) app: ✓ TEST PASSED: USB Host should be initialized
+I (1233) app: Test 2: USB Device Detection (waiting 10 seconds)
+I (1233) app: >>> Please insert USB drive now <<<
 I (2073) usb_host: USB drive mounted at /usb
-I (2223) app: ✓ TEST PASSED: USB device detected
-I (2223) app: ✓ USB device connected - LED should be CYAN (PREPARE)
-I (5223) app: =================================================
-I (5223) app: Manual Test: LED State Sequence
-I (5223) app: =================================================
-I (5223) app: State: IDLE (Green slow blink)
-I (5223) led: LED state changed: IDLE
-I (8233) app: State: PREPARE (Cyan fast blink)
-I (8233) led: LED state changed: PREPARE
-I (11233) app: State: COPY (Yellow blink)
-I (11233) led: LED state changed: COPY
-I (14233) app: State: SYNC (Magenta blink)
-I (14233) led: LED state changed: SYNC
-I (17233) app: State: SUCCESS (Green solid 2s)
-I (17233) led: LED state changed: SUCCESS
-I (20233) app: State: ERROR (Red fast blink)
-I (20233) led: LED state changed: ERROR
-I (23233) app: State: IDLE (Green slow blink)
-I (23233) led: LED state changed: IDLE
-I (23233) app: =================================================
-I (23233) app: TEST SUMMARY
-I (23233) app: =================================================
-I (23243) app: Tests Passed: 2
-I (23243) app: Tests Failed: 0
-I (23243) app: =================================================
-I (23253) app: Phase 1: LED Control - COMPLETE ✓
-I (23253) app: Phase 2a: USB Host Init - COMPLETE ✓
-I (23263) app: Phase 2b: USB MSC Driver - COMPLETE ✓
-I (23263) app: Phase 2c: File Operations - READY FOR TEST ✓
-I (23273) app: Phase 2d: Safe Eject - READY FOR TEST ✓
-I (23273) app: Phase 3a: Partition Detection - READY FOR TEST ✓
-I (23283) app: Phase 3c: File Copy (SPIFFS) - READY FOR TEST ✓
-I (23283) app: =================================================
-I (23293) app: Application running - waiting for USB events
-I (23293) app: Insert USB drive to test file operations
-I (23303) app: Test sequence: File Listing -> Read File -> Write File -> Partition Detection -> File Copy -> Safe Eject
-I (24313) app: =================================================
-I (24313) app: USB Drive Mounted - Listing Files
-I (24313) app: =================================================
-I (24323) app: [DIR]  qډa▒"n.▒!t
-I (24323) app: [DIR]  ZR▒▒▒4#.▒e▒
-I (24323) app: [FILE] ▒▒t8n).ư▒ (-682306640 bytes)
-I (24323) app: [FILE] ▒$$▒,▒.)▒▒ (234596900 bytes)
-I (24333) app: [DIR]  p▒A▒t8n#
-I (24333) app: [DIR]  ▒▒.▒~▒\
-I (24333) app: [DIR]  `▒▒▒,▒▒▒.w▒%
-I (24333) app: [FILE] ▒▒$▒9▒.
+I (2243) app: ✓ TEST PASSED: USB device detected
+I (2243) app: ✓ USB device connected - LED should be CYAN (PREPARE)
+I (5243) app: =================================================
+I (5243) app: Manual Test: LED State Sequence
+I (5243) app: =================================================
+I (5243) app: State: IDLE (Green slow blink)
+I (5243) led: LED state changed: IDLE
+I (8253) app: State: PREPARE (Cyan fast blink)
+I (8253) led: LED state changed: PREPARE
+I (11253) app: State: COPY (Yellow blink)
+I (11253) led: LED state changed: COPY
+I (14253) app: State: SYNC (Magenta blink)
+I (14253) led: LED state changed: SYNC
+I (17253) app: State: SUCCESS (Green solid 2s)
+I (17253) led: LED state changed: SUCCESS
+I (20253) app: State: ERROR (Red fast blink)
+I (20253) led: LED state changed: ERROR
+I (23253) app: State: IDLE (Green slow blink)
+I (23253) led: LED state changed: IDLE
+I (23253) app: =================================================
+I (23253) app: TEST SUMMARY
+I (23253) app: =================================================
+I (23263) app: Tests Passed: 2
+I (23263) app: Tests Failed: 0
+I (23263) app: =================================================
+I (23273) app: Phase 1: LED Control - COMPLETE ✓
+I (23273) app: Phase 2a: USB Host Init - COMPLETE ✓
+I (23283) app: Phase 2b: USB MSC Driver - COMPLETE ✓
+I (23283) app: Phase 2c: File Operations - READY FOR TEST ✓
+I (23293) app: Phase 2d: Safe Eject - READY FOR TEST ✓
+I (23293) app: Phase 3a: Partition Detection - READY FOR TEST ✓
+I (23303) app: Phase 3c: File Copy (SPIFFS) - READY FOR TEST ✓
+I (23303) app: =================================================
+I (23313) app: Application running - waiting for USB events
+I (23313) app: Insert USB drive to test file operations
+I (23323) app: Test sequence: File Listing -> Read File -> Write File -> Partition Detection -> File Copy -> Safe Eject
+I (24333) app: =================================================
+I (24333) app: USB Drive Mounted - Listing Files
+I (24333) app: =================================================
+I (24343) app: [DIR]  qډa▒"n.▒!t
+I (24343) app: [DIR]  ZR▒▒▒4#.▒e▒
+I (24343) app: [FILE] ▒▒t8n).ư▒ (-682306640 bytes)
+I (24343) app: [FILE] ▒$$▒,▒.)▒▒ (234596900 bytes)
+I (24353) app: [DIR]  p▒A▒t8n#
+I (24353) app: [DIR]  ▒▒.▒~▒\
+I (24353) app: [DIR]  `▒▒▒,▒▒▒.w▒%
+I (24353) app: [FILE] ▒▒$▒9▒.
 ▒ (-1828581141 bytes)
-I (24343) app: [FILE] ,:▒▒+ed.▒▒▒ (62203 bytes)
-I (24343) app: [FILE] ESP32TEST.TXT (72 bytes)
-I (24353) app: [FILE] ▒▒,R▒▒.c
+I (24363) app: [FILE] ,:▒▒+ed.▒▒▒ (62203 bytes)
+I (24363) app: [FILE] ESP32TEST.TXT (72 bytes)
+I (24373) app: [FILE] ▒▒,R▒▒.c
  (479505862 bytes)
-I (24353) app: [FILE] (י▒▒uE▒.▒▒# (355994466 bytes)
-I (24363) app: [DIR]  7▒▒(▒,.{2y
-I (24363) app: [DIR]  ig▒b%▒)▒."▒▒
-I (24373) app: [DIR]  B
+I (24373) app: [FILE] (י▒▒uE▒.▒▒# (355994466 bytes)
+I (24383) app: [DIR]  7▒▒(▒,.{2y
+I (24383) app: [DIR]  ig▒b%▒)▒."▒▒
+I (24393) app: [DIR]  B
                        ▒)▒▒k.Q
-I (24373) app: [DIR]  ▒a▒ٌc▒.▒q
-I (24373) app: [FILE] ▒澦m▒▒7.v▒P (-1267466084 bytes)
-I (24373) app: [DIR]  =▒c▒▒9.▒|
-I (24383) app: [FILE] ▒jߴ▒▒-.yj▒ (2100443291 bytes)
-I (24383) app: [DIR]  ▒!a▒1z▒▒.▒▒
-I (24393) app: [DIR]  a▒▒E▒▒.▒>f
-I (24393) app: [DIR]  ▒#▒▒▒f▒(.▒:▒
-I (24393) app: [DIR]  ▒.▒▒▒t8.b▒3
-I (24393) app: [DIR]  ?▒x<▒.ȷ
-I (24403) app: [FILE] n&▒▒▒▒ (593961144 bytes)
-I (24403) app: [DIR]  ▒▒e▒4JT.oa▒
-I (24413) app: [FILE] ▒▒ (-1755927578 bytes)
-I (24413) app: [DIR]  ▒▒▒2▒▒.▒i
-I (24413) app: [FILE] ▒▒▒▒?▒.▒▒ (1838290007 bytes)
-I (24423) app: [FILE] ▒▒cH}.▒▒ (1493633890 bytes)
-I (24433) app: [FILE] ▒▒y▒▒.7W| (581159159 bytes)
-I (24433) app: [FILE] E▒▒▒,?%▒.|▒ (-472403896 bytes)
-I (24433) app: [DIR]  %ĸ1'▒.▒▒
-I (24433) app: [DIR]  ▒8▒2s▒▒▒.▒▒f
-I (24443) app: [DIR]  ▒▒u▒▒Ό%.J▒▒
-I (24443) app: [DIR]  -(▒̆ځ.I[]
-I (24443) app: [FILE] 8▒▒^-▒."a▒ (-1739692512 bytes)
-I (24453) app: [FILE]   ÿ▒▒%▒▒. (-1948250786 bytes)
-I (24453) app: [DIR]  ▒▒▒?▒8▒.Y▒
-I (24463) app: [DIR]  y▒,▒%\;.▒▒
-I (24463) app: [DIR]  O▒▒`y▒.8@
-I (24463) app: [DIR]  ▒▒▒d▒▒▒.i▒
-I (24473) app: [FILE] ▒▒+▒d5x.]▒▒ (1269566445 bytes)
-I (24473) app: [FILE] ▒▒m▒▒^.▒w▒ (996846028 bytes)
-I (24483) app: [DIR]  h[▒+]▒▒▒.▒D
-I (24483) app: [DIR]  ▒[▒+]▒▒▒.▒D
-I (24483) app: [DIR]  po▒i@▒N.▒▒
-I (24483) app: [DIR]  ▒▒
-I (24493) app: [DIR]  "▒F
+I (24393) app: [DIR]  ▒a▒ٌc▒.▒q
+I (24393) app: [FILE] ▒澦m▒▒7.v▒P (-1267466084 bytes)
+I (24393) app: [DIR]  =▒c▒▒9.▒|
+I (24403) app: [FILE] ▒jߴ▒▒-.yj▒ (2100443291 bytes)
+I (24403) app: [DIR]  ▒!a▒1z▒▒.▒▒
+I (24413) app: [DIR]  a▒▒E▒▒.▒>f
+I (24413) app: [DIR]  ▒#▒▒▒f▒(.▒:▒
+I (24413) app: [DIR]  ▒.▒▒▒t8.b▒3
+I (24413) app: [DIR]  ?▒x<▒.ȷ
+I (24423) app: [FILE] n&▒▒▒▒ (593961144 bytes)
+I (24423) app: [DIR]  ▒▒e▒4JT.oa▒
+I (24433) app: [FILE] ▒▒ (-1755927578 bytes)
+I (24433) app: [DIR]  ▒▒▒2▒▒.▒i
+I (24433) app: [FILE] ▒▒▒▒?▒.▒▒ (1838290007 bytes)
+I (24443) app: [FILE] ▒▒cH}.▒▒ (1493633890 bytes)
+I (24443) app: [FILE] ▒▒y▒▒.7W| (581159159 bytes)
+I (24453) app: [FILE] E▒▒▒,?%▒.|▒ (-472403896 bytes)
+I (24453) app: [DIR]  %ĸ1'▒.▒▒
+I (24453) app: [DIR]  ▒8▒2s▒▒▒.▒▒f
+I (24463) app: [DIR]  ▒▒u▒▒Ό%.J▒▒
+I (24463) app: [DIR]  -(▒̆ځ.I[]
+I (24463) app: [FILE] 8▒▒^-▒."a▒ (-1739692512 bytes)
+I (24473) app: [FILE]   ÿ▒▒%▒▒. (-1948250786 bytes)
+I (24473) app: [DIR]  ▒▒▒?▒8▒.Y▒
+I (24483) app: [DIR]  y▒,▒%\;.▒▒
+I (24483) app: [DIR]  O▒▒`y▒.8@
+I (24483) app: [DIR]  ▒▒▒d▒▒▒.i▒
+I (24493) app: [FILE] ▒▒+▒d5x.]▒▒ (1269566445 bytes)
+I (24493) app: [FILE] ▒▒m▒▒^.▒w▒ (996846028 bytes)
+I (24503) app: [DIR]  h[▒+]▒▒▒.▒D
+I (24513) app: [DIR]  ▒[▒+]▒▒▒.▒D
+I (24513) app: [DIR]  po▒i@▒N.▒▒
+I (24513) app: [DIR]  ▒▒
+I (24513) app: [DIR]  "▒F
 ▒B▒.▒r▒
-I (24493) app: [FILE] I▒▒e▒8.d (-113291293 bytes)
-I (24493) app: [FILE] ▒$▒▒.e▒, (1333338898 bytes)
-I (24503) app: [FILE] Q"~OxEg.4ez (1682309156 bytes)
-I (24503) app: [FILE] ▒aД▒▒.▒▒) (-631032560 bytes)
-I (24513) app: [DIR]  ▒2▒▒f▒▒i.Q-
-I (24513) app: [DIR]  ▒'▒▒▒▒.▒▒▒
-I (24523) app: [FILE] ▒8▒iķr.▒▒i (-1482709866 bytes)
-I (24523) app: [FILE] ▒f▒▒▒3.▒- (-1252859285 bytes)
-I (24533) app: [FILE] 7▒▒▒l▒,r.▒ (1954680746 bytes)
-I (24533) app: [FILE] ▒Y▒▒▒eaP.▒{▒ (1417398860 bytes)
-I (24533) app: [DIR]  |{▒_ǚ▒j.▒
-I (24543) app: [FILE] ▒)6▒▒z▒.▒u- (-843732735 bytes)
-I (24543) app: [DIR]  ▒]▒z▒@▒r.▒#▒
-I (24553) app: [FILE] ▒&▒▒i▒.
+I (24513) app: [FILE] I▒▒e▒8.d (-113291293 bytes)
+I (24513) app: [FILE] ▒$▒▒.e▒, (1333338898 bytes)
+I (24523) app: [FILE] Q"~OxEg.4ez (1682309156 bytes)
+I (24523) app: [FILE] ▒aД▒▒.▒▒) (-631032560 bytes)
+I (24533) app: [DIR]  ▒2▒▒f▒▒i.Q-
+I (24533) app: [DIR]  ▒'▒▒▒▒.▒▒▒
+I (24543) app: [FILE] ▒8▒iķr.▒▒i (-1482709866 bytes)
+I (24543) app: [FILE] ▒f▒▒▒3.▒- (-1252859285 bytes)
+I (24553) app: [FILE] 7▒▒▒l▒,r.▒ (1954680746 bytes)
+I (24553) app: [FILE] ▒Y▒▒▒eaP.▒{▒ (1417398860 bytes)
+I (24553) app: [DIR]  |{▒_ǚ▒j.▒
+I (24563) app: [FILE] ▒)6▒▒z▒.▒u- (-843732735 bytes)
+I (24563) app: [DIR]  ▒]▒z▒@▒r.▒#▒
+I (24573) app: [FILE] ▒&▒▒i▒.
                               (-141488664 bytes)
-I (24553) app: [DIR]  ▒3;&In▒.▒~▒
-I (24553) app: [DIR]  ▒▒▒▒
+I (24573) app: [DIR]  ▒3;&In▒.▒~▒
+I (24573) app: [DIR]  ▒▒▒▒
 ▒.x▒[
-I (24563) app: [DIR]  ▒1{       ▒▒j▒.
-I (24563) app: [FILE] &v▒▒d▒▒.▒▒▒ (1074887086 bytes)
-I (24563) app: [DIR]  Kȟ.       ▒K
-I (24573) app: [FILE] k▒▒▒▒!g.▒▒▒ (-376783634 bytes)
-I (24573) app: [FILE] ̻'<▒.▒z (1592674233 bytes)
-I (24583) app: [DIR]  ▒
+I (24583) app: [DIR]  ▒1{       ▒▒j▒.
+I (24583) app: [FILE] &v▒▒d▒▒.▒▒▒ (1074887086 bytes)
+I (24583) app: [DIR]  Kȟ.       ▒K
+I (24593) app: [FILE] k▒▒▒▒!g.▒▒▒ (-376783634 bytes)
+I (24593) app: [FILE] ̻'<▒.▒z (1592674233 bytes)
+I (24603) app: [DIR]  ▒
 ▒▒~1do.(▒
-I (24583) app: [DIR]  ^c▒2▒*'▒.7▒
-I (24583) app: [DIR]  T▒V▒▒#▒.)"▒
-I (24593) app: [FILE] t▒▒▒xk.͗▒ (391525337 bytes)
-I (24593) app: [DIR]  ,▒Y{\9<U.▒
-I (24603) app: [DIR]  ▒=▒▒lv.▒,
-I (24603) app: [FILE] README.TXT (276 bytes)
-I (24603) app: [FILE] ▒i\▒▒l.2^▒ (888337372 bytes)
-I (24613) app: [FILE] ub▒▒▒▒t4.▒.▒ (1295194136 bytes)
-I (24613) app: [FILE] x▒@▒▒2.▒▒] (-1869992017 bytes)
-I (24623) app: [FILE]▒h▒▒▒▒▒.▒,▒ (-157789351 bytes)
-I (24623) app: [FILE] ▒▒▒▒̷▒.|W (1832058176 bytes)
-I (24633) app: [FILE] ▒u▒▒b▒%.U▒ (-832586113 bytes)
-I (24633) app: [FILE] (▒?▒@e▒."▒ (-808172963 bytes)
-I (24633) app: [DIR]  oTéP▒.^▒
-I (24643) app: [DIR]  ▒▒
+I (24603) app: [DIR]  ^c▒2▒*'▒.7▒
+I (24603) app: [DIR]  T▒V▒▒#▒.)"▒
+I (24613) app: [FILE] t▒▒▒xk.͗▒ (391525337 bytes)
+I (24613) app: [DIR]  ,▒Y{\9<U.▒
+I (24623) app: [DIR]  ▒=▒▒lv.▒,
+I (24623) app: [FILE] README.TXT (276 bytes)
+I (24623) app: [FILE] ▒i\▒▒l.2^▒ (888337372 bytes)
+I (24633) app: [FILE] ub▒▒▒▒t4.▒.▒ (1295194136 bytes)
+I (24633) app: [FILE] x▒@▒▒2.▒▒] (-1869992017 bytes)
+I (24643) app: [FILE]▒h▒▒▒▒▒.▒,▒ (-157789351 bytes)
+I (24643) app: [FILE] ▒▒▒▒̷▒.|W (1832058176 bytes)
+I (24653) app: [FILE] ▒u▒▒b▒%.U▒ (-832586113 bytes)
+I (24653) app: [FILE] (▒?▒@e▒."▒ (-808172963 bytes)
+I (24653) app: [DIR]  oTéP▒.^▒
+I (24663) app: [DIR]  ▒▒
 pvݫ.rg▒
-I (24643) app: [DIR]  ^▒~▒▒>m▒.▒▒*
-I (24643) app: [DIR]  ,*▒I5▒▒.▒▒
-I (24653) app: [FILE] ▒bn▒;▒▒.▒LB (-1779153324 bytes)
-I (24663) app: [FILE] ▒▒▒M▒▒8.▒▒ (-973472399 bytes)
-I (24663) app: [FILE] ,▒NgX▒.0▒- (-557564264 bytes)
-I (24663) app: [FILE] ▒▒vYx.z▒` (1791011582 bytes)
-I (24673) app: [FILE] 9▒g&x]▒▒.I▒▒ (-1563315903 bytes)
-I (24673) app: [DIR]  Z▒Y▒X▒▒^.▒y▒
-I (24673) app: [DIR]  ▒▒#i▒▒7.▒%▒
-I (24683) app: [DIR]  ▒#▒h▒\▒.▒0
-I (24683) app: [DIR]  $a▒▒▒3▒▒
-I (24683) app: [DIR]  ;?c▒2^.!▒
-I (24693) app: [FILE] CONFIG.INI (126 bytes)
-I (24693) app: [FILE] ▒▒▒▒}P▒.▒▒S (-1084017954 bytes)
-I (24703) app: [DIR]  ▒q▒ߜrz▒x
-I (24703) app: [FILE] ▒3▒@)-▒.6?▒ (1081082001 bytes)
-I (24703) app: [FILE] ▒q▒▒▒v.s (1588410238 bytes)
-I (24713) app: [DIR]  ▒▒▒^.ʀk
-I (24713) app: [DIR]  ڤ▒▒
-▒ (24713) app: [DIR]  ▒3▒&▒.
-I (24723) app: [DIR]  ▒▒{y▒.#'
-I (24723) app: [DIR]  ^▒▒{▒▒.?(▒
-I (24723) app: [FILE] 5▒▒H▒Q▒▒.=▒ (1879095689 bytes)
-I (24733) app: [FILE] @▒8▒▒j▒.▒m▒ (-598696744 bytes)
-I (24733) app: [DIR]  g$;▒      ▒7.▒▒@
-I (24743) app: [DIR]  ?▒Q▒pϖ".
+I (24663) app: [DIR]  ^▒~▒▒>m▒.▒▒*
+I (24663) app: [DIR]  ,*▒I5▒▒.▒▒
+I (24673) app: [FILE] ▒bn▒;▒▒.▒LB (-1779153324 bytes)
+I (24683) app: [FILE] ▒▒▒M▒▒8.▒▒ (-973472399 bytes)
+I (24683) app: [FILE] ,▒NgX▒.0▒- (-557564264 bytes)
+I (24683) app: [FILE] ▒▒vYx.z▒` (1791011582 bytes)
+I (24693) app: [FILE] 9▒g&x]▒▒.I▒▒ (-1563315903 bytes)
+I (24693) app: [DIR]  Z▒Y▒X▒▒^.▒y▒
+I (24693) app: [DIR]  ▒▒#i▒▒7.▒%▒
+I (24703) app: [DIR]  ▒#▒h▒\▒.▒0
+I (24703) app: [DIR]  $a▒▒▒3▒▒
+I (24703) app: [DIR]  ;?c▒2^.!▒
+I (24713) app: [FILE] CONFIG.INI (126 bytes)
+I (24713) app: [FILE] ▒▒▒▒}P▒.▒▒S (-1084017954 bytes)
+I (24723) app: [DIR]  ▒q▒ߜrz▒x
+I (24723) app: [FILE] ▒3▒@)-▒.6?▒ (1081082001 bytes)
+I (24723) app: [FILE] ▒q▒▒▒v.s (1588410238 bytes)
+I (24733) app: [DIR]  ▒▒▒^.ʀk
+I (24733) app: [DIR]  ڤ▒▒
+▒ (24733) app: [DIR]  ▒3▒&▒.
+I (24743) app: [DIR]  ▒▒{y▒.#'
+I (24743) app: [DIR]  ^▒▒{▒▒.?(▒
+I (24743) app: [FILE] 5▒▒H▒Q▒▒.=▒ (1879095689 bytes)
+I (24753) app: [FILE] @▒8▒▒j▒.▒m▒ (-598696744 bytes)
+I (24753) app: [DIR]  g$;▒      ▒7.▒▒@
+I (24763) app: [DIR]  ?▒Q▒pϖ".
 
 ▒
-I (24743) app: [FILE] @̦▒:▒▒".▒▒▒ (1906442163 bytes)
-I (24743) app: [DIR]  ū)]u$
+I (24763) app: [FILE] @̦▒:▒▒".▒▒▒ (1906442163 bytes)
+I (24763) app: [DIR]  ū)]u$
 .a\n
-I (24753) app: [FILE] ▒_
+I (24773) app: [FILE] ▒_
                         6▒▒.▒▒ (998892284 bytes)
-I (24753) app: [FILE] W▒G▒w▒▒./▒8 (237025118 bytes)
-I (24763) app: [DIR] y.▒0▒
-I (24763) app: [FILE] 8▒J2▒ci▒.ag▒ (-1287269093 bytes)
-I (24763) app: [DIR]
+I (24773) app: [FILE] W▒G▒w▒▒./▒8 (237025118 bytes)
+I (24783) app: [DIR] y.▒0▒
+I (24783) app: [FILE] 8▒J2▒ci▒.ag▒ (-1287269093 bytes)
+I (24783) app: [DIR]
 *▒q▒.p<
-I (24773) app: [DIR]  ▒▒N*%▒▒.▒{w
-I (24773) app: [DIR]  ▒▒F▒ē`f.▒@
-I (24773) app: [DIR]  i▒▒▒0g▒.▒],
-I (24783) app: [FILE] ~rk_r&g▒.▒w (1867255301 bytes)
-I (24783) app: [DIR]  ▒▒▒RE▒#▒.▒/
-I (24783) app: [DIR]  J▒J▒o▒7a.ug▒
-I (24793) app: [FILE] DATA.BIN (1024 bytes)
-I (24793) app: [FILE] /ۜ>. (-502889981 bytes)
-I (24803) app: [FILE] ▒▒▒▒▒~▒.▒ (1694925315 bytes)
-I (24803) app: [FILE] ▒CM▒(▒.▒▒▒ (-315760684 bytes)
-I (24813) app: [FILE] ▒▒z▒|k.;g (1090899346 bytes)
-I (24813) app: [DIR]  z
+I (24793) app: [DIR]  ▒▒N*%▒▒.▒{w
+I (24793) app: [DIR]  ▒▒F▒ē`f.▒@
+I (24793) app: [DIR]  i▒▒▒0g▒.▒],
+I (24803) app: [FILE] ~rk_r&g▒.▒w (1867255301 bytes)
+I (24803) app: [DIR]  ▒▒▒RE▒#▒.▒/
+I (24803) app: [DIR]  J▒J▒o▒7a.ug▒
+I (24813) app: [FILE] DATA.BIN (1024 bytes)
+I (24813) app: [FILE] /ۜ>. (-502889981 bytes)
+I (24823) app: [FILE] ▒▒▒▒▒~▒.▒ (1694925315 bytes)
+I (24823) app: [FILE] ▒CM▒(▒.▒▒▒ (-315760684 bytes)
+I (24833) app: [FILE] ▒▒z▒|k.;g (1090899346 bytes)
+I (24833) app: [DIR]  z
                        j▒0▒▒.▒Z
-I (24813) app: [FILE] ▒c?=▒e (-1604339404 bytes)
-I (24823) app: [DIR]  ▒▒▒▒▒▒M.▒h
+I (24833) app: [FILE] ▒c?=▒e (-1604339404 bytes)
+I (24843) app: [DIR]  ▒▒▒▒▒▒M.▒h
 
 ▒'.▒t (-98748771 bytes)'▒e
-I (24833) app: [FILE] y▒▒▒&▒▒0.▒-e (1085263563 bytes)
-▒▒.▒_833) app: [DIR]  ▒{-▒
-I (24833) app: [DIR]  ▒▒s▒▒y.▒▒
-I (24843) app: [FILE] ▒&V▒8▒.   ڵ (-1984564729 bytes)
-I (24843) app: [FILE] 9▒@'▒▒▒.▒▒▒ (918682701 bytes)
-I (24853) app: [FILE] ▒V▒Q)g▒&.▒▒i (-1542273687 bytes)
-I (24853) app: [FILE] y▒▒▒▒8▒.3 (1392200203 bytes)
-I (24863) app: [FILE] j~▒▒▒p▒▒.w▒▒ (1048567658 bytes)
-I (24863) app: [DIR]  ▒i▒▒▒@▒v._▒F
-I (24863) app: [FILE] ▒L▒V▒[▒▒.k▒▒ (-1085556138 bytes)
-I (24873) app: [DIR]  Y&I▒▒▒▒▒.z▒▒
-I (24873) app: [FILE] ▒▒▒)▒ߜ.s (-211262196 bytes)
-I (24883) app: [FILE] eh▒       2.▒▒▒ (-2132370014 bytes)
-I (24893) app: [DIR]  o▒        ▒▒zqd.▒▒`
-I (24893) app: [DIR]  N(▒#̼'▒.▒i▒
-I (24893) app: [DIR]  j▒r9Ȱ#▒.▒'?
-I (24893) app: [DIR]  ▒%▒v,▒▒▒..▒
-I (24893) app: [DIR]  }▒▒▒▒.▒▒
-I (24903) app: [DIR]  Lʩ▒H▒▒▒.▒/x
-I (24903) app: [DIR]  l▒t▒f2▒r.ޞ▒
-I (24903) app: [DIR]  k▒▒▒d▒z.▒o?
-I (24913) app: [FILE] ▒x▒▒▒▒▒.a▒▒ (1176394855 bytes)
-I (24913) app: [FILE] ▒k▒+▒$▒.m3 (718791792 bytes)
-I (24923) app: [FILE] 1▒sa▒_.=▒▒ (-951356521 bytes)
-I (24923) app: [DIR]  +▒▒r▒▒▒.a▒
-I (24923) app: [FILE] ▒Z▒▒|ɹ.▒▒ (-498591602 bytes)
-I (24933) app: [FILE] ▒▒▒▒ð▒.▒▒7 (517118925 bytes)
-I (24933) app: [FILE] WAx_Jũ.5▒▒ (1877125322 bytes)
-I (24943) app: [DIR]  G▒;▒m▒'x.▒
-I (24953) app: [DIR]  ▒۬v▒▒7.x▒
-I (24953) app: [DIR]  ▒9▒▒▒▒.▒^
-I (24953) app: [FILE] ▒▒▒▒a▒h.t▒▒ (-90403490 bytes)
-I (24953) app: [FILE] wP^*0T.▒9▒ (-1782695686 bytes)
-I (24963) app: [DIR]  ▒▒▒Lpy/.▒▒
-I (24963) app: [FILE] ▒▒
+I (24853) app: [FILE] y▒▒▒&▒▒0.▒-e (1085263563 bytes)
+▒▒.▒_853) app: [DIR]  ▒{-▒
+I (24853) app: [DIR]  ▒▒s▒▒y.▒▒
+I (24863) app: [FILE] ▒&V▒8▒.   ڵ (-1984564729 bytes)
+I (24863) app: [FILE] 9▒@'▒▒▒.▒▒▒ (918682701 bytes)
+I (24873) app: [FILE] ▒V▒Q)g▒&.▒▒i (-1542273687 bytes)
+I (24873) app: [FILE] y▒▒▒▒8▒.3 (1392200203 bytes)
+I (24883) app: [FILE] j~▒▒▒p▒▒.w▒▒ (1048567658 bytes)
+I (24883) app: [DIR]  ▒i▒▒▒@▒v._▒F
+I (24883) app: [FILE] ▒L▒V▒[▒▒.k▒▒ (-1085556138 bytes)
+I (24893) app: [DIR]  Y&I▒▒▒▒▒.z▒▒
+I (24893) app: [FILE] ▒▒▒)▒ߜ.s (-211262196 bytes)
+I (24903) app: [FILE] eh▒       2.▒▒▒ (-2132370014 bytes)
+I (24913) app: [DIR]  o▒        ▒▒zqd.▒▒`
+I (24913) app: [DIR]  N(▒#̼'▒.▒i▒
+I (24913) app: [DIR]  j▒r9Ȱ#▒.▒'?
+I (24913) app: [DIR]  ▒%▒v,▒▒▒..▒
+I (24913) app: [DIR]  }▒▒▒▒.▒▒
+I (24923) app: [DIR]  Lʩ▒H▒▒▒.▒/x
+I (24923) app: [DIR]  l▒t▒f2▒r.ޞ▒
+I (24923) app: [DIR]  k▒▒▒d▒z.▒o?
+I (24933) app: [FILE] ▒x▒▒▒▒▒.a▒▒ (1176394855 bytes)
+I (24933) app: [FILE] ▒k▒+▒$▒.m3 (718791792 bytes)
+I (24943) app: [FILE] 1▒sa▒_.=▒▒ (-951356521 bytes)
+I (24943) app: [DIR]  +▒▒r▒▒▒.a▒
+I (24943) app: [FILE] ▒Z▒▒|ɹ.▒▒ (-498591602 bytes)
+I (24953) app: [FILE] ▒▒▒▒ð▒.▒▒7 (517118925 bytes)
+I (24953) app: [FILE] WAx_Jũ.5▒▒ (1877125322 bytes)
+I (24963) app: [DIR]  G▒;▒m▒'x.▒
+I (24973) app: [DIR]  ▒۬v▒▒7.x▒
+I (24973) app: [DIR]  ▒9▒▒▒▒.▒^
+I (24973) app: [FILE] ▒▒▒▒a▒h.t▒▒ (-90403490 bytes)
+I (24973) app: [FILE] wP^*0T.▒9▒ (-1782695686 bytes)
+I (24983) app: [DIR]  ▒▒▒Lpy/.▒▒
+I (24983) app: [FILE] ▒▒
 ▒▒l▒1.▒▒ (-1676694511 bytes)
-I (24973) app: [DIR]  Nx{▒▒(▒.▒og
-I (24973) app: [DIR]  ▒▒d▒gx2.fD▒
-I (24973) app: [DIR]  ▒8▒sC▒J.ًo
-I (24973) app: [DIR]  ▒Rk.▒▒▒..{▒▒
-I (24983) app: [FILE] ʸ<▒▒▒. (-1988255354 bytes)
-I (24983) app: [DIR]  ▒p▒▒c▒
+I (24993) app: [DIR]  Nx{▒▒(▒.▒og
+I (24993) app: [DIR]  ▒▒d▒gx2.fD▒
+I (24993) app: [DIR]  ▒8▒sC▒J.ًo
+I (24993) app: [DIR]  ▒Rk.▒▒▒..{▒▒
+I (25003) app: [FILE] ʸ<▒▒▒. (-1988255354 bytes)
+I (25003) app: [DIR]  ▒p▒▒c▒
 ▒.M*▒
-I (24993) app: [FILE] D▒(G▒▒.▒▒ (349285040 bytes)
-I (24993) app: [DIR]  ɲL▒|▒>.▒▒▒
-I (24993) app: [DIR]  |▒q$▒▒▒.▒ܤ
-I (25003) app: [DIR]  ▒▒zh▒g`.1▒▒
-I (25003) app: [DIR]  y▒'▒a▒▒▒.h▒`
-I (25003) app: [DIR]  J9+▒▒▒.▒▒%
-I (25013) app: [FILE] ▒▒7+▒a`▒.▒▒ (325742200 bytes)
-I (25013) app: [FILE] ▒▒▒▒▒▒z.py= (1226106668 bytes)
-I (25023) app: [DIR]  n▒l▒~r|▒.
+I (25013) app: [FILE] D▒(G▒▒.▒▒ (349285040 bytes)
+I (25013) app: [DIR]  ɲL▒|▒>.▒▒▒
+I (25013) app: [DIR]  |▒q$▒▒▒.▒ܤ
+I (25023) app: [DIR]  ▒▒zh▒g`.1▒▒
+I (25023) app: [DIR]  y▒'▒a▒▒▒.h▒`
+I (25023) app: [DIR]  J9+▒▒▒.▒▒%
+I (25033) app: [FILE] ▒▒7+▒a`▒.▒▒ (325742200 bytes)
+I (25033) app: [FILE] ▒▒▒▒▒▒z.py= (1226106668 bytes)
+I (25043) app: [DIR]  n▒l▒~r|▒.
 
-I (25023) app: [DIR]  }▒doc.▒w
-I (25023) app: [FILE] [JO▒▒▒▒▒.h▒` (49271 bytes)
-I (25033) app: [FILE] LOG.TXT (436 bytes)
-I (25033) app: [FILE] TEST.DAT (4096 bytes)
-I (25033) app: [DIR]  ▒▒|▒▒vѳ.▒r
-I (25043) app: [DIR]  u\/m▒▒▒.▒▒)
-I (25043) app: [FILE] ▒?۴▒/m.f
+I (25043) app: [DIR]  }▒doc.▒w
+I (25043) app: [FILE] [JO▒▒▒▒▒.h▒` (49271 bytes)
+I (25053) app: [FILE] LOG.TXT (436 bytes)
+I (25053) app: [FILE] TEST.DAT (4096 bytes)
+I (25053) app: [DIR]  ▒▒|▒▒vѳ.▒r
+I (25063) app: [DIR]  u\/m▒▒▒.▒▒)
+I (25063) app: [FILE] ▒?۴▒/m.f
  (-1464217217 bytes)
-I (25043) app: [DIR]  N▒^▒;▒.c▒▒
-▒ (25053) app: [DIR]  ▒▒'x-▒g▒.@
-I (25053) app: [FILE] ^▒▒▒$▒.f"1 (-1716287156 bytes)
-I (25063) app: [DIR]  ▒mj▒k▒c.▒v▒
-I (25063) app: [DIR]  a▒▒▒_▒.▒R▒
-I (25063) app: [DIR]  Ŏ▒d▒.▒^
-I (25063) app: [DIR]  @▒n▒~▒=.▒▒t
-I (25073) app: [FILE] f▒¯XD=▒.▒▒g (-534768779 bytes)
-I (25073) app: [FILE] u▒▒71▒N▒.$▒▒ (1944608205 bytes)
-I (25083) app: [FILE] ▒ҁv▒Q2.Y▒ (240524199 bytes)
-I (25083) app: [DIR]  ▒o▒ϻj▒.ꉐ
-I (25093) app: [DIR]  ▒:*▒▒▒.▒▒=
-I (25093) app: [FILE] ▒▒U'uKS▒.t}u (1373281555 bytes)
-I (25093) app: [FILE] ▒n▒Ǫz▒▒.1 (-940618087 bytes)
-I (25103) app: [FILE] ▒ofx▒.\k.▒▒s (752035029 bytes)
-I (25103) app: [DIR]  l▒l/▒..▒y▒
-I (25113) app: [DIR]  7▒l:▒▒w.▒▒▒
-I (25113) app: [DIR]  ▒▒N▒▒▒▒2.▒
- (25123) app: [DIR]  ▒zw▒▒p7.▒▒
-I (25123) app: [DIR]  ▒▒▒`▒.▒
-I (25123) app: [DIR]  ▒9p▒(.yw▒
-I (25123) app: [DIR]  ▒▒▒|a▒▒▒.▒▒
-I (25123) app: [FILE] ▒▒▒s▒▒.@*▒ (-537606687 bytes)
-I (25133) app: [FILE] v▒g+▒8▒.▒|▒ (-1855370766 bytes)
-I (25133) app: [DIR]  =▒v▒▒▒@.▒7▒
-I (25143) app: [FILE] ▒W6`▒!r▒.t▒ (-1609372606 bytes)
-I (25143) app: [DIR]  1
-F▒"{▒=.▒▒
-I (25153) app: [FILE] ge▒03▒.ǀ▒ (-115256190 bytes)
-I (25153) app: [DIR]  &7▒▒▒▒_.J▒P
-I (25153) app: [DIR]  ▒|{;=V.▒n▒
-I (25163) app: [DIR]  ▒k▒▒[.▒▒▒
-I (25163) app: [DIR]  ▒p▒l:▒o▒.Q$L
-I (25173) app: [DIR]  ▒
-I (25173) app: [DIR]
+I (25063) app: [DIR]  N▒^▒;▒.c▒▒
+▒ (25073) app: [DIR]  ▒▒'x-▒g▒.@
+I (25073) app: [FILE] ^▒▒▒$▒.f"1 (-1716287156 bytes)
+I (25083) app: [DIR]  ▒mj▒k▒c.▒v▒
+I (25083) app: [DIR]  a▒▒▒_▒.▒R▒
+I (25083) app: [DIR]  Ŏ▒d▒.▒^
+I (25083) app: [DIR]  @▒n▒~▒=.▒▒t
+I (25093) app: [FILE] f▒¯XD=▒.▒▒g (-534768779 bytes)
+I (25093) app: [FILE] u▒▒71▒N▒.$▒▒ (1944608205 bytes)
+I (25103) app: [FILE] ▒ҁv▒Q2.Y▒ (240524199 bytes)
+I (25103) app: [DIR]  ▒o▒ϻj▒.ꉐ
+I (25113) app: [DIR]  ▒:*▒▒▒.▒▒=
+I (25113) app: [FILE] ▒▒U'uKS▒.t}u (1373281555 bytes)
+I (25113) app: [FILE] ▒n▒Ǫz▒▒.1 (-940618087 bytes)
+I (25123) app: [FILE] ▒ofx▒.\k.▒▒s (752035029 bytes)
+I (25123) app: [DIR]  l▒l/▒..▒y▒
+I (25133) app: [DIR]  7▒l:▒▒w.▒▒▒
+I (25133) app: [DIR]  ▒▒N▒▒▒▒2.▒
+ (25143) app: [DIR]  ▒zw▒▒p7.▒▒
+I (25143) app: [DIR]  ▒▒▒`▒.▒
+I (25143) app: [DIR]  ▒9p▒(.yw▒
+I (25143) app: [DIR]  ▒▒▒|a▒▒▒.▒▒
+I (25143) app: [FILE] ▒▒▒s▒▒.@*▒ (-537606687 bytes)
+I (25153) app: [FILE] v▒g+▒8▒.▒|▒ (-1855370766 bytes)
+I (25153) app: [DIR]  =▒v▒▒▒@.▒7▒
+I (25163) app: [FILE] ▒W6`▒!r▒.t▒ (-1609372606 bytes)
+I (25163) app: [DIR]  1
++=;\=.▒▒▒
+I (25243) app: [FILE] 3▒▒bo (1732136936 bytes)tes)
+I (25243) app: [FILE] b}Z▒▒:▒.A▒ (174928453 bytes)
+I (25253) app: [DIR]  ▒▒q.▒l▒.$▒
+I (25253) app: [FILE]fP▒5Y.1▒▒▒
+I (25183) app: [DIR]  ▒p▒l:▒o▒.Q$L
+I (25193) app: [DIR]  ▒
+I (25193) app: [DIR]
 MPe▒Z▒d.▒▒m
-I (25173) app: [FILE] ▒▒▒e▒'Ē.׃| (-115526312 bytes)
-I (25173) app: [FILE] 5xm▒!▒v.▒▒▒ (129696740 bytes)
-I (25183) app: [FILE] u▒)▒▒st.▒T (596707271 bytes)
-I (25183) app: [DIR]  @▒▒x▒.AH▒
-I (25193) app: [DIR]  ▒▒jm▒▒▒
-I (25193) app: [FILE] ▒a▒▒▒j▒E.1c▒ (2101023502 bytes)
-I (25193) app: [DIR]  ▒▒▒p▒|▒.▒c^
-I (25203) app: [DIR]  p▒▒"▒▒.q:
-I (25203) app: [FILE] ▒▒֢d▒M.w▒d (-559704828 bytes)
-I (25203) app: [FILE] ▒▒b▒▒s▒.ҁ0 (451189412 bytes)
-I (25213) app: [DIR]  b▒~\▒.▒Ú
-+=;\=.▒▒) app: [FILE] }▒v▒▒▒.▒ș (-1131881150 bytes)
-I (25223) app: [FILE] 3▒▒bo (1732136936 bytes)
-I (25223) app: [FILE] b}Z▒▒:▒.A▒ (174928453 bytes)
-I (25233) app: [DIR]  ▒▒q.▒l▒.$▒
-I (25233) app: [FILE]fP▒5Y.1
+I (25193) app: [FILE] ▒▒▒e▒'Ē.׃| (-115526312 bytes)
+I (25193) app: [FILE] 5xm▒!▒v.▒▒▒ (129696740 bytes)
+I (25203) app: [FILE] u▒)▒▒st.▒T (596707271 bytes)
+I (25203) app: [DIR]  @▒▒x▒.AH▒
+I (25213) app: [DIR]  ▒▒jm▒▒▒
+I (25213) app: [FILE] ▒a▒▒▒j▒E.1c▒ (2101023502 bytes)
+I (25213) app: [DIR]  ▒▒▒p▒|▒.▒c^
+I (25223) app: [DIR]  p▒▒"▒▒.q:
+I (25223) app: [FILE] ▒▒֢d▒M.w▒d (-559704828 bytes)
+I (25223) app: [FILE] ▒▒b▒▒s▒.ҁ0 (451189412 bytes)
+I (25233) app: [DIR]  b▒~\▒.▒Ú
+I (25233) app: [FILE] }▒v▒▒▒.▒ș (-1131881150 bytes)
+I (25243) app: [DIR]
 I (1879446831 bytes)
-I (25243) app: [FILE] _L:▒/}▒j.py (1655847530 bytes)
-I (25243) app: [DIR]  ▒l▒▒▒.▒
-I (25243) app: [FILE] ▒i[/3f.(څ (826651882 bytes)
-I (25253) app: [DIR]  ^▒▒spgu.p▒4
-I (25253) app: [FILE] ]▒p▒m.wi@ (564481378 bytes)
-I (25263) app: [FILE] ▒6▒͛#▒.ϻj (-488972185 bytes)
-I (25263) app: [DIR]  i▒▒▒▒z.'؈
-I (25273) app: [FILE] ▒a▒J▒G▒▒.4▒x (-571015057 bytes)
-I (25273) app: [FILE] ▒ ▒
+I (25263) app: [FILE] _L:▒/}▒j.py (1655847530 bytes)
+I (25263) app: [DIR]  ▒l▒▒▒.▒
+I (25263) app: [FILE] ▒i[/3f.(څ (826651882 bytes)
+I (25273) app: [DIR]  ^▒▒spgu.p▒4
+I (25273) app: [FILE] ]▒p▒m.wi@ (564481378 bytes)
+I (25283) app: [FILE] ▒6▒͛#▒.ϻj (-488972185 bytes)
+I (25283) app: [DIR]  i▒▒▒▒z.'؈
+I (25293) app: [FILE] ▒a▒J▒G▒▒.4▒x (-571015057 bytes)
+I (25293) app: [FILE] ▒ ▒
 ▒dRb.pU (1818919901 bytes)
-I (25273) app: [FILE] ▒▒▒i0d▒.~▒n (-2103549831 bytes)
-I (25283) app: [DIR]  ▒▒?▒<▒▒.▒g
-I (25283) app: [FILE] ▒
+I (25293) app: [FILE] ▒▒▒i0d▒.~▒n (-2103549831 bytes)
+I (25303) app: [DIR]  ▒▒?▒<▒▒.▒g
+I (25303) app: [FILE] ▒
 v▒*.▒▒▒ (-456501047 bytes)
-I (25293) app: [DIR]  f▒▒?▒(].▒▒
-I (25293) app: [DIR]  T4͘▒6q.▒
-I (25293) app: [FILE] ▒4w▒3▒▒.{▒ (1682761387 bytes)
-I (25303) app: [DIR]  ▒c▒jٌF▒
-I (25303) app: [DIR]  f▒^▒▒▒.75
-I (25303) app: [FILE] {[▒+▒"▒.▒m▒ (838856969 bytes)
-I (25313) app: [DIR]  x▒▒.9▒7.▒/
-I (25313) app: [FILE] ▒#ɺܢd.▒k▒ (-1320160160 bytes)
-I (25323) app: [DIR]  ▒▒s▒ҶS.▒15
-I (25323) app: [DIR]
+I (25313) app: [DIR]  f▒▒?▒(].▒▒
+I (25313) app: [DIR]  T4͘▒6q.▒
+I (25313) app: [FILE] ▒4w▒3▒▒.{▒ (1682761387 bytes)
+I (25323) app: [DIR]  ▒c▒jٌF▒
+I (25323) app: [DIR]  f▒^▒▒▒.75
+I (25323) app: [FILE] {[▒+▒"▒.▒m▒ (838856969 bytes)
+I (25333) app: [DIR]  x▒▒.9▒7.▒/
+I (25333) app: [FILE] ▒#ɺܢd.▒k▒ (-1320160160 bytes)
+I (25343) app: [DIR]  ▒▒s▒ҶS.▒15
+I (25343) app: [DIR]
 ▒▒▒҃▒▒.(▒
-I (25323) app: [FILE] ▒1&▒!5.▒ (-1260612836 bytes)
-I (25333) app: [DIR]  N▒▒"a▒Z.▒*
-I (25333) app: [FILE] ▒8j▒M`.▒▒ (1978453046 bytes)
-I (25343) app: [FILE] ▒u▒▒?▒<▒.ln (-825878060 bytes)
-I (25343) app: [DIR]  ▒}x▒▒▒▒.▒▒
-I (25343) app: [DIR]  ▒▒d▒)▒▒.▒9
-I (25353) app: [FILE] ▒▒W
+I (25343) app: [FILE] ▒1&▒!5.▒ (-1260612836 bytes)
+I (25353) app: [DIR]  N▒▒"a▒Z.▒*
+I (25353) app: [FILE] ▒8j▒M`.▒▒ (1978453046 bytes)
+I (25363) app: [FILE] ▒u▒▒?▒<▒.ln (-825878060 bytes)
+I (25363) app: [DIR]  ▒}x▒▒▒▒.▒▒
+I (25363) app: [DIR]  ▒▒d▒)▒▒.▒9
+I (25373) app: [FILE] ▒▒W
                          ▒G}▒.▒8< (-1970491804 bytes)
-I (25353) app: [DIR]  vS▒▒▒^
+I (25373) app: [DIR]  vS▒▒▒^
 .▒▒?
-I (25363) app: =================================================
-I (25363) app: Total files: 126
-I (25363) app: =================================================
-I (25373) app: ✓ TEST PASSED: USB MSC file listing
-I (28373) app: =================================================
-I (28373) app: Testing File Read...
-I (28373) app: =================================================
-I (28373) usb_host: Reading file: /usb/ANSARI~1.TXT
-E (28403) usb_host: Failed to open file for reading: /usb/ANSARI~1.TXT
-W (28403) app: File read test skipped (file may not exist)
-I (31403) app: =================================================
-I (31403) app: Testing File Write...
-I (31403) app: =================================================
-I (31403) usb_host: Writing file: /usb/ESP32TEST.TXT (72 bytes)
-I (31493) usb_host: ✓ Wrote 72 bytes to ESP32TEST.TXT
-I (31493) app: ✓ TEST PASSED: File write successful
-I (31493) usb_host: Reading file: /usb/ESP32TEST.TXT
-I (31503) usb_host: ✓ Read 72 bytes from ESP32TEST.TXT
-I (31503) app: Verification read (72 bytes):
-I (31503) app: ---
-I (31503) app: ESP32-S3 USB Host Test
+I (25383) app: =================================================
+I (25383) app: Total files: 126
+I (25383) app: =================================================
+I (25393) app: ✓ TEST PASSED: USB MSC file listing
+I (28393) app: =================================================
+I (28393) app: Testing File Read...
+I (28393) app: =================================================
+I (28393) usb_host: Reading file: /usb/ANSARI~1.TXT
+E (28423) usb_host: Failed to open file for reading: /usb/ANSARI~1.TXT
+W (28423) app: File read test skipped (file may not exist)
+I (31423) app: =================================================
+I (31423) app: Testing File Write...
+I (31423) app: =================================================
+I (31423) usb_host: Writing file: /usb/ESP32TEST.TXT (72 bytes)
+I (31513) usb_host: ✓ Wrote 72 bytes to ESP32TEST.TXT
+I (31513) app: ✓ TEST PASSED: File write successful
+I (31513) usb_host: Reading file: /usb/ESP32TEST.TXT
+I (31523) usb_host: ✓ Read 72 bytes from ESP32TEST.TXT
+I (31523) app: Verification read (72 bytes):
+I (31523) app: ---
+I (31523) app: ESP32-S3 USB Host Test
 Phase 2c: File Operations
 Date: November 8, 2025
 
-I (31513) app: ---
-I (31513) app: ✓ TEST PASSED: File write verification successful
-I (39523) app: =================================================
-I (39523) app: PHASE 3A: Testing Partition Detection...
-I (39523) app: =================================================
-I (39533) usb_host: Detected MBR partition table
-I (39533) app: ✓ Partition table type: MBR
-I (39533) usb_host: Partition count: 1
-I (39533) app: ✓ Partition count: 1
-I (39543) usb_host: Partition 0: Type=0x0C, Start=2048, Size=240326655 sectors (117347.00 MB)
-I (39543) app: ✓ Partition 0:
-I (39553) app:   Type: 0x0C
-I (39553) app:   Start LBA: 2048
-I (39553) app:   Size: 240326655 sectors (117347.00 MB)
-I (39563) app: =================================================
-I (39563) app: Phase 3a partition detection tests complete
-I (39573) app: =================================================
-I (41573) app: =================================================
-I (41573) app: Phase 3c: Testing File Copy from SPIFFS to USB
-I (41573) app: =================================================
-I (41573) led: LED state changed: COPY
-I (41573) usb_host: =================================================
-I (41583) usb_host: Copying all files from /spiffs to /usb
+I (31533) app: ---
+I (31533) app: ✓ TEST PASSED: File write verification successful
+I (39543) app: =================================================
+I (39543) app: PHASE 3A: Testing Partition Detection...
+I (39543) app: =================================================
+I (39553) usb_host: Detected MBR partition table
+I (39553) app: ✓ Partition table type: MBR
+I (39553) usb_host: Partition count: 1
+I (39553) app: ✓ Partition count: 1
+I (39563) usb_host: Partition 0: Type=0x0C, Start=2048, Size=240326655 sectors (117347.00 MB)
+I (39563) app: ✓ Partition 0:
+I (39573) app:   Type: 0x0C
+I (39573) app:   Start LBA: 2048
+I (39573) app:   Size: 240326655 sectors (117347.00 MB)
+I (39583) app: =================================================
+I (39583) app: Phase 3a partition detection tests complete
+I (39593) app: =================================================
+I (41593) app: =================================================
+I (41593) app: Phase 3c: Testing File Copy from SPIFFS to USB
+I (41593) app: =================================================
+I (41593) led: LED state changed: COPY
 I (41593) usb_host: =================================================
-I (41593) usb_host: File 1: README.TXT
-I (41603) usb_host: Copying file: /spiffs/README.TXT -> /usb/README.TXT
-I (41603) usb_host: Source file size: 276 bytes
-I (41663) usb_host: Progress: 276 / 276 bytes (100.0%)
-I (41713) usb_host: ✓ File copied successfully: README.TXT (276 bytes)
-I (41713) usb_host: File 2: CONFIG.INI
-I (41713) usb_host: Copying file: /spiffs/CONFIG.INI -> /usb/CONFIG.INI
-I (41723) usb_host: Source file size: 126 bytes
-I (41783) usb_host: Progress: 126 / 126 bytes (100.0%)
-I (41833) usb_host: ✓ File copied successfully: CONFIG.INI (126 bytes)
-I (41833) usb_host: File 3: DATA.BIN
-I (41833) usb_host: Copying file: /spiffs/DATA.BIN -> /usb/DATA.BIN
-I (41833) usb_host: Source file size: 1024 bytes
-I (41923) usb_host: Progress: 1024 / 1024 bytes (100.0%)
-I (41963) usb_host: ✓ File copied successfully: DATA.BIN (1024 bytes)
-I (41963) usb_host: File 4: LOG.TXT
-I (41963) usb_host: Copying file: /spiffs/LOG.TXT -> /usb/LOG.TXT
-I (41963) usb_host: Source file size: 436 bytes
-I (42023) usb_host: Progress: 436 / 436 bytes (100.0%)
-I (42083) usb_host: ✓ File copied successfully: LOG.TXT (436 bytes)
-I (42083) usb_host: File 5: TEST.DAT
-I (42083) usb_host: Copying file: /spiffs/TEST.DAT -> /usb/TEST.DAT
-I (42083) usb_host: Source file size: 4096 bytes
-I (42233) usb_host: Progress: 4096 / 4096 bytes (100.0%)
-I (42263) usb_host: ✓ File copied successfully: TEST.DAT (4096 bytes)
-I (42273) usb_host: =================================================
-I (42273) usb_host: Copy Summary:
-I (42273) usb_host:   Total files: 5
-I (42273) usb_host:   Successful: 5
-I (42283) usb_host:   Failed: 0
-I (42283) usb_host: =================================================
-I (42293) app: ✓ TEST PASSED: All files copied successfully (5 files)
-I (42293) led: LED state changed: SUCCESS
-I (44303) led: LED state changed: IDLE
-I (44303) app: =================================================
-I (44303) app: Phase 3c file copy test complete
-I (44303) app: =================================================
-I (46303) app: =================================================
-I (46303) app: Testing Safe Eject...
-I (46303) app: =================================================
-I (46303) usb_host: =================================================
-I (46303) usb_host: Safe Eject: Starting...
-I (46313) usb_host: =================================================
-I (46323) usb_host: Step 1: Syncing filesystem...
-I (46323) led: LED state changed: SYNC
-I (46323) usb_host: Syncing filesystem...
-I (46533) usb_host: ✓ Filesystem sync delay completed
-I (46533) usb_host: Step 2: Unmounting VFS...
-I (46533) usb_host: ✓ VFS unmounted
-I (46533) usb_host: Step 3: Uninstalling MSC device...
-I (46533) usb_host: ✓ MSC device uninstalled
-I (46543) usb_host: Step 4: Closing USB device...
-I (46543) usb_host: ✓ USB device closed
-I (46543) usb_host: =================================================
-I (46553) usb_host: ✓ Safe Eject: COMPLETE
-I (46553) usb_host: =================================================
-I (46563) usb_host: USB drive can now be safely removed
-I (46563) led: LED state changed: SUCCESS
-I (48573) led: LED state changed: IDLE
-I (48573) app: ✓ TEST PASSED: Safe eject successful
-I (59563) usb_host: Library event flags: 0x2
-I (59563) usb_host: All devices freed - ready for new connections
-I (69633) usb_host: New USB device connected (address: 2)
-I (69633) usb_host: Device opened successfully (handle: 0x3fcae56c)
-I (69633) led: LED state changed: PREPARE
-I (69633) usb_host: MSC device installed successfully
-I (69643) usb_host: Mounting VFS with max_files=3
-I (70653) usb_host: USB drive mounted at /usb
-I (71573) app: =================================================
-I (71573) app: USB Drive Mounted - Listing Files
-I (71573) app: =================================================
-I (71573) app: [DIR]  qډa▒"n.▒!t
-I (71573) app: [DIR]  ZR▒▒▒4#.▒e▒
-I (71583) app: [FILE] ▒▒t8n).ư▒ (-682306640 bytes)
-I (71583) app: [FILE] ▒$$▒,▒.)▒▒ (234596900 bytes)
-I (71593) app: [DIR]  p▒A▒t8n#
-I (71593) app: [DIR]  ▒▒.▒~▒\
-I (71593) app: [DIR]  `▒▒▒,▒▒▒.w▒%
-I (71593) app: [FILE] ▒▒$▒9▒.
+I (41603) usb_host: Copying all files from /spiffs to /usb
+I (41613) usb_host: =================================================
+I (41623) usb_host: File 1: README.TXT
+I (41623) usb_host: Copying file: /spiffs/README.TXT -> /usb/README.TXT
+I (41623) usb_host: Source file size: 276 bytes
+I (41683) usb_host: Progress: 276 / 276 bytes (100.0%)
+I (41733) usb_host: ✓ File copied successfully: README.TXT (276 bytes)
+I (41733) usb_host: File 2: CONFIG.INI
+I (41733) usb_host: Copying file: /spiffs/CONFIG.INI -> /usb/CONFIG.INI
+I (41743) usb_host: Source file size: 126 bytes
+I (41793) usb_host: Progress: 126 / 126 bytes (100.0%)
+I (41853) usb_host: ✓ File copied successfully: CONFIG.INI (126 bytes)
+I (41853) usb_host: File 3: DATA.BIN
+I (41853) usb_host: Copying file: /spiffs/DATA.BIN -> /usb/DATA.BIN
+I (41863) usb_host: Source file size: 1024 bytes
+I (41933) usb_host: Progress: 1024 / 1024 bytes (100.0%)
+I (41983) usb_host: ✓ File copied successfully: DATA.BIN (1024 bytes)
+I (41983) usb_host: File 4: LOG.TXT
+I (41983) usb_host: Copying file: /spiffs/LOG.TXT -> /usb/LOG.TXT
+I (41983) usb_host: Source file size: 436 bytes
+I (42043) usb_host: Progress: 436 / 436 bytes (100.0%)
+I (42103) usb_host: ✓ File copied successfully: LOG.TXT (436 bytes)
+I (42103) usb_host: File 5: TEST.DAT
+I (42103) usb_host: Copying file: /spiffs/TEST.DAT -> /usb/TEST.DAT
+I (42113) usb_host: Source file size: 4096 bytes
+I (42253) usb_host: Progress: 4096 / 4096 bytes (100.0%)
+I (42293) usb_host: ✓ File copied successfully: TEST.DAT (4096 bytes)
+I (42293) usb_host: Skipping config file: fatlabel.txt (not copied to USB)
+I (42293) usb_host: =================================================
+I (42303) usb_host: Copy Summary:
+I (42303) usb_host:   Total files: 5
+I (42303) usb_host:   Successful: 5
+I (42313) usb_host:   Failed: 0
+I (42313) usb_host: =================================================
+I (42313) app: ✓ TEST PASSED: All files copied successfully (5 files)
+I (42323) led: LED state changed: SUCCESS
+I (44323) led: LED state changed: IDLE
+I (44323) app: =================================================
+I (44323) app: Phase 3c file copy test complete
+I (44323) app: =================================================
+I (46323) app: =================================================
+I (46323) app: Testing Safe Eject...
+I (46323) app: =================================================
+I (46323) usb_host: =================================================
+I (46323) usb_host: Safe Eject: Starting...
+I (46333) usb_host: =================================================
+I (46343) usb_host: Step 1: Syncing filesystem...
+I (46343) led: LED state changed: SYNC
+I (46343) usb_host: Syncing filesystem...
+I (46553) usb_host: ✓ Filesystem sync delay completed
+I (46553) usb_host: Step 2: Unmounting VFS...
+I (46553) usb_host: ✓ VFS unmounted
+I (46553) usb_host: Step 3: Uninstalling MSC device...
+I (46553) usb_host: ✓ MSC device uninstalled
+I (46563) usb_host: Step 4: Closing USB device...
+I (46563) usb_host: ✓ USB device closed
+I (46563) usb_host: =================================================
+I (46573) usb_host: ✓ Safe Eject: COMPLETE
+I (46573) usb_host: =================================================
+I (46583) usb_host: USB drive can now be safely removed
+I (46583) led: LED state changed: SUCCESS
+I (48593) led: LED state changed: IDLE
+I (48593) app: ✓ TEST PASSED: Safe eject successful
+I (263083) usb_host: Library event flags: 0x2
+I (263083) usb_host: All devices freed - ready for new connections
+I (274413) usb_host: New USB device connected (address: 2)
+I (274413) usb_host: Device opened successfully (handle: 0x3fcae56c)
+I (274413) led: LED state changed: PREPARE
+I (274423) usb_host: MSC device installed successfully
+I (274423) usb_host: Mounting VFS with max_files=3
+I (275433) usb_host: USB drive mounted at /usb
+I (275593) app: =================================================
+I (275593) app: USB Drive Mounted - Listing Files
+I (275593) app: =================================================
+I (275593) app: [DIR]  qډa▒"n.▒!t
+I (275593) app: [DIR]  ZR▒▒▒4#.▒e▒
+I (275603) app: [FILE] ▒▒t8n).ư▒ (-682306640 bytes)
+I (275603) app: [FILE] ▒$$▒,▒.)▒▒ (234596900 bytes)
+I (275613) app: [DIR]  p▒A▒t8n#
+I (275613) app: [DIR]  ▒▒.▒~▒\
+I (275613) app: [DIR]  `▒▒▒,▒▒▒.w▒%
+I (275623) app: [FILE] ▒▒$▒9▒.
 ▒ (-1828581141 bytes)
-I (71603) app: [FILE] ,:▒▒+ed.▒▒▒ (62203 bytes)
-I (71603) app: [FILE] ESP32TEST.TXT (72 bytes)
-I (71613) app: [FILE] ▒▒,R▒▒.c
+I (275623) app: [FILE] ,:▒▒+ed.▒▒▒ (62203 bytes)
+I (275623) app: [FILE] ESP32TEST.TXT (72 bytes)
+I (275633) app: [FILE] ▒▒,R▒▒.c
  (479505862 bytes)
-I (71613) app: [FILE] (י▒▒uE▒.▒▒# (355994466 bytes)
-I (71623) app: [DIR]  7▒▒(▒,.{2y
-I (71623) app: [DIR]  ig▒b%▒)▒."▒▒
-I (71633) app: [DIR]  B
-                       ▒)▒▒k.Q
-I (71633) app: [DIR]  ▒a▒ٌc▒.▒q
-I (71633) app: [FILE] ▒澦m▒▒7.v▒P (-1267466084 bytes)
-I (71633) app: [DIR]  =▒c▒▒9.▒|
-I (71643) app: [FILE] ▒jߴ▒▒-.yj▒ (2100443291 bytes)
-I (71643) app: [DIR]  ▒!a▒1z▒▒.▒▒
-I (71653) app: [DIR]  a▒▒E▒▒.▒>f
-I (71653) app: [DIR]  ▒#▒▒▒f▒(.▒:▒
-I (71653) app: [DIR]  ▒.▒▒▒t8.b▒3
-I (71653) app: [DIR]  ?▒x<▒.ȷ
-I (71663) app: [FILE] n&▒▒▒▒ (593961144 bytes)
-I (71663) app: [DIR]  ▒▒e▒4JT.oa▒
-I (71673) app: [FILE] ▒▒ (-1755927578 bytes)
-I (71673) app: [DIR]  ▒▒▒2▒▒.▒i
-I (71673) app: [FILE] ▒▒▒▒?▒.▒▒ (1838290007 bytes)
-I (71683) app: [FILE] ▒▒cH}.▒▒ (1493633890 bytes)
-I (71683) app: [FILE] ▒▒y▒▒.7W| (581159159 bytes)
-I (71693) app: [FILE] E▒▒▒,?%▒.|▒ (-472403896 bytes)
-I (71693) app: [DIR]  %ĸ1'▒.▒▒
-I (71693) app: [DIR]  ▒8▒2s▒▒▒.▒▒f
-I (71703) app: [DIR]  ▒▒u▒▒Ό%.J▒▒
-I (71703) app: [DIR]  -(▒̆ځ.I[]
-I (71703) app: [FILE] 8▒▒^-▒."a▒ (-1739692512 bytes)
-I (71713) app: [FILE]   ÿ▒▒%▒▒. (-1948250786 bytes)
-I (71713) app: [DIR]  ▒▒▒?▒8▒.Y▒
-I (71723) app: [DIR]  y▒,▒%\;.▒▒
-I (71723) app: [DIR]  O▒▒`y▒.8@
-I (71723) app: [DIR]  ▒▒▒d▒▒▒.i▒
-I (71733) app: [FILE] ▒▒+▒d5x.]▒▒ (1269566445 bytes)
-I (71733) app: [FILE] ▒▒m▒▒^.▒w▒ (996846028 bytes)
-I (71743) app: [DIR]  h[▒+]▒▒▒.▒D
-I (71743) app: [DIR]  ▒[▒+]▒▒▒.▒D
-I (71743) app: [DIR]  po▒i@▒N.▒▒
-I (71743) app: [DIR]  ▒▒
-I (71753) app: [DIR]  "▒F
+I (275633) app: [FILE] (י▒▒uE▒.▒▒# (355994466 bytes)
+I (275643) app: [DIR]  7▒▒(▒,.{2y
+I (275643) app: [DIR]  ig▒b%▒)▒."▒▒
+I (275653) app: [DIR]  B
+                        ▒)▒▒k.Q
+I (275653) app: [DIR]  ▒a▒ٌc▒.▒q
+I (275653) app: [FILE] ▒澦m▒▒7.v▒P (-1267466084 bytes)
+I (275663) app: [DIR]  =▒c▒▒9.▒|
+I (275663) app: [FILE] ▒jߴ▒▒-.yj▒ (2100443291 bytes)
+I (275663) app: [DIR]  ▒!a▒1z▒▒.▒▒
+I (275673) app: [DIR]  a▒▒E▒▒.▒>f
+I (275673) app: [DIR]  ▒#▒▒▒f▒(.▒:▒
+I (275673) app: [DIR]  ▒.▒▒▒t8.b▒3
+I (275683) app: [DIR]  ?▒x<▒.ȷ
+I (275683) app: [FILE] n&▒▒▒▒ (593961144 bytes)
+I (275683) app: [DIR]  ▒▒e▒4JT.oa▒
+I (275693) app: [FILE] ▒▒ (-1755927578 bytes)
+I (275693) app: [DIR]  ▒▒▒2▒▒.▒i
+I (275703) app: [FILE] ▒▒▒▒?▒.▒▒ (1838290007 bytes)
+I (275703) app: [FILE] ▒▒cH}.▒▒ (1493633890 bytes)
+I (275713) app: [FILE] ▒▒y▒▒.7W| (581159159 bytes)
+I (275713) app: [FILE] E▒▒▒,?%▒.|▒ (-472403896 bytes)
+I (275713) app: [DIR]  %ĸ1'▒.▒▒
+I (275723) app: [DIR]  ▒8▒2s▒▒▒.▒▒f
+I (275723) app: [DIR]  ▒▒u▒▒Ό%.J▒▒
+I (275723) app: [DIR]  -(▒̆ځ.I[]
+I (275733) app: [FILE] 8▒▒^-▒."a▒ (-1739692512 bytes)
+I (275733) app: [FILE]  ÿ▒▒%▒▒. (-1948250786 bytes)
+I (275743) app: [DIR]  ▒▒▒?▒8▒.Y▒
+I (275743) app: [DIR]  y▒,▒%\;.▒▒
+I (275743) app: [DIR]  O▒▒`y▒.8@
+I (275753) app: [DIR]  ▒▒▒d▒▒▒.i▒
+I (275753) app: [FILE] ▒▒+▒d5x.]▒▒ (1269566445 bytes)
+I (275753) app: [FILE] ▒▒m▒▒^.▒w▒ (996846028 bytes)
+I (275763) app: [DIR]  h[▒+]▒▒▒.▒D
+I (275763) app: [DIR]  ▒[▒+]▒▒▒.▒D
+I (275773) app: [DIR]  po▒i@▒N.▒▒
+I (275773) app: [DIR]  ▒▒
+I (275773) app: [DIR]  "▒F
 ▒B▒.▒r▒
-I (71753) app: [FILE] I▒▒e▒8.d (-113291293 bytes)
-I (71753) app: [FILE] ▒$▒▒.e▒, (1333338898 bytes)
-I (71763) app: [FILE] Q"~OxEg.4ez (1682309156 bytes)
-I (71763) app: [FILE] ▒aД▒▒.▒▒) (-631032560 bytes)
-I (71773) app: [DIR]  ▒2▒▒f▒▒i.Q-
-I (71773) app: [DIR]  ▒'▒▒▒▒.▒▒▒
-I (71783) app: [FILE] ▒8▒iķr.▒▒i (-1482709866 bytes)
-I (71783) app: [FILE] ▒f▒▒▒3.▒- (-1252859285 bytes)
-I (71793) app: [FILE] 7▒▒▒l▒,r.▒ (1954680746 bytes)
-I (71793) app: [FILE] ▒Y▒▒▒eaP.▒{▒ (1417398860 bytes)
-I (71793) app: [DIR]  |{▒_ǚ▒j.▒
-I (71803) app: [FILE] ▒)6▒▒z▒.▒u- (-843732735 bytes)
-I (71803) app: [DIR]  ▒]▒z▒@▒r.▒#▒
-I (71813) app: [FILE] ▒&▒▒i▒.
-                              (-141488664 bytes)
-I (71813) app: [DIR]  ▒3;&In▒.▒~▒
-I (71813) app: [DIR]  ▒▒▒▒
+I (275773) app: [FILE] I▒▒e▒8.d (-113291293 bytes)
+I (275783) app: [FILE] ▒$▒▒.e▒, (1333338898 bytes)
+I (275783) app: [FILE] Q"~OxEg.4ez (1682309156 bytes)
+I (275793) app: [FILE] ▒aД▒▒.▒▒) (-631032560 bytes)
+I (275793) app: [DIR]  ▒2▒▒f▒▒i.Q-
+I (275803) app: [DIR]  ▒'▒▒▒▒.▒▒▒
+I (275803) app: [FILE] ▒8▒iķr.▒▒i (-1482709866 bytes)
+I (275813) app: [FILE] ▒f▒▒▒3.▒- (-1252859285 bytes)
+I (275813) app: [FILE] 7▒▒▒l▒,r.▒ (1954680746 bytes)
+I (275823) app: [FILE] ▒Y▒▒▒eaP.▒{▒ (1417398860 bytes)
+I (275823) app: [DIR]  |{▒_ǚ▒j.▒
+I (275823) app: [FILE] ▒)6▒▒z▒.▒u- (-843732735 bytes)
+I (275833) app: [DIR]  ▒]▒z▒@▒r.▒#▒
+I (275833) app: [FILE] ▒&▒▒i▒.
+                               (-141488664 bytes)
+I (275843) app: [DIR]  ▒3;&In▒.▒~▒
+I (275843) app: [DIR]  ▒▒▒▒
 ▒.x▒[
-I (71823) app: [DIR]  ▒1{       ▒▒j▒.
-I (71823) app: [FILE] &v▒▒d▒▒.▒▒▒ (1074887086 bytes)
-I (71823) app: [DIR]  Kȟ.       ▒K
-I (71833) app: [FILE] k▒▒▒▒!g.▒▒▒ (-376783634 bytes)
-I (71833) app: [FILE] ̻'<▒.▒z (1592674233 bytes)
-I (71843) app: [DIR]  ▒
+I (275843) app: [DIR]  ▒1{      ▒▒j▒.
+I (275853) app: [FILE] &v▒▒d▒▒.▒▒▒ (1074887086 bytes)
+I (275853) app: [DIR]  Kȟ.      ▒K
+I (275853) app: [FILE] k▒▒▒▒!g.▒▒▒ (-376783634 bytes)
+I (275863) app: [FILE] ̻'<▒.▒z (1592674233 bytes)
+I (275863) app: [DIR]  ▒
 ▒▒~1do.(▒
-I (71843) app: [DIR]  ^c▒2▒*'▒.7▒
-I (71843) app: [DIR]  T▒V▒▒#▒.)"▒
-I (71853) app: [FILE] t▒▒▒xk.͗▒ (391525337 bytes)
-I (71853) app: [DIR]  ,▒Y{\9<U.▒
-I (71863) app: [DIR]  ▒=▒▒lv.▒,
-I (71863) app: [FILE] README.TXT (276 bytes)
-I (71863) app: [FILE] ▒i\▒▒l.2^▒ (888337372 bytes)
-I (71873) app: [FILE] ub▒▒▒▒t4.▒.▒ (1295194136 bytes)
-I (71873) app: [FILE] x▒@▒▒2.▒▒] (-1869992017 bytes)
-I (71883) app: [FILE]▒h▒▒▒▒▒.▒,▒ (-157789351 bytes)
-I (71883) app: [FILE] ▒▒▒▒̷▒.|W (1832058176 bytes)
-I (71893) app: [FILE] ▒u▒▒b▒%.U▒ (-832586113 bytes)
-I (71893) app: [FILE] (▒?▒@e▒."▒ (-808172963 bytes)
-I (71893) app: [DIR]  oTéP▒.^▒
-I (71903) app: [DIR]  ▒▒
+I (275873) app: [DIR]  ^c▒2▒*'▒.7▒
+I (275873) app: [DIR]  T▒V▒▒#▒.)"▒
+I (275873) app: [FILE] t▒▒▒xk.͗▒ (391525337 bytes)
+I (275883) app: [DIR]  ,▒Y{\9<U.▒
+I (275883) app: [DIR]  ▒=▒▒lv.▒,
+I (275883) app: [FILE] README.TXT (276 bytes)
+I (275893) app: [FILE] ▒i\▒▒l.2^▒ (888337372 bytes)
+I (275893) app: [FILE] ub▒▒▒▒t4.▒.▒ (1295194136 bytes)
+I (275903) app: [FILE] x▒@▒▒2.▒▒] (-1869992017 bytes)
+I (275903) app: [FILE]▒h▒▒▒▒▒.▒,▒ (-157789351 bytes)
+I (275913) app: [FILE] ▒▒▒▒̷▒.|W (1832058176 bytes)
+I (275913) app: [FILE] ▒u▒▒b▒%.U▒ (-832586113 bytes)
+I (275923) app: [FILE] (▒?▒@e▒."▒ (-808172963 bytes)
+I (275923) app: [DIR]  oTéP▒.^▒
+I (275933) app: [DIR]  ▒▒
 pvݫ.rg▒
-I (71903) app: [DIR]  ^▒~▒▒>m▒.▒▒*
-I (71903) app: [DIR]  ,*▒I5▒▒.▒▒
-I (71913) app: [FILE] ▒bn▒;▒▒.▒LB (-1779153324 bytes)
-I (71913) app: [FILE] ▒▒▒M▒▒8.▒▒ (-973472399 bytes)
-I (71923) app: [FILE] ,▒NgX▒.0▒- (-557564264 bytes)
-I (71923) app: [FILE] ▒▒vYx.z▒` (1791011582 bytes)
-I (71933) app: [FILE] 9▒g&x]▒▒.I▒▒ (-1563315903 bytes)
-I (71933) app: [DIR]  Z▒Y▒X▒▒^.▒y▒
-I (71933) app: [DIR]  ▒▒#i▒▒7.▒%▒
-I (71943) app: [DIR]  ▒#▒h▒\▒.▒0
-I (71943) app: [DIR]  $a▒▒▒3▒▒
-I (71943) app: [DIR]  ;?c▒2^.!▒
-I (71953) app: [FILE] CONFIG.INI (126 bytes)
-I (71953) app: [FILE] ▒▒▒▒}P▒.▒▒S (-1084017954 bytes)
-I (71963) app: [DIR]  ▒q▒ߜrz▒x
-I (71963) app: [FILE] ▒3▒@)-▒.6?▒ (1081082001 bytes)
-I (71963) app: [FILE] ▒q▒▒▒v.s (1588410238 bytes)
-I (71973) app: [DIR]  ▒▒▒^.ʀk
-I (71973) app: [DIR]  ڤ▒▒
-▒ (71973) app: [DIR]  ▒3▒&▒.
-I (71983) app: [DIR]  ▒▒{y▒.#'
-I (71983) app: [DIR]  ^▒▒{▒▒.?(▒
-I (71983) app: [FILE] 5▒▒H▒Q▒▒.=▒ (1879095689 bytes)
-I (71993) app: [FILE] @▒8▒▒j▒.▒m▒ (-598696744 bytes)
-I (71993) app: [DIR]  g$;▒      ▒7.▒▒@
-I (72003) app: [DIR]  ?▒Q▒pϖ".
+I (275933) app: [DIR]  ^▒~▒▒>m▒.▒▒*
+I (275933) app: [DIR]  ,*▒I5▒▒.▒▒
+I (275943) app: [FILE] ▒bn▒;▒▒.▒LB (-1779153324 bytes)
+I (275943) app: [FILE] ▒▒▒M▒▒8.▒▒ (-973472399 bytes)
+I (275953) app: [FILE] ,▒NgX▒.0▒- (-557564264 bytes)
+I (275953) app: [FILE] ▒▒vYx.z▒` (1791011582 bytes)
+I (275953) app: [FILE] 9▒g&x]▒▒.I▒▒ (-1563315903 bytes)
+I (275963) app: [DIR]  Z▒Y▒X▒▒^.▒y▒
+I (275963) app: [DIR]  ▒▒#i▒▒7.▒%▒
+I (275973) app: [DIR]  ▒#▒h▒\▒.▒0
+I (275973) app: [DIR]  $a▒▒▒3▒▒
+I (275973) app: [DIR]  ;?c▒2^.!▒
+I (275983) app: [FILE] CONFIG.INI (126 bytes)
+I (275983) app: [FILE] ▒▒▒▒}P▒.▒▒S (-1084017954 bytes)
+I (275983) app: [DIR]  ▒q▒ߜrz▒x
+I (275993) app: [FILE] ▒3▒@)-▒.6?▒ (1081082001 bytes)
+I (275993) app: [FILE] ▒q▒▒▒v.s (1588410238 bytes)
+I (276003) app: [DIR]  ▒▒▒^.ʀk
+I (276003) app: [DIR]  ڤ▒▒
+▒ (276003) app: [DIR]  ▒3▒&▒.
+I (276013) app: [DIR]  ▒▒{y▒.#'
+I (276013) app: [DIR]  ^▒▒{▒▒.?(▒
+I (276013) app: [FILE] 5▒▒H▒Q▒▒.=▒ (1879095689 bytes)
+I (276023) app: [FILE] @▒8▒▒j▒.▒m▒ (-598696744 bytes)
+I (276023) app: [DIR]  g$;▒     ▒7.▒▒@
+I (276033) app: [DIR]  ?▒Q▒pϖ".
 
 ▒
-I (72003) app: [FILE] @̦▒:▒▒".▒▒▒ (1906442163 bytes)
-I (72003) app: [DIR]  ū)]u$
+I (276033) app: [FILE] @̦▒:▒▒".▒▒▒ (1906442163 bytes)
+I (276033) app: [DIR]  ū)]u$
 .a\n
-I (72013) app: [FILE] ▒_
-                        6▒▒.▒▒ (998892284 bytes)
-I (72013) app: [FILE] W▒G▒w▒▒./▒8 (237025118 bytes)
-I (72023) app: [DIR] y.▒0▒
-I (72023) app: [FILE] 8▒J2▒ci▒.ag▒ (-1287269093 bytes)
-I (72023) app: [DIR]
+I (276043) app: [FILE] ▒_
+                         6▒▒.▒▒ (998892284 bytes)
+I (276043) app: [FILE] W▒G▒w▒▒./▒8 (237025118 bytes)
+I (276053) app: [DIR] y.▒0▒
+I (276053) app: [FILE] 8▒J2▒ci▒.ag▒ (-1287269093 bytes)
+I (276063) app: [DIR]
 *▒q▒.p<
-I (72033) app: [DIR]  ▒▒N*%▒▒.▒{w
-I (72033) app: [DIR]  ▒▒F▒ē`f.▒@
-I (72033) app: [DIR]  i▒▒▒0g▒.▒],
-I (72043) app: [FILE] ~rk_r&g▒.▒w (1867255301 bytes)
-I (72043) app: [DIR]  ▒▒▒RE▒#▒.▒/
-I (72043) app: [DIR]  J▒J▒o▒7a.ug▒
-I (72053) app: [FILE] DATA.BIN (1024 bytes)
-I (72053) app: [FILE] /ۜ>. (-502889981 bytes)
-I (72063) app: [FILE] ▒▒▒▒▒~▒.▒ (1694925315 bytes)
-I (72063) app: [FILE] ▒CM▒(▒.▒▒▒ (-315760684 bytes)
-I (72073) app: [FILE] ▒▒z▒|k.;g (1090899346 bytes)
-I (72073) app: [DIR]  z
-                       j▒0▒▒.▒Z
-I (72073) app: [FILE] ▒c?=▒e (-1604339404 bytes)
-I (72083) app: [DIR]  ▒▒▒▒▒▒M.▒h
+I (276063) app: [DIR]  ▒▒N*%▒▒.▒{w
+I (276063) app: [DIR]  ▒▒F▒ē`f.▒@
+I (276063) app: [DIR]  i▒▒▒0g▒.▒],
+I (276073) app: [FILE] ~rk_r&g▒.▒w (1867255301 bytes)
+I (276073) app: [DIR]  ▒▒▒RE▒#▒.▒/
+I (276083) app: [DIR]  J▒J▒o▒7a.ug▒
+I (276083) app: [FILE] DATA.BIN (1024 bytes)
+I (276083) app: [FILE] /ۜ>. (-502889981 bytes)
+I (276093) app: [FILE] ▒▒▒▒▒~▒.▒ (1694925315 bytes)
+I (276093) app: [FILE] ▒CM▒(▒.▒▒▒ (-315760684 bytes)
+I (276103) app: [FILE] ▒▒z▒|k.;g (1090899346 bytes)
+I (276103) app: [DIR]  z
+                        j▒0▒▒.▒Z
+I (276113) app: [FILE] ▒c?=▒e (-1604339404 bytes)
+I (276113) app: [DIR]  ▒▒▒▒▒▒M.▒h
 
-▒'.▒t (-98748771 bytes)'▒e
-I (72093) app: [FILE] y▒▒▒&▒▒0.▒-e (1085263563 bytes)
-▒▒.▒_093) app: [DIR]  ▒{-▒
-I (72093) app: [DIR]  ▒▒s▒▒y.▒▒
-I (72103) app: [FILE] ▒&V▒8▒.   ڵ (-1984564729 bytes)
-I (72103) app: [FILE] 9▒@'▒▒▒.▒▒▒ (918682701 bytes)
-I (72113) app: [FILE] ▒V▒Q)g▒&.▒▒i (-1542273687 bytes)
-I (72113) app: [FILE] y▒▒▒▒8▒.3 (1392200203 bytes)
-I (72123) app: [FILE] j~▒▒▒p▒▒.w▒▒ (1048567658 bytes)
-I (72123) app: [DIR]  ▒i▒▒▒@▒v._▒F
-I (72123) app: [FILE] ▒L▒V▒[▒▒.k▒▒ (-1085556138 bytes)
-I (72133) app: [DIR]  Y&I▒▒▒▒▒.z▒▒
-I (72133) app: [FILE] ▒▒▒)▒ߜ.s (-211262196 bytes)
-I (72143) app: [FILE] eh▒       2.▒▒▒ (-2132370014 bytes)
-I (72143) app: [DIR]  o▒        ▒▒zqd.▒▒`
-I (72143) app: [DIR]  N(▒#̼'▒.▒i▒
-I (72153) app: [DIR]  j▒r9Ȱ#▒.▒'?
-I (72153) app: [DIR]  ▒%▒v,▒▒▒..▒
-I (72153) app: [DIR]  }▒▒▒▒.▒▒
-I (72163) app: [DIR]  Lʩ▒H▒▒▒.▒/x
-I (72163) app: [DIR]  l▒t▒f2▒r.ޞ▒
-I (72163) app: [DIR]  k▒▒▒d▒z.▒o?
-I (72173) app: [FILE] ▒x▒▒▒▒▒.a▒▒ (1176394855 bytes)
-I (72173) app: [FILE] ▒k▒+▒$▒.m3 (718791792 bytes)
-I (72183) app: [FILE] 1▒sa▒_.=▒▒ (-951356521 bytes)
-I (72183) app: [DIR]  +▒▒r▒▒▒.a▒
-I (72183) app: [FILE] ▒Z▒▒|ɹ.▒▒ (-498591602 bytes)
-I (72193) app: [FILE] ▒▒▒▒ð▒.▒▒7 (517118925 bytes)
-I (72193) app: [FILE] WAx_Jũ.5▒▒ (1877125322 bytes)
-I (72203) app: [DIR]  G▒;▒m▒'x.▒
-I (72203) app: [DIR]  ▒۬v▒▒7.x▒
-I (72203) app: [DIR]  ▒9▒▒▒▒.▒^
-I (72213) app: [FILE] ▒▒▒▒a▒h.t▒▒ (-90403490 bytes)
-I (72213) app: [FILE] wP^*0T.▒9▒ (-1782695686 bytes)
-I (72223) app: [DIR]  ▒▒▒Lpy/.▒▒
-I (72223) app: [FILE] ▒▒
+▒'.▒t (-98748771 bytes)o'▒e
+I (276123) app: [FILE] y▒▒▒&▒▒0.▒-e (1085263563 bytes)
+▒▒.▒_6123) app: [DIR]  ▒{-▒
+I (276133) app: [DIR]  ▒▒s▒▒y.▒▒
+I (276133) app: [FILE] ▒&V▒8▒.  ڵ (-1984564729 bytes)
+I (276133) app: [FILE] 9▒@'▒▒▒.▒▒▒ (918682701 bytes)
+I (276143) app: [FILE] ▒V▒Q)g▒&.▒▒i (-1542273687 bytes)
+I (276143) app: [FILE] y▒▒▒▒8▒.3 (1392200203 bytes)
+I (276153) app: [FILE] j~▒▒▒p▒▒.w▒▒ (1048567658 bytes)
+I (276153) app: [DIR]  ▒i▒▒▒@▒v._▒F
+I (276163) app: [FILE] ▒L▒V▒[▒▒.k▒▒ (-1085556138 bytes)
+I (276163) app: [DIR]  Y&I▒▒▒▒▒.z▒▒
+I (276173) app: [FILE] ▒▒▒)▒ߜ.s (-211262196 bytes)
+I (276173) app: [FILE] eh▒      2.▒▒▒ (-2132370014 bytes)
+I (276183) app: [DIR]  o▒       ▒▒zqd.▒▒`
+I (276183) app: [DIR]  N(▒#̼'▒.▒i▒
+I (276183) app: [DIR]  j▒r9Ȱ#▒.▒'?
+I (276183) app: [DIR]  ▒%▒v,▒▒▒..▒
+I (276193) app: [DIR]  }▒▒▒▒.▒▒
+I (276193) app: [DIR]  Lʩ▒H▒▒▒.▒/x
+I (276193) app: [DIR]  l▒t▒f2▒r.ޞ▒
+I (276203) app: [DIR]  k▒▒▒d▒z.▒o?
+I (276203) app: [FILE] ▒x▒▒▒▒▒.a▒▒ (1176394855 bytes)
+I (276213) app: [FILE] ▒k▒+▒$▒.m3 (718791792 bytes)
+I (276213) app: [FILE] 1▒sa▒_.=▒▒ (-951356521 bytes)
+I (276213) app: [DIR]  +▒▒r▒▒▒.a▒
+I (276223) app: [FILE] ▒Z▒▒|ɹ.▒▒ (-498591602 bytes)
+I (276223) app: [FILE] ▒▒▒▒ð▒.▒▒7 (517118925 bytes)
+I (276233) app: [FILE] WAx_Jũ.5▒▒ (1877125322 bytes)
+I (276233) app: [DIR]  G▒;▒m▒'x.▒
+I (276243) app: [DIR]  ▒۬v▒▒7.x▒
+I (276243) app: [DIR]  ▒9▒▒▒▒.▒^
+I (276243) app: [FILE] ▒▒▒▒a▒h.t▒▒ (-90403490 bytes)
+I (276253) app: [FILE] wP^*0T.▒9▒ (-1782695686 bytes)
+I (276253) app: [DIR]  ▒▒▒Lpy/.▒▒
+I (276263) app: [FILE] ▒▒
 ▒▒l▒1.▒▒ (-1676694511 bytes)
-I (72233) app: [DIR]  Nx{▒▒(▒.▒og
-I (72233) app: [DIR]  ▒▒d▒gx2.fD▒
-I (72233) app: [DIR]  ▒8▒sC▒J.ًo
-I (72233) app: [DIR]  ▒Rk.▒▒▒..{▒▒
-I (72243) app: [FILE] ʸ<▒▒▒. (-1988255354 bytes)
-I (72243) app: [DIR]  ▒p▒▒c▒
+I (276263) app: [DIR]  Nx{▒▒(▒.▒og
+I (276263) app: [DIR]  ▒▒d▒gx2.fD▒
+I (276273) app: [DIR]  ▒8▒sC▒J.ًo
+I (276273) app: [DIR]  ▒Rk.▒▒▒..{▒▒
+I (276273) app: [FILE] ʸ<▒▒▒. (-1988255354 bytes)
+I (276283) app: [DIR]  ▒p▒▒c▒
 ▒.M*▒
-I (72253) app: [FILE] D▒(G▒▒.▒▒ (349285040 bytes)
-I (72253) app: [DIR]  ɲL▒|▒>.▒▒▒
-I (72253) app: [DIR]  |▒q$▒▒▒.▒ܤ
-I (72263) app: [DIR]  ▒▒zh▒g`.1▒▒
-I (72263) app: [DIR]  y▒'▒a▒▒▒.h▒`
-I (72263) app: [DIR]  J9+▒▒▒.▒▒%
-I (72273) app: [FILE] ▒▒7+▒a`▒.▒▒ (325742200 bytes)
-I (72273) app: [FILE] ▒▒▒▒▒▒z.py= (1226106668 bytes)
-I (72283) app: [DIR]  n▒l▒~r|▒.
+I (276283) app: [FILE] D▒(G▒▒.▒▒ (349285040 bytes)
+I (276293) app: [DIR]  ɲL▒|▒>.▒▒▒
+I (276293) app: [DIR]  |▒q$▒▒▒.▒ܤ
+I (276293) app: [DIR]  ▒▒zh▒g`.1▒▒
+I (276303) app: [DIR]  y▒'▒a▒▒▒.h▒`
+I (276303) app: [DIR]  J9+▒▒▒.▒▒%
+I (276303) app: [FILE] ▒▒7+▒a`▒.▒▒ (325742200 bytes)
+I (276313) app: [FILE] ▒▒▒▒▒▒z.py= (1226106668 bytes)
+I (276313) app: [DIR]  n▒l▒~r|▒.
 
-I (72283) app: [DIR]  }▒doc.▒w
-I (72283) app: [FILE] [JO▒▒▒▒▒.h▒` (49271 bytes)
-I (72293) app: [FILE] LOG.TXT (436 bytes)
-I (72293) app: [FILE] TEST.DAT (4096 bytes)
-I (72293) app: [DIR]  ▒▒|▒▒vѳ.▒r
-I (72303) app: [DIR]  u\/m▒▒▒.▒▒)
-I (72303) app: [FILE] ▒?۴▒/m.f
+I (276313) app: [DIR]  }▒doc.▒w
+I (276323) app: [FILE] [JO▒▒▒▒▒.h▒` (49271 bytes)
+I (276323) app: [FILE] LOG.TXT (436 bytes)
+I (276333) app: [FILE] TEST.DAT (4096 bytes)
+I (276333) app: [DIR]  ▒▒|▒▒vѳ.▒r
+I (276333) app: [DIR]  u\/m▒▒▒.▒▒)
+I (276343) app: [FILE] ▒?۴▒/m.f
  (-1464217217 bytes)
-I (72303) app: [DIR]  N▒^▒;▒.c▒▒
-▒ (72313) app: [DIR]  ▒▒'x-▒g▒.@
-I (72313) app: [FILE] ^▒▒▒$▒.f"1 (-1716287156 bytes)
-I (72323) app: [DIR]  ▒mj▒k▒c.▒v▒
-I (72323) app: [DIR]  a▒▒▒_▒.▒R▒
-I (72323) app: [DIR]  Ŏ▒d▒.▒^
-I (72323) app: [DIR]  @▒n▒~▒=.▒▒t
-I (72333) app: [FILE] f▒¯XD=▒.▒▒g (-534768779 bytes)
-I (72333) app: [FILE] u▒▒71▒N▒.$▒▒ (1944608205 bytes)
-I (72343) app: [FILE] ▒ҁv▒Q2.Y▒ (240524199 bytes)
-I (72343) app: [DIR]  ▒o▒ϻj▒.ꉐ
-I (72353) app: [DIR]  ▒:*▒▒▒.▒▒=
-I (72353) app: [FILE] ▒▒U'uKS▒.t}u (1373281555 bytes)
-I (72353) app: [FILE] ▒n▒Ǫz▒▒.1 (-940618087 bytes)
-I (72363) app: [FILE] ▒ofx▒.\k.▒▒s (752035029 bytes)
-I (72363) app: [DIR]  l▒l/▒..▒y▒
-I (72373) app: [DIR]  7▒l:▒▒w.▒▒▒
-I (72373) app: [DIR]  ▒▒N▒▒▒▒2.▒
- (72373) app: [DIR]  ▒zw▒▒p7.▒▒
-I (72383) app: [DIR]  ▒▒▒`▒.▒
-I (72383) app: [DIR]  ▒9p▒(.yw▒
-I (72383) app: [DIR]  ▒▒▒|a▒▒▒.▒▒
-I (72383) app: [FILE] ▒▒▒s▒▒.@*▒ (-537606687 bytes)
-I (72393) app: [FILE] v▒g+▒8▒.▒|▒ (-1855370766 bytes)
-I (72393) app: [DIR]  =▒v▒▒▒@.▒7▒
-I (72403) app: [FILE] ▒W6`▒!r▒.t▒ (-1609372606 bytes)
-I (72403) app: [DIR]  1
-F▒"{▒=.▒▒
-I (72413) app: [FILE] ge▒03▒.ǀ▒ (-115256190 bytes)
-I (72413) app: [DIR]  &7▒▒▒▒_.J▒P
-I (72413) app: [DIR]  ▒|{;=V.▒n▒
-I (72423) app: [DIR]  ▒k▒▒[.▒▒▒
-I (72423) app: [DIR]  ▒p▒l:▒o▒.Q$L
-I (72423) app: [DIR]  ▒
-I (72423) app: [DIR]
+I (276343) app: [DIR]  N▒^▒;▒.c▒▒
+▒ (276343) app: [DIR]  ▒▒'x-▒g▒.@
+I (276353) app: [FILE] ^▒▒▒$▒.f"1 (-1716287156 bytes)
+I (276353) app: [DIR]  ▒mj▒k▒c.▒v▒
+I (276363) app: [DIR]  a▒▒▒_▒.▒R▒
+I (276363) app: [DIR]  Ŏ▒d▒.▒^
+I (276363) app: [DIR]  @▒n▒~▒=.▒▒t
+I (276373) app: [FILE] f▒¯XD=▒.▒▒g (-534768779 bytes)
+I (276373) app: [FILE] u▒▒71▒N▒.$▒▒ (1944608205 bytes)
+I (276383) app: [FILE] ▒ҁv▒Q2.Y▒ (240524199 bytes)
+I (276383) app: [DIR]  ▒o▒ϻj▒.ꉐ
+I (276383) app: [DIR]  ▒:*▒▒▒.▒▒=
+I (276393) app: [FILE] ▒▒U'uKS▒.t}u (1373281555 bytes)
+I (276393) app: [FILE] ▒n▒Ǫz▒▒.1 (-940618087 bytes)
+I (276403) app: [FILE] ▒ofx▒.\k.▒▒s (752035029 bytes)
+I (276403) app: [DIR]  l▒l/▒..▒y▒
+I (276403) app: [DIR]  7▒l:▒▒w.▒▒▒
+I (276413) app: [DIR]  ▒▒N▒▒▒▒2.▒
+ (276413) app: [DIR]  ▒zw▒▒p7.▒▒
+I (276413) app: [DIR]  ▒▒▒`▒.▒
+I (276423) app: [DIR]  ▒9p▒(.yw▒
+I (276423) app: [DIR]  ▒▒▒|a▒▒▒.▒▒
+I (276423) app: [FILE] ▒▒▒s▒▒.@*▒ (-537606687 bytes)
+I (276433) app: [FILE] v▒g+▒8▒.▒|▒ (-1855370766 bytes)
+I (276433) app: [DIR]  =▒v▒▒▒@.▒7▒
+I (276443) app: [FILE] ▒W6`▒!r▒.t▒ (-1609372606 bytes)
+I (276443) app: [DIR]  1
++=;\=.▒▒▒
+I (276523) app: [FILE] 3▒▒bo (1732136936 bytes)tes)
+I (276533) app: [FILE] b}Z▒▒:▒.A▒ (174928453 bytes)
+I (276533) app: [DIR]  ▒▒q.▒l▒.$▒
+I (276533) app: [FILE]fP▒5Y.1▒▒▒
+I (276463) app: [DIR]  ▒p▒l:▒o▒.Q$L
+I (276463) app: [DIR]  ▒
+I (276463) app: [DIR]
 MPe▒Z▒d.▒▒m
-I (72433) app: [FILE] ▒▒▒e▒'Ē.׃| (-115526312 bytes)
-I (72433) app: [FILE] 5xm▒!▒v.▒▒▒ (129696740 bytes)
-I (72443) app: [FILE] u▒)▒▒st.▒T (596707271 bytes)
-I (72443) app: [DIR]  @▒▒x▒.AH▒
-I (72453) app: [DIR]  ▒▒jm▒▒▒
-I (72453) app: [FILE] ▒a▒▒▒j▒E.1c▒ (2101023502 bytes)
-I (72453) app: [DIR]  ▒▒▒p▒|▒.▒c^
-I (72463) app: [DIR]  p▒▒"▒▒.q:
-I (72463) app: [FILE] ▒▒֢d▒M.w▒d (-559704828 bytes)
-I (72463) app: [FILE] ▒▒b▒▒s▒.ҁ0 (451189412 bytes)
-I (72473) app: [DIR]  b▒~\▒.▒Ú
-+=;\=.▒▒) app: [FILE] }▒v▒▒▒.▒ș (-1131881150 bytes)
-I (72483) app: [FILE] 3▒▒bo (1732136936 bytes)
-I (72483) app: [FILE] b}Z▒▒:▒.A▒ (174928453 bytes)
-I (72493) app: [DIR]  ▒▒q.▒l▒.$▒
-I (72493) app: [FILE]fP▒5Y.1
+I (276473) app: [FILE] ▒▒▒e▒'Ē.׃| (-115526312 bytes)
+I (276473) app: [FILE] 5xm▒!▒v.▒▒▒ (129696740 bytes)
+I (276483) app: [FILE] u▒)▒▒st.▒T (596707271 bytes)
+I (276483) app: [DIR]  @▒▒x▒.AH▒
+I (276493) app: [DIR]  ▒▒jm▒▒▒
+I (276493) app: [FILE] ▒a▒▒▒j▒E.1c▒ (2101023502 bytes)
+I (276493) app: [DIR]  ▒▒▒p▒|▒.▒c^
+I (276503) app: [DIR]  p▒▒"▒▒.q:
+I (276503) app: [FILE] ▒▒֢d▒M.w▒d (-559704828 bytes)
+I (276503) app: [FILE] ▒▒b▒▒s▒.ҁ0 (451189412 bytes)
+I (276513) app: [DIR]  b▒~\▒.▒Ú
+I (276513) app: [FILE] }▒v▒▒▒.▒ș (-1131881150 bytes)
+I (276523) app: [DIR]
 I (1879446831 bytes)
-I (72503) app: [FILE] _L:▒/}▒j.py (1655847530 bytes)
-I (72503) app: [DIR]  ▒l▒▒▒.▒
-I (72503) app: [FILE] ▒i[/3f.(څ (826651882 bytes)
-I (72513) app: [DIR]  ^▒▒spgu.p▒4
-I (72513) app: [FILE] ]▒p▒m.wi@ (564481378 bytes)
-I (72523) app: [FILE] ▒6▒͛#▒.ϻj (-488972185 bytes)
-I (72523) app: [DIR]  i▒▒▒▒z.'؈
-I (72533) app: [FILE] ▒a▒J▒G▒▒.4▒x (-571015057 bytes)
-I (72533) app: [FILE] ▒ ▒
+I (276543) app: [FILE] _L:▒/}▒j.py (1655847530 bytes)
+I (276543) app: [DIR]  ▒l▒▒▒.▒
+I (276553) app: [FILE] ▒i[/3f.(څ (826651882 bytes)
+I (276553) app: [DIR]  ^▒▒spgu.p▒4
+I (276553) app: [FILE] ]▒p▒m.wi@ (564481378 bytes)
+I (276563) app: [FILE] ▒6▒͛#▒.ϻj (-488972185 bytes)
+I (276563) app: [DIR]  i▒▒▒▒z.'؈
+I (276573) app: [FILE] ▒a▒J▒G▒▒.4▒x (-571015057 bytes)
+I (276573) app: [FILE] ▒        ▒
 ▒dRb.pU (1818919901 bytes)
-I (72533) app: [FILE] ▒▒▒i0d▒.~▒n (-2103549831 bytes)
-I (72543) app: [DIR]  ▒▒?▒<▒▒.▒g
-I (72543) app: [FILE] ▒
+I (276583) app: [FILE] ▒▒▒i0d▒.~▒n (-2103549831 bytes)
+I (276583) app: [DIR]  ▒▒?▒<▒▒.▒g
+I (276593) app: [FILE] ▒
 v▒*.▒▒▒ (-456501047 bytes)
-I (72553) app: [DIR]  f▒▒?▒(].▒▒
-I (72553) app: [DIR]  T4͘▒6q.▒
-I (72553) app: [FILE] ▒4w▒3▒▒.{▒ (1682761387 bytes)
-I (72563) app: [DIR]  ▒c▒jٌF▒
-I (72563) app: [DIR]  f▒^▒▒▒.75
-I (72563) app: [FILE] {[▒+▒"▒.▒m▒ (838856969 bytes)
-I (72573) app: [DIR]  x▒▒.9▒7.▒/
-I (72573) app: [FILE] ▒#ɺܢd.▒k▒ (-1320160160 bytes)
-I (72583) app: [DIR]  ▒▒s▒ҶS.▒15
-I (72583) app: [DIR]
+I (276593) app: [DIR]  f▒▒?▒(].▒▒
+I (276593) app: [DIR]  T4͘▒6q.▒
+I (276603) app: [FILE] ▒4w▒3▒▒.{▒ (1682761387 bytes)
+I (276603) app: [DIR]  ▒c▒jٌF▒
+I (276603) app: [DIR]  f▒^▒▒▒.75
+I (276613) app: [FILE] {[▒+▒"▒.▒m▒ (838856969 bytes)
+I (276613) app: [DIR]  x▒▒.9▒7.▒/
+I (276623) app: [FILE] ▒#ɺܢd.▒k▒ (-1320160160 bytes)
+I (276623) app: [DIR]  ▒▒s▒ҶS.▒15
+I (276623) app: [DIR]
 ▒▒▒҃▒▒.(▒
-I (72583) app: [FILE] ▒1&▒!5.▒ (-1260612836 bytes)
-I (72593) app: [DIR]  N▒▒"a▒Z.▒*
-I (72593) app: [FILE] ▒8j▒M`.▒▒ (1978453046 bytes)
-I (72603) app: [FILE] ▒u▒▒?▒<▒.ln (-825878060 bytes)
-I (72603) app: [DIR]  ▒}x▒▒▒▒.▒▒
-I (72603) app: [DIR]  ▒▒d▒)▒▒.▒9
-I (72613) app: [FILE] ▒▒W
-                         ▒G}▒.▒8< (-1970491804 bytes)
-I (72613) app: [DIR]  vS▒▒▒^
+I (276633) app: [FILE] ▒1&▒!5.▒ (-1260612836 bytes)
+I (276633) app: [DIR]  N▒▒"a▒Z.▒*
+I (276643) app: [FILE] ▒8j▒M`.▒▒ (1978453046 bytes)
+I (276643) app: [FILE] ▒u▒▒?▒<▒.ln (-825878060 bytes)
+I (276653) app: [DIR]  ▒}x▒▒▒▒.▒▒
+I (276653) app: [DIR]  ▒▒d▒)▒▒.▒9
+I (276653) app: [FILE] ▒▒W
+                          ▒G}▒.▒8< (-1970491804 bytes)
+I (276663) app: [DIR]  vS▒▒▒^
 .▒▒?
-I (72623) app: =================================================
-I (72623) app: Total files: 126
-I (72623) app: =================================================
-I (72633) app: ✓ TEST PASSED: USB MSC file listing
-I (75633) app: =================================================
-I (75633) app: Testing File Read...
-I (75633) app: =================================================
-I (75633) usb_host: Reading file: /usb/ANSARI~1.TXT
-E (75663) usb_host: Failed to open file for reading: /usb/ANSARI~1.TXT
-W (75663) app: File read test skipped (file may not exist)
-I (78663) app: =================================================
-I (78663) app: Testing File Write...
-I (78663) app: =================================================
-I (78663) usb_host: Writing file: /usb/ESP32TEST.TXT (72 bytes)
-I (78783) usb_host: ✓ Wrote 72 bytes to ESP32TEST.TXT
-I (78783) app: ✓ TEST PASSED: File write successful
-I (78783) usb_host: Reading file: /usb/ESP32TEST.TXT
-I (78793) usb_host: ✓ Read 72 bytes from ESP32TEST.TXT
-I (78793) app: Verification read (72 bytes):
-I (78793) app: ---
-I (78803) app: ESP32-S3 USB Host Test
+I (276663) app: =================================================
+I (276673) app: Total files: 126
+I (276673) app: =================================================
+I (276673) app: ✓ TEST PASSED: USB MSC file listing
+I (279683) app: =================================================
+I (279683) app: Testing File Read...
+I (279683) app: =================================================
+I (279683) usb_host: Reading file: /usb/ANSARI~1.TXT
+E (279713) usb_host: Failed to open file for reading: /usb/ANSARI~1.TXT
+W (279713) app: File read test skipped (file may not exist)
+I (282713) app: =================================================
+I (282713) app: Testing File Write...
+I (282713) app: =================================================
+I (282713) usb_host: Writing file: /usb/ESP32TEST.TXT (72 bytes)
+I (282843) usb_host: ✓ Wrote 72 bytes to ESP32TEST.TXT
+I (282843) app: ✓ TEST PASSED: File write successful
+I (282843) usb_host: Reading file: /usb/ESP32TEST.TXT
+I (282853) usb_host: ✓ Read 72 bytes from ESP32TEST.TXT
+I (282853) app: Verification read (72 bytes):
+I (282863) app: ---
+I (282863) app: ESP32-S3 USB Host Test
 Phase 2c: File Operations
 Date: November 8, 2025
 
-I (78803) app: ---
-I (78813) app: ✓ TEST PASSED: File write verification successful
-I (86813) app: =================================================
-I (86813) app: PHASE 3A: Testing Partition Detection...
-I (86813) app: =================================================
-I (86823) usb_host: Detected MBR partition table
-I (86823) app: ✓ Partition table type: MBR
-I (86823) usb_host: Partition count: 1
-I (86823) app: ✓ Partition count: 1
-I (86833) usb_host: Partition 0: Type=0x0C, Start=2048, Size=240326655 sectors (117347.00 MB)
-I (86833) app: ✓ Partition 0:
-I (86843) app:   Type: 0x0C
-I (86843) app:   Start LBA: 2048
-I (86843) app:   Size: 240326655 sectors (117347.00 MB)
-I (86853) app: =================================================
-I (86853) app: Phase 3a partition detection tests complete
-I (86863) app: =================================================
-I (88863) app: =================================================
-I (88863) app: Phase 3c: Testing File Copy from SPIFFS to USB
-I (88863) app: =================================================
-I (88863) led: LED state changed: COPY
-I (88863) usb_host: =================================================
-I (88873) usb_host: Copying all files from /spiffs to /usb
-I (88883) usb_host: =================================================
-I (88883) usb_host: File 1: README.TXT
-I (88893) usb_host: Copying file: /spiffs/README.TXT -> /usb/README.TXT
-I (88893) usb_host: Source file size: 276 bytes
-I (88963) usb_host: Progress: 276 / 276 bytes (100.0%)
-I (89003) usb_host: ✓ File copied successfully: README.TXT (276 bytes)
-I (89013) usb_host: File 2: CONFIG.INI
-I (89013) usb_host: Copying file: /spiffs/CONFIG.INI -> /usb/CONFIG.INI
-I (89013) usb_host: Source file size: 126 bytes
-I (89063) usb_host: Progress: 126 / 126 bytes (100.0%)
-I (89123) usb_host: ✓ File copied successfully: CONFIG.INI (126 bytes)
-I (89123) usb_host: File 3: DATA.BIN
-I (89123) usb_host: Copying file: /spiffs/DATA.BIN -> /usb/DATA.BIN
-I (89133) usb_host: Source file size: 1024 bytes
-I (89203) usb_host: Progress: 1024 / 1024 bytes (100.0%)
-I (89253) usb_host: ✓ File copied successfully: DATA.BIN (1024 bytes)
-I (89253) usb_host: File 4: LOG.TXT
-I (89253) usb_host: Copying file: /spiffs/LOG.TXT -> /usb/LOG.TXT
-I (89263) usb_host: Source file size: 436 bytes
-I (89313) usb_host: Progress: 436 / 436 bytes (100.0%)
-I (89373) usb_host: ✓ File copied successfully: LOG.TXT (436 bytes)
-I (89373) usb_host: File 5: TEST.DAT
-I (89373) usb_host: Copying file: /spiffs/TEST.DAT -> /usb/TEST.DAT
-I (89383) usb_host: Source file size: 4096 bytes
-I (89523) usb_host: Progress: 4096 / 4096 bytes (100.0%)
-I (89563) usb_host: ✓ File copied successfully: TEST.DAT (4096 bytes)
-I (89563) usb_host: =================================================
-I (89563) usb_host: Copy Summary:
-I (89563) usb_host:   Total files: 5
-I (89573) usb_host:   Successful: 5
-I (89573) usb_host:   Failed: 0
-I (89573) usb_host: =================================================
-I (89583) app: ✓ TEST PASSED: All files copied successfully (5 files)
-I (89593) led: LED state changed: SUCCESS
-I (91593) led: LED state changed: IDLE
-I (91593) app: =================================================
-I (91593) app: Phase 3c file copy test complete
-I (91593) app: =================================================
-I (93593) app: =================================================
-I (93593) app: Testing Safe Eject...
-I (93593) app: =================================================
-I (93593) usb_host: =================================================
-I (93593) usb_host: Safe Eject: Starting...
-I (93603) usb_host: =================================================
-I (93613) usb_host: Step 1: Syncing filesystem...
-I (93613) led: LED state changed: SYNC
-I (93613) usb_host: Syncing filesystem...
-I (93823) usb_host: ✓ Filesystem sync delay completed
-I (93823) usb_host: Step 2: Unmounting VFS...
-I (93823) usb_host: ✓ VFS unmounted
-I (93823) usb_host: Step 3: Uninstalling MSC device...
-I (93823) usb_host: ✓ MSC device uninstalled
-I (93833) usb_host: Step 4: Closing USB device...
-I (93833) usb_host: ✓ USB device closed
-I (93833) usb_host: =================================================
-I (93843) usb_host: ✓ Safe Eject: COMPLETE
-I (93843) usb_host: =================================================
-I (93853) usb_host: USB drive can now be safely removed
-I (93853) led: LED state changed: SUCCESS
-I (95863) led: LED state changed: IDLE
-I (95863) app: ✓ TEST PASSED: Safe eject successful
+I (282873) app: ---
+I (282873) app: ✓ TEST PASSED: File write verification successful
+I (290873) app: =================================================
+I (290873) app: PHASE 3A: Testing Partition Detection...
+I (290873) app: =================================================
+I (290883) usb_host: Detected MBR partition table
+I (290883) app: ✓ Partition table type: MBR
+I (290883) usb_host: Partition count: 1
+I (290883) app: ✓ Partition count: 1
+I (290893) usb_host: Partition 0: Type=0x0C, Start=2048, Size=240326655 sectors (117347.00 MB)
+I (290893) app: ✓ Partition 0:
+I (290903) app:   Type: 0x0C
+I (290903) app:   Start LBA: 2048
+I (290903) app:   Size: 240326655 sectors (117347.00 MB)
+I (290913) app: =================================================
+I (290913) app: Phase 3a partition detection tests complete
+I (290923) app: =================================================
+I (292933) app: =================================================
+I (292933) app: Phase 3c: Testing File Copy from SPIFFS to USB
+I (292933) app: =================================================
+I (292933) led: LED state changed: COPY
+I (292933) usb_host: =================================================
+I (292943) usb_host: Copying all files from /spiffs to /usb
+I (292953) usb_host: =================================================
+I (292963) usb_host: File 1: README.TXT
+I (292963) usb_host: Copying file: /spiffs/README.TXT -> /usb/README.TXT
+I (292963) usb_host: Source file size: 276 bytes
+I (293033) usb_host: Progress: 276 / 276 bytes (100.0%)
+I (293073) usb_host: ✓ File copied successfully: README.TXT (276 bytes)
+I (293073) usb_host: File 2: CONFIG.INI
+I (293073) usb_host: Copying file: /spiffs/CONFIG.INI -> /usb/CONFIG.INI
+I (293083) usb_host: Source file size: 126 bytes
+I (293133) usb_host: Progress: 126 / 126 bytes (100.0%)
+I (293193) usb_host: ✓ File copied successfully: CONFIG.INI (126 bytes)
+I (293193) usb_host: File 3: DATA.BIN
+I (293193) usb_host: Copying file: /spiffs/DATA.BIN -> /usb/DATA.BIN
+I (293203) usb_host: Source file size: 1024 bytes
+I (293273) usb_host: Progress: 1024 / 1024 bytes (100.0%)
+I (293333) usb_host: ✓ File copied successfully: DATA.BIN (1024 bytes)
+I (293333) usb_host: File 4: LOG.TXT
+I (293333) usb_host: Copying file: /spiffs/LOG.TXT -> /usb/LOG.TXT
+I (293333) usb_host: Source file size: 436 bytes
+I (293393) usb_host: Progress: 436 / 436 bytes (100.0%)
+I (293453) usb_host: ✓ File copied successfully: LOG.TXT (436 bytes)
+I (293453) usb_host: File 5: TEST.DAT
+I (293453) usb_host: Copying file: /spiffs/TEST.DAT -> /usb/TEST.DAT
+I (293453) usb_host: Source file size: 4096 bytes
+I (293603) usb_host: Progress: 4096 / 4096 bytes (100.0%)
+I (293643) usb_host: ✓ File copied successfully: TEST.DAT (4096 bytes)
+I (293643) usb_host: Skipping config file: fatlabel.txt (not copied to USB)
+I (293653) usb_host: =================================================
+I (293653) usb_host: Copy Summary:
+I (293653) usb_host:   Total files: 5
+I (293663) usb_host:   Successful: 5
+I (293663) usb_host:   Failed: 0
+I (293663) usb_host: =================================================
+I (293673) app: ✓ TEST PASSED: All files copied successfully (5 files)
+I (293673) led: LED state changed: SUCCESS
+I (295683) led: LED state changed: IDLE
+I (295683) app: =================================================
+I (295683) app: Phase 3c file copy test complete
+I (295683) app: =================================================
+I (296683) app: =================================================
+I (296683) app: Testing Safe Eject...
+I (296683) app: =================================================
+I (296683) usb_host: =================================================
+I (296693) usb_host: Safe Eject: Starting...
+I (296693) usb_host: =================================================
+I (296703) usb_host: Step 1: Syncing filesystem...
+I (296703) led: LED state changed: SYNC
+I (296703) usb_host: Syncing filesystem...
+I (296913) usb_host: ✓ Filesystem sync delay completed
+I (296913) usb_host: Step 2: Unmounting VFS...
+I (296913) usb_host: ✓ VFS unmounted
+I (296913) usb_host: Step 3: Uninstalling MSC device...
+I (296913) usb_host: ✓ MSC device uninstalled
+I (296923) usb_host: Step 4: Closing USB device...
+I (296923) usb_host: ✓ USB device closed
+I (296923) usb_host: =================================================
+I (296933) usb_host: ✓ Safe Eject: COMPLETE
+I (296933) usb_host: =================================================
+I (296943) usb_host: USB drive can now be safely removed
+I (296953) led: LED state changed: SUCCESS
+I (298953) led: LED state changed: IDLE
+I (298953) app: ✓ TEST PASSED: Safe eject successful

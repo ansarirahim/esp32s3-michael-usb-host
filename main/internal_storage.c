@@ -206,6 +206,18 @@ esp_err_t internal_storage_create_samples(void)
     fclose(f);
     ESP_LOGI(TAG, "✓ Created TEST.DAT (4096 bytes)");
 
+    /* File 6: fatlabel.txt (FAT volume label configuration) */
+    const char* label_content = "MICHAEL-USB";  /* 11 chars max for FAT label */
+
+    f = fopen(SPIFFS_MOUNT_POINT "/fatlabel.txt", "w");
+    if (f == NULL) {
+        ESP_LOGE(TAG, "Failed to create fatlabel.txt");
+        return ESP_FAIL;
+    }
+    fprintf(f, "%s", label_content);
+    fclose(f);
+    ESP_LOGI(TAG, "✓ Created fatlabel.txt (%d bytes) - Label: '%s'", strlen(label_content), label_content);
+
     ESP_LOGI(TAG, "=================================================");
     ESP_LOGI(TAG, "✓ All sample files created successfully");
     ESP_LOGI(TAG, "=================================================");
@@ -279,3 +291,61 @@ esp_err_t internal_storage_list_files(uint32_t* file_count)
     return ESP_OK;
 }
 
+/**
+ * @brief Read FAT volume label from fatlabel.txt
+ */
+esp_err_t internal_storage_read_label(char* label_buffer, size_t buffer_size)
+{
+    if (!spiffs_mounted) {
+        ESP_LOGE(TAG, "SPIFFS not mounted");
+        return ESP_ERR_INVALID_STATE;
+    }
+
+    if (!label_buffer || buffer_size < 12) {  /* FAT label is 11 chars + null */
+        ESP_LOGE(TAG, "Invalid parameters (buffer must be at least 12 bytes)");
+        return ESP_ERR_INVALID_ARG;
+    }
+
+    /* Open fatlabel.txt */
+    FILE* f = fopen(SPIFFS_MOUNT_POINT "/fatlabel.txt", "r");
+    if (f == NULL) {
+        ESP_LOGW(TAG, "fatlabel.txt not found, using default label");
+        /* Use default label */
+        snprintf(label_buffer, buffer_size, "ESP32S3");
+        return ESP_OK;
+    }
+
+    /* Read label (max 11 characters for FAT) */
+    char temp_buffer[32];
+    if (fgets(temp_buffer, sizeof(temp_buffer), f) == NULL) {
+        ESP_LOGE(TAG, "Failed to read fatlabel.txt");
+        fclose(f);
+        snprintf(label_buffer, buffer_size, "ESP32S3");
+        return ESP_FAIL;
+    }
+    fclose(f);
+
+    /* Remove newline if present */
+    size_t len = strlen(temp_buffer);
+    if (len > 0 && temp_buffer[len - 1] == '\n') {
+        temp_buffer[len - 1] = '\0';
+        len--;
+    }
+    if (len > 0 && temp_buffer[len - 1] == '\r') {
+        temp_buffer[len - 1] = '\0';
+        len--;
+    }
+
+    /* Validate label length (FAT labels are max 11 characters) */
+    if (len > 11) {
+        ESP_LOGW(TAG, "Label too long (%d chars), truncating to 11", len);
+        temp_buffer[11] = '\0';
+        len = 11;
+    }
+
+    /* Copy to output buffer */
+    snprintf(label_buffer, buffer_size, "%s", temp_buffer);
+
+    ESP_LOGI(TAG, "✓ Read FAT label from fatlabel.txt: '%s' (%d chars)", label_buffer, len);
+    return ESP_OK;
+}

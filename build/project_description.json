@@ -1,7 +1,7 @@
 {
     "version":            "1.2",
     "project_name":       "esp32s3_michael_usb_host",
-    "project_version":    "18e3424-dirty",
+    "project_version":    "bf44e97-dirty",
     "project_path":       "C:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host",
     "idf_path":           "C:/Users/Abdul/esp-idf-v5.5.1",
     "build_dir":          "C:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/build",
