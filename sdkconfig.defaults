@@ -55,9 +55,10 @@ CONFIG_TINYUSB_DEVICE_HID=n
 # ============================================================================
 # FILESYSTEM CONFIGURATION
 # ============================================================================
-CONFIG_FATFS_USES_UTF8=y
-CONFIG_FATFS_LONG_FILENAMES=y
-CONFIG_FATFS_SECTOR_SIZE=512
+CONFIG_FATFS_SECTOR_512=y
+CONFIG_FATFS_LFN_HEAP=y
+CONFIG_FATFS_MAX_LFN=255
+CONFIG_FATFS_FS_LOCK=4
 
 # ============================================================================
 # LOGGING CONFIGURATION

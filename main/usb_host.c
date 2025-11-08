@@ -18,6 +18,8 @@
 #include "led_control.h"
 #include <sys/unistd.h>
 #include <sys/stat.h>
+#include <errno.h>
+#include <string.h>
 
 static const char *TAG = "usb_host";
 
@@ -119,10 +121,11 @@ static void usb_host_client_event_cb(const usb_host_client_event_msg_t *event_ms
                         /* Mount to VFS */
                         const esp_vfs_fat_mount_config_t mount_config = {
                             .format_if_mount_failed = false,
-                            .max_files = 3,
+                            .max_files = 10,  /* Increased from 3 to allow more concurrent file operations */
                             .allocation_unit_size = 8192,
                         };
 
+                        ESP_LOGI(TAG, "Mounting VFS with max_files=%d", mount_config.max_files);
                         ret = msc_host_vfs_register(msc_device, USB_MOUNT_POINT, &mount_config, &vfs_handle);
                         if (ret == ESP_OK) {
                             ESP_LOGI(TAG, "USB drive mounted at %s", USB_MOUNT_POINT);
@@ -550,10 +553,34 @@ esp_err_t usb_host_write_file(const char* file_path, const char* data, size_t da
 
     ESP_LOGI(TAG, "Writing file: %s (%d bytes)", full_path, data_size);
 
-    /* Open file for writing */
-    FILE* f = fopen(full_path, "w");
+    /* Check if mount point is accessible */
+    struct stat st;
+    if (stat(USB_MOUNT_POINT, &st) != 0) {
+        ESP_LOGE(TAG, "Mount point %s not accessible", USB_MOUNT_POINT);
+        return ESP_ERR_INVALID_STATE;
+    }
+
+    /* Open file for writing - try "w+" mode for FAT compatibility */
+    FILE* f = fopen(full_path, "w+");
     if (f == NULL) {
+        int err = errno;
         ESP_LOGE(TAG, "Failed to open file for writing: %s", full_path);
+        ESP_LOGE(TAG, "Error code: %d (%s)", err, strerror(err));
+        if (err == EROFS) {
+            ESP_LOGE(TAG, "File system is READ-ONLY!");
+        } else if (err == EACCES) {
+            ESP_LOGE(TAG, "Permission denied - file may be write-protected");
+        } else if (err == ENFILE) {
+            ESP_LOGE(TAG, "Too many open files - increase max_files in VFS mount config");
+        } else if (err == ENOSPC) {
+            ESP_LOGE(TAG, "No space left on device");
+        } else if (err == EINVAL) {
+            ESP_LOGE(TAG, "Invalid argument - FAT filesystem may not support this operation");
+            ESP_LOGE(TAG, "This could be due to:");
+            ESP_LOGE(TAG, "  1. File system mounted read-only");
+            ESP_LOGE(TAG, "  2. Invalid filename for FAT32");
+            ESP_LOGE(TAG, "  3. VFS configuration issue");
+        }
         return ESP_FAIL;
     }
 
