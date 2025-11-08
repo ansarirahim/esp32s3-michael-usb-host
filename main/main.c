@@ -179,13 +179,14 @@ void app_main(void)
     ESP_LOGI(TAG, "=================================================");
     ESP_LOGI(TAG, "Application running - waiting for USB events");
     ESP_LOGI(TAG, "Insert USB drive to test file operations");
-    ESP_LOGI(TAG, "Test sequence: File Listing -> Read File -> Write File -> Safe Eject");
+    ESP_LOGI(TAG, "Test sequence: File Listing -> Read File -> Write File -> Safe Eject -> Partition Detection");
 
     /* Keep application running - USB and LED tasks continue in background */
     static bool files_listed = false;
     static bool file_read_tested = false;
     static bool file_write_tested = false;
     static bool safe_eject_tested = false;
+    static bool partition_detected = false;
     static TickType_t file_list_time = 0;
 
     while (1) {
@@ -295,10 +296,68 @@ void app_main(void)
                 }
             }
 
-            /* Test safe eject 10 seconds after file listing */
-            if (files_listed && file_read_tested && file_write_tested && !safe_eject_tested) {
+            /* Test partition detection 14 seconds after file listing (before safe eject) */
+            if (files_listed && file_read_tested && file_write_tested && !partition_detected) {
                 TickType_t elapsed = (xTaskGetTickCount() - file_list_time) / pdMS_TO_TICKS(1000);
-                if (elapsed >= 10) {
+                if (elapsed >= 14) {
+                    ESP_LOGI(TAG, "=================================================");
+                    ESP_LOGI(TAG, "PHASE 3A: Testing Partition Detection...");
+                    ESP_LOGI(TAG, "=================================================");
+
+                    /* Test 1: Detect partition table type */
+                    partition_table_type_t table_type;
+                    esp_err_t ret = usb_host_detect_partition_table(&table_type);
+                    if (ret == ESP_OK) {
+                        const char* type_str = (table_type == PARTITION_TABLE_MBR) ? "MBR" :
+                                               (table_type == PARTITION_TABLE_GPT) ? "GPT" :
+                                               (table_type == PARTITION_TABLE_NONE) ? "NONE" : "UNKNOWN";
+                        ESP_LOGI(TAG, "✓ Partition table type: %s", type_str);
+                        tests_passed++;
+                    } else {
+                        ESP_LOGE(TAG, "✗ TEST FAILED: Partition table detection failed");
+                        tests_failed++;
+                    }
+
+                    /* Test 2: Get partition count */
+                    uint8_t partition_count = 0;
+                    ret = usb_host_get_partition_count(&partition_count);
+                    if (ret == ESP_OK) {
+                        ESP_LOGI(TAG, "✓ Partition count: %d", partition_count);
+                        tests_passed++;
+
+                        /* Test 3: Get partition info for each partition */
+                        for (uint8_t i = 0; i < partition_count && i < 4; i++) {
+                            partition_info_t info;
+                            ret = usb_host_get_partition_info(i, &info);
+                            if (ret == ESP_OK) {
+                                ESP_LOGI(TAG, "✓ Partition %d:", i);
+                                ESP_LOGI(TAG, "  Type: 0x%02X", info.partition_type);
+                                ESP_LOGI(TAG, "  Start LBA: %lu", info.start_lba);
+                                ESP_LOGI(TAG, "  Size: %lu sectors (%.2f MB)",
+                                         info.size_sectors,
+                                         (float)info.size_bytes / (1024.0 * 1024.0));
+                                tests_passed++;
+                            } else {
+                                ESP_LOGE(TAG, "✗ Failed to get partition %d info", i);
+                                tests_failed++;
+                            }
+                        }
+                    } else {
+                        ESP_LOGE(TAG, "✗ TEST FAILED: Get partition count failed");
+                        tests_failed++;
+                    }
+
+                    ESP_LOGI(TAG, "=================================================");
+                    ESP_LOGI(TAG, "Phase 3a partition detection tests complete");
+                    ESP_LOGI(TAG, "=================================================");
+                    partition_detected = true;
+                }
+            }
+
+            /* Test safe eject 20 seconds after file listing (after partition detection) */
+            if (files_listed && file_read_tested && file_write_tested && partition_detected && !safe_eject_tested) {
+                TickType_t elapsed = (xTaskGetTickCount() - file_list_time) / pdMS_TO_TICKS(1000);
+                if (elapsed >= 20) {
                     ESP_LOGI(TAG, "=================================================");
                     ESP_LOGI(TAG, "Testing Safe Eject...");
                     ESP_LOGI(TAG, "=================================================");
@@ -320,6 +379,7 @@ void app_main(void)
             file_read_tested = false;
             file_write_tested = false;
             safe_eject_tested = false;
+            partition_detected = false;
         }
     }
 }

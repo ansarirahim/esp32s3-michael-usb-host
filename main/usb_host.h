@@ -4,13 +4,35 @@
  *
  * @author Abdul Raheem Ansari <ansarirahim1@gmail.com>
  * @date November 2025
- * @version 5.0.0
+ * @version 6.0.0
  */
 
 #pragma once
 
 #include <stdbool.h>
+#include <stdint.h>
 #include "esp_err.h"
+
+/**
+ * @brief Partition table types
+ */
+typedef enum {
+    PARTITION_TABLE_NONE = 0,      /**< No partition table detected */
+    PARTITION_TABLE_MBR,            /**< MBR partition table */
+    PARTITION_TABLE_GPT,            /**< GPT partition table */
+    PARTITION_TABLE_UNKNOWN         /**< Unknown partition table */
+} partition_table_type_t;
+
+/**
+ * @brief Partition information structure
+ */
+typedef struct {
+    uint8_t boot_indicator;         /**< 0x80 = bootable, 0x00 = non-bootable */
+    uint8_t partition_type;         /**< Partition type code */
+    uint32_t start_lba;             /**< Starting LBA */
+    uint32_t size_sectors;          /**< Size in sectors */
+    uint64_t size_bytes;            /**< Size in bytes */
+} partition_info_t;
 
 /**
  * @brief Initialize USB Host Mode with MSC support
@@ -92,3 +114,48 @@ esp_err_t usb_host_write_file(const char* file_path, const char* data, size_t da
  * @return ESP_OK on success, error code otherwise
  */
 esp_err_t usb_host_get_file_size(const char* file_path, size_t* file_size);
+
+/**
+ * @brief Read raw sector from USB drive
+ * @param sector_num Sector number (LBA)
+ * @param buffer Buffer to store sector data (must be at least 512 bytes)
+ * @return ESP_OK on success, error code otherwise
+ */
+esp_err_t usb_host_read_sector(uint32_t sector_num, uint8_t* buffer);
+
+/**
+ * @brief Write raw sector to USB drive
+ * @param sector_num Sector number (LBA)
+ * @param buffer Buffer containing sector data (must be 512 bytes)
+ * @return ESP_OK on success, error code otherwise
+ */
+esp_err_t usb_host_write_sector(uint32_t sector_num, const uint8_t* buffer);
+
+/**
+ * @brief Detect partition table type
+ * @param table_type Pointer to store partition table type
+ * @return ESP_OK on success, error code otherwise
+ */
+esp_err_t usb_host_detect_partition_table(partition_table_type_t* table_type);
+
+/**
+ * @brief Get number of partitions on USB drive
+ * @param count Pointer to store partition count
+ * @return ESP_OK on success, error code otherwise
+ */
+esp_err_t usb_host_get_partition_count(uint8_t* count);
+
+/**
+ * @brief Get partition information
+ * @param partition_num Partition number (0-3)
+ * @param info Pointer to store partition information
+ * @return ESP_OK on success, error code otherwise
+ */
+esp_err_t usb_host_get_partition_info(uint8_t partition_num, partition_info_t* info);
+
+/**
+ * @brief Delete all partitions (zero MBR)
+ * WARNING: This is a DESTRUCTIVE operation! All data will be lost!
+ * @return ESP_OK on success, error code otherwise
+ */
+esp_err_t usb_host_delete_all_partitions(void);

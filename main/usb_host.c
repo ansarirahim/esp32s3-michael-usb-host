@@ -4,7 +4,7 @@
  *
  * @author Abdul Raheem Ansari <ansarirahim1@gmail.com>
  * @date November 2025
- * @version 5.0.0
+ * @version 6.0.0
  */
 
 #include "usb_host.h"
@@ -15,6 +15,7 @@
 #include "usb/usb_host.h"
 #include "usb/msc_host.h"
 #include "usb/msc_host_vfs.h"
+#include "esp_private/msc_scsi_bot.h"
 #include "led_control.h"
 #include <sys/unistd.h>
 #include <sys/stat.h>
@@ -625,5 +626,273 @@ esp_err_t usb_host_get_file_size(const char* file_path, size_t* file_size)
 
     *file_size = st.st_size;
     ESP_LOGI(TAG, "File size: %s = %d bytes", file_path, *file_size);
+    return ESP_OK;
+}
+
+/* ============================================================================
+ * PHASE 3A: PARTITION DETECTION & DELETION
+ * ============================================================================ */
+
+#define SECTOR_SIZE 512
+#define MBR_BOOT_SIGNATURE_OFFSET 0x1FE
+#define MBR_BOOT_SIGNATURE 0xAA55
+#define MBR_PARTITION_TABLE_OFFSET 0x1BE
+#define MBR_PARTITION_ENTRY_SIZE 16
+#define MBR_MAX_PARTITIONS 4
+
+/**
+ * @brief Read raw sector from USB drive
+ */
+esp_err_t usb_host_read_sector(uint32_t sector_num, uint8_t* buffer)
+{
+    if (msc_device == NULL) {
+        ESP_LOGE(TAG, "Cannot read sector: MSC device not initialized");
+        return ESP_ERR_INVALID_STATE;
+    }
+
+    if (buffer == NULL) {
+        ESP_LOGE(TAG, "Invalid buffer");
+        return ESP_ERR_INVALID_ARG;
+    }
+
+    ESP_LOGD(TAG, "Reading sector %lu", sector_num);
+
+    /* Use SCSI READ(10) command to read sector */
+    esp_err_t ret = scsi_cmd_read10(msc_device, buffer, sector_num, 1, SECTOR_SIZE);
+    if (ret != ESP_OK) {
+        ESP_LOGE(TAG, "Failed to read sector %lu: %d", sector_num, ret);
+        return ret;
+    }
+
+    ESP_LOGD(TAG, "✓ Read sector %lu successfully", sector_num);
+    return ESP_OK;
+}
+
+/**
+ * @brief Write raw sector to USB drive
+ */
+esp_err_t usb_host_write_sector(uint32_t sector_num, const uint8_t* buffer)
+{
+    if (msc_device == NULL) {
+        ESP_LOGE(TAG, "Cannot write sector: MSC device not initialized");
+        return ESP_ERR_INVALID_STATE;
+    }
+
+    if (buffer == NULL) {
+        ESP_LOGE(TAG, "Invalid buffer");
+        return ESP_ERR_INVALID_ARG;
+    }
+
+    ESP_LOGD(TAG, "Writing sector %lu", sector_num);
+
+    /* Use SCSI WRITE(10) command to write sector */
+    esp_err_t ret = scsi_cmd_write10(msc_device, buffer, sector_num, 1, SECTOR_SIZE);
+    if (ret != ESP_OK) {
+        ESP_LOGE(TAG, "Failed to write sector %lu: %d", sector_num, ret);
+        return ret;
+    }
+
+    ESP_LOGD(TAG, "✓ Wrote sector %lu successfully", sector_num);
+    return ESP_OK;
+}
+
+/**
+ * @brief Detect partition table type
+ */
+esp_err_t usb_host_detect_partition_table(partition_table_type_t* table_type)
+{
+    if (table_type == NULL) {
+        ESP_LOGE(TAG, "Invalid parameter");
+        return ESP_ERR_INVALID_ARG;
+    }
+
+    /* Read MBR (sector 0) */
+    uint8_t mbr[SECTOR_SIZE];
+    esp_err_t ret = usb_host_read_sector(0, mbr);
+    if (ret != ESP_OK) {
+        ESP_LOGE(TAG, "Failed to read MBR");
+        return ret;
+    }
+
+    /* Check boot signature */
+    uint16_t boot_sig = (mbr[MBR_BOOT_SIGNATURE_OFFSET + 1] << 8) | mbr[MBR_BOOT_SIGNATURE_OFFSET];
+    if (boot_sig != MBR_BOOT_SIGNATURE) {
+        ESP_LOGW(TAG, "Invalid boot signature: 0x%04X (expected 0x%04X)", boot_sig, MBR_BOOT_SIGNATURE);
+        *table_type = PARTITION_TABLE_UNKNOWN;
+        return ESP_OK;
+    }
+
+    /* Check first partition type */
+    uint8_t first_partition_type = mbr[MBR_PARTITION_TABLE_OFFSET + 4];
+
+    if (first_partition_type == 0xEE) {
+        /* GPT protective MBR */
+        *table_type = PARTITION_TABLE_GPT;
+        ESP_LOGI(TAG, "Detected GPT partition table");
+    } else if (first_partition_type == 0x00) {
+        /* No partitions */
+        *table_type = PARTITION_TABLE_NONE;
+        ESP_LOGI(TAG, "No partition table detected");
+    } else {
+        /* MBR partition table */
+        *table_type = PARTITION_TABLE_MBR;
+        ESP_LOGI(TAG, "Detected MBR partition table");
+    }
+
+    return ESP_OK;
+}
+
+/**
+ * @brief Get number of partitions
+ */
+esp_err_t usb_host_get_partition_count(uint8_t* count)
+{
+    if (count == NULL) {
+        ESP_LOGE(TAG, "Invalid parameter");
+        return ESP_ERR_INVALID_ARG;
+    }
+
+    /* Read MBR (sector 0) */
+    uint8_t mbr[SECTOR_SIZE];
+    esp_err_t ret = usb_host_read_sector(0, mbr);
+    if (ret != ESP_OK) {
+        ESP_LOGE(TAG, "Failed to read MBR");
+        return ret;
+    }
+
+    /* Count non-empty partitions */
+    *count = 0;
+    for (int i = 0; i < MBR_MAX_PARTITIONS; i++) {
+        uint16_t offset = MBR_PARTITION_TABLE_OFFSET + (i * MBR_PARTITION_ENTRY_SIZE);
+        uint8_t partition_type = mbr[offset + 4];
+        if (partition_type != 0x00) {
+            (*count)++;
+        }
+    }
+
+    ESP_LOGI(TAG, "Partition count: %d", *count);
+    return ESP_OK;
+}
+
+/**
+ * @brief Get partition information
+ */
+esp_err_t usb_host_get_partition_info(uint8_t partition_num, partition_info_t* info)
+{
+    if (info == NULL) {
+        ESP_LOGE(TAG, "Invalid parameter");
+        return ESP_ERR_INVALID_ARG;
+    }
+
+    if (partition_num >= MBR_MAX_PARTITIONS) {
+        ESP_LOGE(TAG, "Invalid partition number: %d (max: %d)", partition_num, MBR_MAX_PARTITIONS - 1);
+        return ESP_ERR_INVALID_ARG;
+    }
+
+    /* Read MBR (sector 0) */
+    uint8_t mbr[SECTOR_SIZE];
+    esp_err_t ret = usb_host_read_sector(0, mbr);
+    if (ret != ESP_OK) {
+        ESP_LOGE(TAG, "Failed to read MBR");
+        return ret;
+    }
+
+    /* Parse partition entry */
+    uint16_t offset = MBR_PARTITION_TABLE_OFFSET + (partition_num * MBR_PARTITION_ENTRY_SIZE);
+
+    info->boot_indicator = mbr[offset + 0];
+    info->partition_type = mbr[offset + 4];
+
+    /* Read LBA (little-endian) */
+    info->start_lba = mbr[offset + 8] |
+                      (mbr[offset + 9] << 8) |
+                      (mbr[offset + 10] << 16) |
+                      (mbr[offset + 11] << 24);
+
+    /* Read size in sectors (little-endian) */
+    info->size_sectors = mbr[offset + 12] |
+                         (mbr[offset + 13] << 8) |
+                         (mbr[offset + 14] << 16) |
+                         (mbr[offset + 15] << 24);
+
+    /* Calculate size in bytes */
+    info->size_bytes = (uint64_t)info->size_sectors * SECTOR_SIZE;
+
+    ESP_LOGI(TAG, "Partition %d: Type=0x%02X, Start=%lu, Size=%lu sectors (%.2f MB)",
+             partition_num, info->partition_type, info->start_lba, info->size_sectors,
+             (float)info->size_bytes / (1024.0 * 1024.0));
+
+    return ESP_OK;
+}
+
+/**
+ * @brief Delete all partitions (zero MBR)
+ */
+esp_err_t usb_host_delete_all_partitions(void)
+{
+    ESP_LOGW(TAG, "=================================================");
+    ESP_LOGW(TAG, "⚠️  WARNING: DELETING ALL PARTITIONS!");
+    ESP_LOGW(TAG, "⚠️  ALL DATA WILL BE LOST!");
+    ESP_LOGW(TAG, "=================================================");
+
+    /* Check if MSC device is initialized */
+    if (msc_device == NULL) {
+        ESP_LOGE(TAG, "Cannot delete partitions: MSC device not initialized");
+        return ESP_ERR_INVALID_STATE;
+    }
+
+    /* Unmount VFS if mounted */
+    if (vfs_handle != NULL) {
+        ESP_LOGI(TAG, "Unmounting VFS before partition deletion...");
+        esp_err_t ret = msc_host_vfs_unregister(vfs_handle);
+        if (ret != ESP_OK) {
+            ESP_LOGW(TAG, "Failed to unmount VFS: %d (continuing anyway)", ret);
+        } else {
+            ESP_LOGI(TAG, "✓ VFS unmounted");
+        }
+        vfs_handle = NULL;
+    }
+
+    /* Create zero buffer */
+    uint8_t zero_mbr[SECTOR_SIZE];
+    memset(zero_mbr, 0, SECTOR_SIZE);
+
+    /* Write zeros to MBR (sector 0) */
+    ESP_LOGI(TAG, "Writing zeros to MBR (sector 0)...");
+    esp_err_t ret = usb_host_write_sector(0, zero_mbr);
+    if (ret != ESP_OK) {
+        ESP_LOGE(TAG, "Failed to zero MBR");
+        return ret;
+    }
+
+    /* Verify deletion by reading back */
+    ESP_LOGI(TAG, "Verifying MBR deletion...");
+    uint8_t verify_mbr[SECTOR_SIZE];
+    ret = usb_host_read_sector(0, verify_mbr);
+    if (ret != ESP_OK) {
+        ESP_LOGE(TAG, "Failed to verify MBR deletion");
+        return ret;
+    }
+
+    /* Check if MBR is zeroed */
+    bool is_zeroed = true;
+    for (int i = 0; i < SECTOR_SIZE; i++) {
+        if (verify_mbr[i] != 0) {
+            is_zeroed = false;
+            break;
+        }
+    }
+
+    if (!is_zeroed) {
+        ESP_LOGE(TAG, "MBR verification failed: not all zeros");
+        return ESP_FAIL;
+    }
+
+    ESP_LOGI(TAG, "=================================================");
+    ESP_LOGI(TAG, "✓ All partitions deleted successfully");
+    ESP_LOGI(TAG, "✓ MBR zeroed and verified");
+    ESP_LOGI(TAG, "=================================================");
+    ESP_LOGI(TAG, "USB drive is now ready for formatting");
+
     return ESP_OK;
 }
