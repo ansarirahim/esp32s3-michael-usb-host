@@ -24,6 +24,7 @@ idf_component_register(
         "usb"
         "spiffs"
         "esp_timer"
+        "wear_levelling"
 )
 
 # Add main directory to include path for tinyusb config
