@@ -26,6 +26,8 @@
 #include "usb_host.h"
 #include "internal_storage.h"
 #include "workflow.h"
+#include "button.h"
+#include "usb_mode_manager.h"
 
 static const char *TAG = "app";
 
@@ -46,6 +48,25 @@ static int tests_failed = 0;
             tests_failed++; \
         } \
     } while(0)
+
+/**
+ * @brief Button triple-press callback (mode switch trigger)
+ */
+static void button_triple_press_callback(void* user_data)
+{
+    ESP_LOGI(TAG, "=================================================");
+    ESP_LOGI(TAG, "Triple-press detected! Toggling USB mode...");
+    ESP_LOGI(TAG, "=================================================");
+
+    /* Toggle USB mode */
+    esp_err_t ret = usb_mode_manager_toggle();
+    if (ret == ESP_OK) {
+        ESP_LOGI(TAG, "✓ Mode switched to: %s",
+                 usb_mode_manager_get_mode_name(usb_mode_manager_get_mode()));
+    } else {
+        ESP_LOGE(TAG, "✗ Mode switch failed: %s", esp_err_to_name(ret));
+    }
+}
 
 /**
  * @brief Application entry point
@@ -77,17 +98,18 @@ void app_main(void)
     }
     ESP_LOGI(TAG, "✓ LED Control initialized successfully");
 
-    /* Phase 2a - Initialize USB Host Mode */
+    /* Phase 5 - Initialize USB Mode Manager (default: Host mode) */
     ESP_LOGI(TAG, "=================================================");
-    ESP_LOGI(TAG, "Phase 2a: Initializing USB Host Mode...");
+    ESP_LOGI(TAG, "Phase 5: Initializing USB Mode Manager...");
     ESP_LOGI(TAG, "=================================================");
 
-    if (usb_host_init() != ESP_OK) {
-        ESP_LOGE(TAG, "Failed to initialize USB Host");
+    if (usb_mode_manager_init(USB_MODE_HOST) != ESP_OK) {
+        ESP_LOGE(TAG, "Failed to initialize USB Mode Manager");
         led_control_set_state(LED_STATE_ERROR);
         return;
     }
-    ESP_LOGI(TAG, "✓ USB Host initialized successfully");
+    ESP_LOGI(TAG, "✓ USB Mode Manager initialized successfully (mode: %s)",
+             usb_mode_manager_get_mode_name(usb_mode_manager_get_mode()));
 
     /* Phase 3c - Initialize Internal Storage (SPIFFS) */
     ESP_LOGI(TAG, "=================================================");
@@ -137,6 +159,28 @@ void app_main(void)
         return;
     }
     ESP_LOGI(TAG, "✓ Workflow automation initialized successfully");
+
+    /* Phase 5 - Initialize Button Handler (Triple-Press Mode Switching) */
+    ESP_LOGI(TAG, "=================================================");
+    ESP_LOGI(TAG, "Phase 5: Initializing Button Handler...");
+    ESP_LOGI(TAG, "=================================================");
+
+    button_config_t button_config = {
+        .gpio_num = PIN_BOOT1,  /* GPIO 0 - BOOT button */
+        .debounce_ms = 50,
+        .triple_press_window_ms = 2000,
+        .min_inter_press_ms = 150,
+        .callback = button_triple_press_callback,
+        .user_data = NULL,
+    };
+
+    if (button_init(&button_config) != ESP_OK) {
+        ESP_LOGW(TAG, "Failed to initialize button handler (non-critical)");
+        /* Continue anyway - button is optional */
+    } else {
+        ESP_LOGI(TAG, "✓ Button handler initialized successfully");
+        ESP_LOGI(TAG, "Triple-press BOOT button to toggle USB mode (Host <-> Device)");
+    }
 
     ESP_LOGI(TAG, "=================================================");
     ESP_LOGI(TAG, "Running Automated Tests");

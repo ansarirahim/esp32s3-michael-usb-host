@@ -292,6 +292,38 @@ static void led_animation_task(void *arg)
                 vTaskDelay(pdMS_TO_TICKS(150));
                 break;
 
+            /* USB Device Mode States (Phase 5) */
+            case LED_STATE_DEVICE_IDLE:
+                /* Blue slow blink (500ms ON / 1500ms OFF) */
+                led_set_color(0, 0, 255);
+                vTaskDelay(pdMS_TO_TICKS(500));
+                led_set_color(0, 0, 0);
+                vTaskDelay(pdMS_TO_TICKS(1500));
+                break;
+
+            case LED_STATE_DEVICE_MOUNTED:
+                /* Blue solid */
+                led_set_color(0, 0, 255);
+                vTaskDelay(pdMS_TO_TICKS(1000));
+                break;
+
+            case LED_STATE_DEVICE_ACTIVE:
+                /* Magenta blink (250ms ON / 250ms OFF) */
+                led_set_color(255, 0, 255);
+                vTaskDelay(pdMS_TO_TICKS(250));
+                led_set_color(0, 0, 0);
+                vTaskDelay(pdMS_TO_TICKS(250));
+                break;
+
+            /* Mode Switching States (Phase 5) */
+            case LED_STATE_MODE_SWITCHING:
+                /* Orange fast blink (100ms ON / 100ms OFF) */
+                led_set_color(255, 165, 0);  /* Orange color */
+                vTaskDelay(pdMS_TO_TICKS(100));
+                led_set_color(0, 0, 0);
+                vTaskDelay(pdMS_TO_TICKS(100));
+                break;
+
             default:
                 /* Unknown state - turn off LED */
                 led_set_color(0, 0, 0);
@@ -397,13 +429,14 @@ esp_err_t led_control_init(int gpio_pin)
  */
 esp_err_t led_control_set_state(led_state_t state)
 {
-    if (state > LED_STATE_ERROR) {
+    if (state > LED_STATE_MODE_SWITCHING) {
         ESP_LOGE(TAG, "Invalid LED state: %d", state);
         return ESP_ERR_INVALID_ARG;
     }
 
     const char *state_names[] = {
-        "IDLE", "PREPARE", "COPY", "SYNC", "SUCCESS", "ERROR"
+        "IDLE", "PREPARE", "COPY", "SYNC", "SUCCESS", "ERROR",
+        "DEVICE_IDLE", "DEVICE_MOUNTED", "DEVICE_ACTIVE", "MODE_SWITCHING"
     };
 
     ESP_LOGI(TAG, "LED state changed: %s", state_names[state]);

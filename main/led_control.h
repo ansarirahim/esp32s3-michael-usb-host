@@ -17,12 +17,21 @@
  * @brief LED States
  */
 typedef enum {
-    LED_STATE_IDLE = 0,      /**< Green slow blink - Waiting for USB */
-    LED_STATE_PREPARE = 1,   /**< Cyan fast blink - Preparing USB drive */
-    LED_STATE_COPY = 2,      /**< Yellow blink - Copying files */
-    LED_STATE_SYNC = 3,      /**< Magenta blink - Syncing filesystem */
-    LED_STATE_SUCCESS = 4,   /**< Green solid 2s - Operation complete */
-    LED_STATE_ERROR = 5,     /**< Red fast blink - Error occurred */
+    /* USB Host Mode States */
+    LED_STATE_IDLE = 0,              /**< Green slow blink - Waiting for USB (Host mode) */
+    LED_STATE_PREPARE = 1,           /**< Cyan fast blink - Preparing USB drive */
+    LED_STATE_COPY = 2,              /**< Yellow blink - Copying files */
+    LED_STATE_SYNC = 3,              /**< Magenta blink - Syncing filesystem */
+    LED_STATE_SUCCESS = 4,           /**< Green solid 2s - Operation complete */
+    LED_STATE_ERROR = 5,             /**< Red fast blink - Error occurred */
+
+    /* USB Device Mode States (Phase 5) */
+    LED_STATE_DEVICE_IDLE = 6,       /**< Blue slow blink - Waiting for PC (Device mode) */
+    LED_STATE_DEVICE_MOUNTED = 7,    /**< Blue solid - PC connected */
+    LED_STATE_DEVICE_ACTIVE = 8,     /**< Magenta blink - PC reading/writing */
+
+    /* Mode Switching States (Phase 5) */
+    LED_STATE_MODE_SWITCHING = 9,    /**< Orange fast blink - Mode switch in progress */
 } led_state_t;
 
 /**

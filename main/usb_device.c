@@ -25,3 +25,10 @@ esp_err_t usb_device_deinit(void)
     return ESP_OK;
 }
 
+bool usb_device_is_connected(void)
+{
+    /* TODO: Implement actual connection detection */
+    /* For now, return false (no PC connection) */
+    return false;
+}
+

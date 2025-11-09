@@ -12,6 +12,7 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "freertos/semphr.h"
+#include "freertos/event_groups.h"
 #include "usb/usb_host.h"
 #include "usb/msc_host.h"
 #include "usb/msc_host_vfs.h"
@@ -30,6 +31,10 @@ static const char *TAG = "usb_host";
 
 #define USB_MOUNT_POINT "/usb"
 
+/* Event flags for USB Host library events */
+#define USB_HOST_ALL_DEVICES_FREED_BIT (1 << 0)
+#define USB_HOST_NO_CLIENTS_BIT (1 << 1)
+
 /* USB Host state */
 static bool usb_host_initialized = false;
 static bool usb_device_connected = false;
@@ -41,6 +46,11 @@ static msc_host_device_handle_t msc_device = NULL;
 static msc_host_vfs_handle_t vfs_handle = NULL;
 static uint8_t dev_addr = 0;
 static SemaphoreHandle_t eject_mutex = NULL;
+static TaskHandle_t lib_task_hdl = NULL;
+static TaskHandle_t client_task_hdl = NULL;
+static volatile bool tasks_should_exit = false;
+static volatile bool lib_task_should_exit = false;
+static EventGroupHandle_t usb_host_event_group = NULL;
 
 /* Forward declarations */
 static void usb_host_lib_task(void *arg);
@@ -55,33 +65,43 @@ static void usb_host_lib_task(void *arg)
 {
     ESP_LOGI(TAG, "USB Host library task started");
 
-    while (1) {
-        /* Handle USB host library events */
+    while (!lib_task_should_exit) {
+        /* Handle USB host library events with timeout to check exit flag */
         uint32_t event_flags;
-        esp_err_t ret = usb_host_lib_handle_events(portMAX_DELAY, &event_flags);
+        esp_err_t ret = usb_host_lib_handle_events(pdMS_TO_TICKS(100), &event_flags);
 
-        /* Log event flags for debugging */
-        if (event_flags) {
-            ESP_LOGI(TAG, "Library event flags: 0x%lx", event_flags);
+        /* Check if we should exit */
+        if (lib_task_should_exit) {
+            ESP_LOGI(TAG, "USB Host library task received exit signal");
+            break;
         }
 
-        if (ret != ESP_OK) {
-            ESP_LOGW(TAG, "USB host lib event handling failed: %s", esp_err_to_name(ret));
-            vTaskDelay(pdMS_TO_TICKS(10)); /* Small delay on error */
-            continue;
+        /* usb_host_lib_handle_events() will return error when usb_host_uninstall() is called */
+        if (ret != ESP_OK && ret != ESP_ERR_TIMEOUT) {
+            ESP_LOGI(TAG, "USB Host library task stopping (library uninstalled)");
+            break;
         }
 
         /* Check for special conditions */
         if (event_flags & USB_HOST_LIB_EVENT_FLAGS_NO_CLIENTS) {
-            ESP_LOGW(TAG, "No clients registered - waiting for client");
+            ESP_LOGI(TAG, "No clients registered - signaling event");
+            /* Signal that all clients have deregistered */
+            if (usb_host_event_group != NULL) {
+                xEventGroupSetBits(usb_host_event_group, USB_HOST_NO_CLIENTS_BIT);
+            }
         }
         if (event_flags & USB_HOST_LIB_EVENT_FLAGS_ALL_FREE) {
-            ESP_LOGI(TAG, "All devices freed - ready for new connections");
+            ESP_LOGI(TAG, "All devices freed - signaling event");
+            /* Signal that all devices have been freed */
+            if (usb_host_event_group != NULL) {
+                xEventGroupSetBits(usb_host_event_group, USB_HOST_ALL_DEVICES_FREED_BIT);
+            }
         }
-        
-        /* Small delay to prevent busy loop */
-        vTaskDelay(pdMS_TO_TICKS(1));
     }
+
+    ESP_LOGI(TAG, "USB Host library task exiting");
+    lib_task_hdl = NULL;
+    vTaskDelete(NULL);
 }
 
 /**
@@ -91,10 +111,10 @@ static void usb_host_client_task(void *arg)
 {
     ESP_LOGI(TAG, "USB Host client task started");
 
-    while (1) {
+    while (!tasks_should_exit) {
         /* Handle client events with timeout */
         esp_err_t ret = usb_host_client_handle_events(client_hdl, pdMS_TO_TICKS(100));
-        
+
         if (ret == ESP_ERR_TIMEOUT) {
             /* Timeout is normal - just means no events */
             continue;
@@ -103,6 +123,10 @@ static void usb_host_client_task(void *arg)
             vTaskDelay(pdMS_TO_TICKS(10)); /* Small delay on error */
         }
     }
+
+    ESP_LOGI(TAG, "USB Host client task exiting");
+    client_task_hdl = NULL;
+    vTaskDelete(NULL);
 }
 
 /**
@@ -312,6 +336,25 @@ esp_err_t usb_host_init(void)
     };
 
     esp_err_t ret = usb_host_install(&host_config);
+    if (ret == ESP_ERR_INVALID_STATE) {
+        /* USB Host library might still be partially installed - try aggressive cleanup */
+        ESP_LOGW(TAG, "USB Host library in invalid state, attempting aggressive cleanup...");
+        
+        for (int retry = 0; retry < 3; retry++) {
+            ESP_LOGI(TAG, "Force cleanup attempt %d/3", retry + 1);
+            usb_host_uninstall();  /* Try to uninstall */
+            vTaskDelay(pdMS_TO_TICKS(500 + (retry * 200)));  /* Increasing delay */
+            
+            /* Retry installation */
+            ret = usb_host_install(&host_config);
+            if (ret == ESP_OK) {
+                ESP_LOGI(TAG, "USB Host library recovered after cleanup attempt %d", retry + 1);
+                break;
+            }
+            ESP_LOGW(TAG, "Cleanup attempt %d failed: %s", retry + 1, esp_err_to_name(ret));
+        }
+    }
+
     if (ret != ESP_OK) {
         ESP_LOGE(TAG, "Failed to install USB Host library: %s", esp_err_to_name(ret));
         vSemaphoreDelete(eject_mutex);
@@ -321,6 +364,20 @@ esp_err_t usb_host_init(void)
 
     ESP_LOGI(TAG, "USB Host library installed successfully");
 
+    /* Create event group for library events */
+    usb_host_event_group = xEventGroupCreate();
+    if (usb_host_event_group == NULL) {
+        ESP_LOGE(TAG, "Failed to create event group");
+        usb_host_uninstall();
+        vSemaphoreDelete(eject_mutex);
+        eject_mutex = NULL;
+        return ESP_ERR_NO_MEM;
+    }
+
+    /* Reset exit flags */
+    tasks_should_exit = false;
+    lib_task_should_exit = false;
+
     /* Create USB Host library task */
     BaseType_t task_ret = xTaskCreate(
         usb_host_lib_task,
@@ -328,7 +385,7 @@ esp_err_t usb_host_init(void)
         8192,  /* Increased stack size */
         NULL,
         5,     /* Lower priority - let client handle events first */
-        NULL
+        &lib_task_hdl
     );
 
     if (task_ret != pdPASS) {
@@ -364,7 +421,7 @@ esp_err_t usb_host_init(void)
         8192,  /* Increased stack size */
         NULL,
         6,     /* Higher priority than lib task */
-        NULL
+        &client_task_hdl
     );
 
     if (task_ret != pdPASS) {
@@ -410,7 +467,43 @@ esp_err_t usb_host_deinit(void)
         return ESP_OK;
     }
 
-    /* Uninstall MSC driver */
+    /* Step 1: Close any open devices */
+    if (dev_hdl != NULL) {
+        ESP_LOGI(TAG, "Closing USB device...");
+        esp_err_t ret = usb_host_device_close(client_hdl, dev_hdl);
+        if (ret == ESP_OK) {
+            ESP_LOGI(TAG, "✓ USB device closed");
+        } else {
+            ESP_LOGW(TAG, "Failed to close USB device: %s", esp_err_to_name(ret));
+        }
+        dev_hdl = NULL;
+    }
+
+    /* Step 2: Unmount VFS if mounted */
+    if (vfs_handle != NULL) {
+        ESP_LOGI(TAG, "Unmounting USB drive...");
+        esp_err_t ret = msc_host_vfs_unregister(vfs_handle);
+        if (ret == ESP_OK) {
+            ESP_LOGI(TAG, "✓ USB drive unmounted");
+        } else {
+            ESP_LOGW(TAG, "Failed to unmount USB drive: %s", esp_err_to_name(ret));
+        }
+        vfs_handle = NULL;
+    }
+
+    /* Step 3: Uninstall MSC device */
+    if (msc_device != NULL) {
+        ESP_LOGI(TAG, "Uninstalling MSC device...");
+        esp_err_t ret = msc_host_uninstall_device(msc_device);
+        if (ret == ESP_OK) {
+            ESP_LOGI(TAG, "✓ MSC device uninstalled");
+        } else {
+            ESP_LOGW(TAG, "Failed to uninstall MSC device: %s", esp_err_to_name(ret));
+        }
+        msc_device = NULL;
+    }
+
+    /* Step 4: Uninstall MSC driver */
     if (msc_initialized) {
         ESP_LOGI(TAG, "Uninstalling MSC driver...");
         esp_err_t ret = msc_host_uninstall();
@@ -422,21 +515,123 @@ esp_err_t usb_host_deinit(void)
         }
     }
 
-    /* Uninstall USB Host library */
-    esp_err_t ret = usb_host_uninstall();
-    if (ret != ESP_OK) {
-        ESP_LOGE(TAG, "Failed to uninstall USB Host library: %s", esp_err_to_name(ret));
-        return ret;
+    /* Step 5: Signal client task to exit (but keep library task running) */
+    ESP_LOGI(TAG, "Stopping USB Host client task...");
+    tasks_should_exit = true;
+
+    /* Step 6: Wait for client task to exit (max 2 seconds) */
+    int wait_count = 0;
+    while (client_task_hdl != NULL && wait_count < 200) {
+        vTaskDelay(pdMS_TO_TICKS(10));
+        wait_count++;
     }
 
-    /* Delete eject mutex */
+    if (client_task_hdl != NULL) {
+        ESP_LOGW(TAG, "Client task did not exit gracefully, forcing deletion");
+        vTaskDelete(client_task_hdl);
+        client_task_hdl = NULL;
+    } else {
+        ESP_LOGI(TAG, "✓ USB Host client task stopped");
+    }
+
+    /* Step 7: Deregister USB Host client */
+    if (client_hdl != NULL) {
+        ESP_LOGI(TAG, "Deregistering USB Host client...");
+        esp_err_t ret = usb_host_client_deregister(client_hdl);
+        if (ret == ESP_OK) {
+            ESP_LOGI(TAG, "✓ USB Host client deregistered");
+
+            /* Wait for library task to process NO_CLIENTS event */
+            ESP_LOGI(TAG, "Waiting for library to process client deregistration...");
+            EventBits_t bits = xEventGroupWaitBits(
+                usb_host_event_group,
+                USB_HOST_NO_CLIENTS_BIT,
+                pdTRUE,  /* Clear bit after waiting */
+                pdFALSE, /* Wait for any bit */
+                pdMS_TO_TICKS(2000)  /* 2 second timeout */
+            );
+
+            if (bits & USB_HOST_NO_CLIENTS_BIT) {
+                ESP_LOGI(TAG, "✓ Library processed client deregistration");
+            } else {
+                ESP_LOGW(TAG, "Timeout waiting for NO_CLIENTS event");
+            }
+        } else {
+            ESP_LOGW(TAG, "Failed to deregister USB Host client: %s", esp_err_to_name(ret));
+        }
+        client_hdl = NULL;
+    }
+
+    /* Step 8: Free all devices (library task must still be running to process this) */
+    ESP_LOGI(TAG, "Freeing all USB devices...");
+    esp_err_t ret = usb_host_device_free_all();
+    if (ret == ESP_OK) {
+        ESP_LOGI(TAG, "✓ All USB devices freed immediately");
+    } else if (ret == ESP_ERR_NOT_FINISHED) {
+        ESP_LOGI(TAG, "Waiting for library task to free all devices...");
+        /* Wait for library task to process device freeing and signal USB_HOST_LIB_EVENT_FLAGS_ALL_FREE */
+        EventBits_t bits = xEventGroupWaitBits(
+            usb_host_event_group,
+            USB_HOST_ALL_DEVICES_FREED_BIT,
+            pdTRUE,  /* Clear bit after waiting */
+            pdFALSE, /* Wait for any bit */
+            pdMS_TO_TICKS(2000)  /* 2 second timeout */
+        );
+
+        if (bits & USB_HOST_ALL_DEVICES_FREED_BIT) {
+            ESP_LOGI(TAG, "✓ All USB devices freed");
+        } else {
+            ESP_LOGW(TAG, "Timeout waiting for devices to be freed");
+        }
+    }
+
+    /* Step 9: Signal library task to exit */
+    ESP_LOGI(TAG, "Signaling library task to exit...");
+    lib_task_should_exit = true;
+
+    /* Step 10: Wait for library task to exit */
+    ESP_LOGI(TAG, "Waiting for library task to exit...");
+    wait_count = 0;
+    while (lib_task_hdl != NULL && wait_count < 200) {
+        vTaskDelay(pdMS_TO_TICKS(10));
+        wait_count++;
+    }
+
+    if (lib_task_hdl != NULL) {
+        ESP_LOGW(TAG, "Library task did not exit gracefully, forcing deletion");
+        vTaskDelete(lib_task_hdl);
+        lib_task_hdl = NULL;
+    } else {
+        ESP_LOGI(TAG, "✓ USB Host library task exited");
+    }
+
+    /* Step 11: Uninstall USB Host library (after library task has exited) */
+    ESP_LOGI(TAG, "Uninstalling USB Host library...");
+    ret = usb_host_uninstall();
+    if (ret == ESP_OK) {
+        ESP_LOGI(TAG, "✓ USB Host library uninstalled");
+    } else {
+        ESP_LOGW(TAG, "Failed to uninstall USB Host library: %s", esp_err_to_name(ret));
+    }
+
+    /* Step 12: Delete event group */
+    if (usb_host_event_group != NULL) {
+        vEventGroupDelete(usb_host_event_group);
+        usb_host_event_group = NULL;
+    }
+
+    /* Step 13: Delete eject mutex */
     if (eject_mutex != NULL) {
         vSemaphoreDelete(eject_mutex);
         eject_mutex = NULL;
     }
 
+    /* Step 14: Reset state variables */
     usb_host_initialized = false;
     usb_device_connected = false;
+    dev_addr = 0;
+    tasks_should_exit = false;
+    lib_task_should_exit = false;
 
     ESP_LOGI(TAG, "✓ USB Host deinitialized successfully");
 
