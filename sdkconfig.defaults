@@ -34,23 +34,27 @@ CONFIG_USB_HOST_HUB_REQUIRED=n
 CONFIG_ESP_INT_WDT_TIMEOUT_MS=800
 CONFIG_ESP_TASK_WDT_TIMEOUT_S=10
 
-# TinyUSB Configuration
-CONFIG_TINYUSB=y
+# TinyUSB Configuration (esp_tinyusb component)
+# NOTE: TinyUSB is ONLY used for Device mode
+# Host mode uses separate ESP-IDF USB Host library
 CONFIG_TINYUSB_TASK_STACK_SIZE=4096
 CONFIG_TINYUSB_TASK_PRIORITY=18
 
-# USB Host Configuration
-CONFIG_TINYUSB_HOST=y
-CONFIG_TINYUSB_HOST_MSC=y
-CONFIG_TINYUSB_HOST_HID=n
-CONFIG_TINYUSB_HOST_CDC=n
-CONFIG_TINYUSB_HOST_VENDOR=n
+# USB Device MSC Configuration
+CONFIG_TINYUSB_MSC_ENABLED=y
+CONFIG_TINYUSB_MSC_BUFSIZE=512
+CONFIG_TINYUSB_MSC_MOUNT_PATH="/data"
 
-# USB Device Configuration
-CONFIG_TINYUSB_DEVICE=y
-CONFIG_TINYUSB_DEVICE_MSC=y
-CONFIG_TINYUSB_DEVICE_CDC=n
-CONFIG_TINYUSB_DEVICE_HID=n
+# FAT Format Configuration (use FAT12 for small partitions <256KB)
+# CONFIG_TINYUSB_FAT_FORMAT_ANY is not set
+# CONFIG_TINYUSB_FAT_FORMAT_FAT32 is not set
+CONFIG_TINYUSB_FAT_FORMAT_SFD=y
+
+# ============================================================================
+# WEAR LEVELING CONFIGURATION
+# ============================================================================
+# Set sector size to 512 bytes to match TinyUSB MSC expectations
+CONFIG_WL_SECTOR_SIZE=512
 
 # ============================================================================
 # FILESYSTEM CONFIGURATION
@@ -73,6 +77,9 @@ CONFIG_SPIFFS_PAGE_CHECK=y
 # FREERTOS CONFIGURATION
 # ============================================================================
 CONFIG_ESP_MAIN_TASK_STACK_SIZE=8192
+CONFIG_FREERTOS_TIMER_TASK_STACK_DEPTH=4096
+CONFIG_ESP_TIMER_TASK_STACK_SIZE=3584
+CONFIG_ESP_IPC_TASK_STACK_SIZE=2048
 
 # ============================================================================
 # LOGGING CONFIGURATION

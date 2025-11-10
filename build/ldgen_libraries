@@ -159,9 +159,13 @@ C:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/build/esp-idf/touch_ele
 C:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/build/esp-idf/usb/libusb.a
 C:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/build/esp-idf/wifi_provisioning/libwifi_provisioning.a
 C:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/build/esp-idf/json/libjson.a
-C:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/build/esp-idf/espressif__usb_host_msc/libespressif__usb_host_msc.a
+C:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/build/esp-idf/espressif__tinyusb/libespressif__tinyusb.a
+C:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/build/esp-idf/espressif__esp_tinyusb/libespressif__esp_tinyusb.a
 C:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/build/esp-idf/fatfs/libfatfs.a
+C:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/build/esp-idf/espressif__tinyusb/libespressif__tinyusb.a
 C:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/build/esp-idf/usb/libusb.a
+C:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/build/esp-idf/espressif__usb_host_msc/libespressif__usb_host_msc.a
 C:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/build/esp-idf/main/libmain.a
 C:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/build/esp-idf/spiffs/libspiffs.a
+C:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/build/esp-idf/espressif__esp_tinyusb/libespressif__esp_tinyusb.a
 C:/Users/Abdul/Documents/GitHub/esp32s3-michael-usb-host/build/esp-idf/espressif__usb_host_msc/libespressif__usb_host_msc.a

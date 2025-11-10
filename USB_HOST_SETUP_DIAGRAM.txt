@@ -1,0 +1,276 @@
+=============================================================================
+ESP32-S3 USB HOST MODE - HARDWARE SETUP DIAGRAM
+=============================================================================
+
+CORRECT SETUP (USB Host Mode - Current Firmware):
+-------------------------------------------------
+
+    ┌──────────────┐                    ┌─────────────────────┐
+    │   Computer   │                    │     ESP32-S3        │
+    │              │                    │                     │
+    │              │  USB Cable         │  ┌───────────────┐  │
+    │  USB Port ───┼────────────────────┼──┤ Debug USB Port│  │
+    │              │  (Power + Serial)  │  │ (USB-Serial-  │  │
+    │              │                    │  │  JTAG)        │  │
+    │              │                    │  └───────────────┘  │
+    │              │                    │                     │
+    │              │                    │  ┌───────────────┐  │
+    │              │                    │  │ USB-OTG Port  │  │
+    │              │                    │  │ (GPIO 19/20)  │  │
+    │              │                    │  └───────┬───────┘  │
+    │              │                    │          │          │
+    └──────────────┘                    └──────────┼──────────┘
+                                                   │
+                                                   │ USB Cable
+                                                   │
+                                            ┌──────▼──────┐
+                                            │ USB Flash   │
+                                            │   Drive     │
+                                            │             │
+                                            └─────────────┘
+
+WHAT HAPPENS:
+- Computer provides power and serial monitor to ESP32-S3
+- Computer sees ESP32-S3 as CDC device (COM port) - NORMAL!
+- ESP32-S3 controls USB flash drive via USB-OTG port
+- ESP32-S3 formats, copies files, and ejects the flash drive
+- Firmware operates in USB HOST mode
+
+
+INCORRECT SETUP (What Michael might be doing):
+-----------------------------------------------
+
+    ┌──────────────┐
+    │   Computer   │
+    │              │
+    │              │  USB Cable
+    │  USB Port ───┼────────────────────┐
+    │              │                    │
+    │              │                    │
+    └──────────────┘                    │
+                                        │
+                                 ┌──────▼──────────┐
+                                 │     ESP32-S3    │
+                                 │                 │
+                                 │  Debug USB Port │
+                                 │                 │
+                                 │  USB-OTG Port   │ ← No USB drive connected!
+                                 │  (Empty)        │
+                                 │                 │
+                                 └─────────────────┘
+
+PROBLEM:
+- No USB flash drive connected to ESP32-S3
+- ESP32-S3 waiting for USB device on USB-OTG port
+- Computer only sees CDC device (serial port)
+- Firmware cannot operate without USB flash drive
+
+
+=============================================================================
+ESP32-S3 USB INTERFACES EXPLAINED
+=============================================================================
+
+The ESP32-S3 has TWO separate USB interfaces:
+
+1. USB-Serial-JTAG (Built-in Debug Interface)
+   ┌─────────────────────────────────────────┐
+   │ Purpose: Programming, Debugging, Logs   │
+   │ Pins: GPIO 19, GPIO 20                  │
+   │ Appears as: CDC device (COM port)       │
+   │ Used for: Serial monitor (PuTTY)        │
+   │ Always active when connected to PC      │
+   └─────────────────────────────────────────┘
+
+2. USB-OTG (USB Host/Device Interface)
+   ┌─────────────────────────────────────────┐
+   │ Purpose: USB Host or USB Device         │
+   │ Pins: GPIO 19, GPIO 20 (shared!)        │
+   │ Current mode: USB HOST                  │
+   │ Used for: Controlling USB flash drives  │
+   │ Requires: OTG resistor shorted          │
+   └─────────────────────────────────────────┘
+
+NOTE: Both interfaces share GPIO 19/20, but serve different purposes!
+
+
+=============================================================================
+USB HOST MODE vs USB DEVICE MODE
+=============================================================================
+
+USB HOST MODE (Current Firmware):
+----------------------------------
+    ESP32-S3 (HOST)  ←→  USB Flash Drive (DEVICE)
+         ↓
+    Controls the flash drive
+    Formats, copies files, ejects
+
+
+USB DEVICE MODE (Not implemented):
+-----------------------------------
+    Computer (HOST)  ←→  ESP32-S3 (DEVICE)
+         ↓
+    ESP32-S3 appears as USB drive
+    Computer can read/write files
+
+
+=============================================================================
+WORKFLOW VISUALIZATION
+=============================================================================
+
+Step 1: Power On
+----------------
+    Computer ──[USB]──→ ESP32-S3 (Powered, Serial Active)
+                             ↓
+                        LED: Green slow blink (IDLE)
+                             ↓
+                        Serial: "Waiting for USB device..."
+
+
+Step 2: Insert USB Drive
+-------------------------
+    Computer ──[USB]──→ ESP32-S3 ──[USB-OTG]──→ USB Flash Drive
+                             ↓
+                        LED: Cyan fast blink (PREPARE)
+                             ↓
+                        Serial: "USB device detected"
+
+
+Step 3: Format (if needed)
+---------------------------
+                        ESP32-S3
+                             ↓
+                        LED: Cyan fast blink (FORMAT)
+                             ↓
+                        Serial: "Formatting with label MICHAEL-USB"
+
+
+Step 4: Copy Files
+-------------------
+                        ESP32-S3
+                             ↓
+                        LED: Magenta blink (COPY)
+                             ↓
+                        Serial: "Copying 5 files..."
+                             ↓
+                        Serial: "✓ Files copied successfully"
+
+
+Step 5: Sync
+------------
+                        ESP32-S3
+                             ↓
+                        LED: Magenta blink (SYNC)
+                             ↓
+                        Serial: "Syncing filesystem..."
+
+
+Step 6: Eject
+-------------
+                        ESP32-S3
+                             ↓
+                        LED: Magenta blink (EJECT)
+                             ↓
+                        Serial: "Safe Eject: Starting..."
+                        Serial: "✓ Safe Eject: COMPLETE"
+
+
+Step 7: Success
+---------------
+                        ESP32-S3
+                             ↓
+                        LED: Green solid 2s (SUCCESS)
+                             ↓
+                        Serial: "USB drive can now be safely removed"
+
+
+Step 8: Remove USB Drive
+-------------------------
+    Computer ──[USB]──→ ESP32-S3 (USB-OTG port empty)
+                             ↓
+                        LED: Green slow blink (IDLE)
+                             ↓
+                        Serial: "Waiting for next USB drive..."
+
+
+Step 9: Insert Next USB Drive
+------------------------------
+    Repeat from Step 2 →
+
+
+=============================================================================
+TROUBLESHOOTING
+=============================================================================
+
+SYMPTOM: "I see CDC device when connecting to computer"
+CAUSE: USB-Serial-JTAG interface (normal!)
+SOLUTION: This is expected. Connect USB flash drive to USB-OTG port.
+
+SYMPTOM: "Files get copied but eject doesn't work"
+CAUSE: Misunderstanding - eject works on flash drive, not ESP32
+SOLUTION: Check serial output for eject messages. If present, it's working!
+
+SYMPTOM: "Cannot switch to MSC device mode"
+CAUSE: Firmware is USB HOST mode only
+SOLUTION: This is correct per requirements. No change needed.
+
+SYMPTOM: "USB flash drive not detected"
+CAUSE: OTG resistor not shorted, or wrong USB port
+SOLUTION: 
+  1. Short OTG resistor/jumper on board
+  2. Connect flash drive to USB-OTG port (not debug port)
+  3. Check serial output for detection messages
+
+
+=============================================================================
+HARDWARE CHECKLIST
+=============================================================================
+
+☐ ESP32-S3 connected to computer via debug USB port
+☐ PuTTY/Terminal open on correct COM port (115200 baud)
+☐ OTG resistor/jumper shorted on ESP32-S3 board
+☐ USB flash drive connected to ESP32-S3 USB-OTG port (NOT to computer)
+☐ 5V power supply capable of powering USB devices
+☐ LED blinking (confirms firmware is running)
+☐ Serial output showing "Waiting for USB device..."
+
+
+=============================================================================
+EXPECTED SERIAL OUTPUT
+=============================================================================
+
+I (314) board_pins: Board: Unknown (Default: GPIO48)
+I (324) led: LED initialized successfully
+I (334) usb_host: Initializing USB Host...
+I (344) workflow: Workflow automation initialized
+I (354) app: ✓ Workflow automation initialized successfully
+I (364) app: 🚀 WORKFLOW AUTOMATION ACTIVE
+I (374) app: Insert USB drive to start automated workflow:
+I (384) app:   1. Auto-format (if needed)
+I (394) app:   2. Copy files from SPIFFS
+I (404) app:   3. Safe eject
+I (414) app:   4. Wait for next USB drive
+
+← Insert USB flash drive here
+
+I (1234) usb_host: USB device detected (address 1)
+I (2345) usb_host: USB drive mounted at /usb
+I (2356) workflow: Workflow started
+I (2367) usb_host: Copying all files from /spiffs to /usb
+I (2378) usb_host: ✓ File copied successfully: README.TXT
+I (2389) usb_host: ✓ File copied successfully: CONFIG.INI
+I (2400) usb_host: ✓ File copied successfully: DATA.BIN
+I (2411) usb_host: ✓ File copied successfully: LOG.TXT
+I (2422) usb_host: ✓ File copied successfully: TEST.DAT
+I (2433) usb_host: ✓ Files copied successfully (5 files)
+I (2444) usb_host: Safe Eject: Starting...
+I (2455) usb_host: ✓ Safe Eject: COMPLETE
+I (2466) usb_host: USB drive can now be safely removed
+I (4466) workflow: Waiting for next USB drive...
+
+← Remove USB flash drive and insert next one
+
+
+=============================================================================
+END OF DIAGRAM
+=============================================================================
+

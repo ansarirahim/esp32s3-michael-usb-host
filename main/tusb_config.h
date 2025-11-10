@@ -44,6 +44,11 @@
 #define BOARD_TUD_MAX_SPEED   OPT_MODE_DEFAULT_SPEED
 #endif
 
+// RHPort mode configuration
+// IMPORTANT: TinyUSB is ONLY used for Device mode
+// Host mode uses separate ESP-IDF USB Host library
+#define CFG_TUSB_RHPORT0_MODE   OPT_MODE_DEVICE
+
 //--------------------------------------------------------------------
 // Common Configuration
 //--------------------------------------------------------------------
@@ -66,11 +71,11 @@
 #define CFG_TUSB_DEBUG        0
 #endif
 
-// Enable Device stack (disabled - using host mode)
-#define CFG_TUD_ENABLED       0
+// Enable Device stack ONLY (for USB MSC device mode)
+#define CFG_TUD_ENABLED       1
 
-// Enable Host stack
-#define CFG_TUH_ENABLED       1
+// Disable Host stack (we use ESP-IDF USB Host library instead)
+#define CFG_TUH_ENABLED       0
 
 // Default is max speed that hardware controller could support with on-chip PHY
 #define CFG_TUD_MAX_SPEED     BOARD_TUD_MAX_SPEED
@@ -114,44 +119,6 @@
 
 // MSC Buffer size of Device Mass storage
 #define CFG_TUD_MSC_EP_BUFSIZE   512
-
-//--------------------------------------------------------------------
-// HOST CONFIGURATION
-//--------------------------------------------------------------------
-
-// Default is max speed that hardware controller could support with on-chip PHY
-#define CFG_TUH_MAX_SPEED     BOARD_TUD_MAX_SPEED
-
-#define CFG_TUH_HUB                 1
-#define CFG_TUH_CDC                 0  // Disabled - not needed for USB drives
-#define CFG_TUH_HID                 0  // Disabled - not needed for USB drives
-#define CFG_TUH_MSC                 1  // Enabled - for USB Mass Storage (drives)
-#define CFG_TUH_VENDOR              0
-
-// max device support (excluding hub device)
-#define CFG_TUH_DEVICE_MAX          (CFG_TUH_HUB ? 4 : 1) // hub typically has 4 ports
-
-//------------- HID -------------//
-#define CFG_TUH_HID_EPIN_BUFSIZE    64
-#define CFG_TUH_HID_EPOUT_BUFSIZE   64
-
-//------------- MSC -------------//
-// Buffer size of Host Mass Storage
-#define CFG_TUH_MSC_MAXLUN          1
-
-//------------- CDC -------------//
-// Set Line Control state on enumeration/mounted:
-// DTR ( bit 0), RTS (bit 1)
-#define CFG_TUH_CDC_LINE_CONTROL_ON_ENUM    0x03
-
-// Set Line Coding on enumeration/mounted, value for 115200 baud rate
-#define CFG_TUH_CDC_LINE_CODING_ON_ENUM     { 115200, 0, 0, 8 }
-
-// RX FIFO size
-#define CFG_TUH_CDC_RX_BUFSIZE              64
-
-// TX FIFO size
-#define CFG_TUH_CDC_TX_BUFSIZE              64
 
 #ifdef __cplusplus
  }

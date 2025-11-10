@@ -1,0 +1,19 @@
+idf_component_register(
+    SRCS
+        "lpc21isp.c"
+        "lpcprog.c"
+        "lpcterm.c"
+        "adprog.c"
+        "esp32_serial_adapter.c"
+        "lpc21isp_esp32_wrapper.c"
+    INCLUDE_DIRS
+        "."
+        "include"
+    PRIV_INCLUDE_DIRS
+        "."
+    REQUIRES
+        log
+        freertos
+        usb_host_cdc_acm
+)
+

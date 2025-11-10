@@ -15,6 +15,7 @@ idf_component_register(
         "workflow.c"
         "button.c"
         "usb_mode_manager.c"
+        "usb_mode_nvs.c"
     INCLUDE_DIRS
         "."
     REQUIRES
@@ -25,6 +26,8 @@ idf_component_register(
         "spiffs"
         "esp_timer"
         "wear_levelling"
+        "espressif__esp_tinyusb"
+        "nvs_flash"
 )
 
 # Add main directory to include path for tinyusb config

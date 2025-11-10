@@ -1,0 +1,84 @@
+Hi Michael,
+
+Thank you for testing! Let me clarify what's happening:
+
+=== CDC Device is Normal ===
+
+The CDC device you see when connecting ESP32-S3 to your computer is the USB-Serial-JTAG interface (for debugging/serial monitor). This is NORMAL and EXPECTED!
+
+The firmware is designed for USB HOST mode, not USB DEVICE mode:
+- ESP32-S3 = USB Host (like a computer)
+- USB Flash Drive = USB Device (controlled by ESP32)
+
+=== Hardware Setup ===
+
+You need TWO USB connections:
+
+1. ESP32-S3 Debug Port → Computer
+   - Provides power and serial monitor
+   - This is the CDC device you see
+   
+2. ESP32-S3 USB-OTG Port → USB Flash Drive
+   - This is where the firmware operates
+   - Formats, copies files, ejects the drive
+
+=== About "Eject Not Working" ===
+
+The eject function ejects the USB FLASH DRIVE from the ESP32-S3, not the ESP32-S3 from your computer!
+
+If you see these messages in serial output, eject IS working:
+```
+I (xxxxx) usb_host: Safe Eject: Starting...
+I (xxxxx) usb_host: ✓ Filesystem sync delay completed
+I (xxxxx) usb_host: ✓ VFS unmounted
+I (xxxxx) usb_host: ✓ MSC device uninstalled
+I (xxxxx) usb_host: ✓ USB device closed
+I (xxxxx) usb_host: ✓ Safe Eject: COMPLETE
+```
+
+=== About "Files Get Copied" ===
+
+Great! This confirms USB Host mode is working correctly!
+
+=== Workflow ===
+
+1. Connect ESP32-S3 to computer (for power + serial monitor)
+2. Open PuTTY on COM port
+3. Insert USB flash drive into ESP32-S3 USB-OTG port
+4. ESP32 automatically: detects → formats → copies → ejects
+5. Remove USB flash drive from ESP32
+6. Check files on computer (should have 5 files + "MICHAEL-USB" label)
+7. Insert next USB drive into ESP32 → repeat
+
+=== MSC Device Mode ===
+
+The firmware is USB HOST mode (ESP32 controls flash drives).
+It cannot switch to MSC DEVICE mode (ESP32 acts as flash drive).
+
+This is correct per your requirements - you wanted the ESP32 to format and copy files TO USB drives, not to act as a USB drive itself.
+
+=== Critical Question ===
+
+Did you short the OTG resistor on your board?
+
+Most ESP32-S3 boards have a solder jumper labeled "OTG" or "HOST" that must be shorted for USB Host mode to work properly.
+
+=== Next Steps ===
+
+Could you please share the complete PuTTY log? I want to verify:
+1. USB flash drive is being detected
+2. Files are being copied successfully
+3. Eject is completing properly
+4. Workflow is looping correctly
+
+Also, please confirm:
+- USB flash drive is connected to ESP32-S3 USB-OTG port (not to computer)
+- OTG resistor is shorted on your board
+
+Best regards,
+Abdul
+
+---
+
+P.S. I've created a detailed technical document (RESPONSE_TO_MICHAEL_ISSUE.md) explaining the USB Host vs USB Device modes if you need more details.
+

@@ -5,3 +5,5 @@ dependencies:
     version: '>=5.5.0'
   ## USB Host MSC (Mass Storage Class) driver
   espressif/usb_host_msc: "^1.1.4"
+  ## TinyUSB for USB Device MSC functionality
+  espressif/esp_tinyusb: "^1.0.0"

@@ -1,0 +1,5 @@
+#ignore all build files
+build/*
+
+#ignore managed_components
+managed_components/*

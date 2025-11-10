@@ -21,13 +21,16 @@
 #include "esp_system.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
+#include "nvs.h"
+#include "nvs_flash.h"
 #include "board_pins.h"
 #include "led_control.h"
 #include "usb_host.h"
 #include "internal_storage.h"
 #include "workflow.h"
-#include "button.h"
 #include "usb_mode_manager.h"
+#include "usb_mode_nvs.h"
+#include "usb_device.h"
 
 static const char *TAG = "app";
 
@@ -50,22 +53,53 @@ static int tests_failed = 0;
     } while(0)
 
 /**
- * @brief Button triple-press callback (mode switch trigger)
+ * @brief Toggle USB mode on every reset
+ *
+ * This function reads the current mode from NVS, toggles it, and saves the new mode.
+ * This allows the user to switch modes by simply pressing the RESET button.
+ *
+ * Sequence:
+ * - 1st Reset: Device Mode (default)
+ * - 2nd Reset: Host Mode
+ * - 3rd Reset: Device Mode
+ * - 4th Reset: Host Mode
+ * ... and so on
+ *
+ * Based on Michael's reference implementation.
  */
-static void button_triple_press_callback(void* user_data)
+static esp_err_t toggle_mode_on_reset(usb_mode_t *boot_mode)
 {
+    usb_mode_t current_mode;
+    esp_err_t ret = usb_mode_nvs_read(&current_mode);
+
+    if (ret == ESP_ERR_NVS_NOT_FOUND) {
+        /* First boot - default to Device mode */
+        ESP_LOGI(TAG, "First boot detected, setting default mode: DEVICE");
+        *boot_mode = USB_MODE_DEVICE;
+        usb_mode_nvs_write(USB_MODE_DEVICE);
+        return ESP_OK;
+    } else if (ret != ESP_OK) {
+        ESP_LOGE(TAG, "Failed to read mode from NVS: %s", esp_err_to_name(ret));
+        return ret;
+    }
+
+    /* Toggle mode for next boot */
+    usb_mode_t next_mode = (current_mode == USB_MODE_HOST) ? USB_MODE_DEVICE : USB_MODE_HOST;
+    ret = usb_mode_nvs_write(next_mode);
+    if (ret != ESP_OK) {
+        ESP_LOGE(TAG, "Failed to write new mode to NVS: %s", esp_err_to_name(ret));
+        return ret;
+    }
+
+    /* Boot in current mode (next reset will use the toggled mode) */
+    *boot_mode = current_mode;
+
     ESP_LOGI(TAG, "=================================================");
-    ESP_LOGI(TAG, "Triple-press detected! Toggling USB mode...");
+    ESP_LOGI(TAG, "Current boot mode: %s", current_mode == USB_MODE_HOST ? "HOST" : "DEVICE");
+    ESP_LOGI(TAG, "Next boot mode: %s (after reset)", next_mode == USB_MODE_HOST ? "HOST" : "DEVICE");
     ESP_LOGI(TAG, "=================================================");
 
-    /* Toggle USB mode */
-    esp_err_t ret = usb_mode_manager_toggle();
-    if (ret == ESP_OK) {
-        ESP_LOGI(TAG, "✓ Mode switched to: %s",
-                 usb_mode_manager_get_mode_name(usb_mode_manager_get_mode()));
-    } else {
-        ESP_LOGE(TAG, "✗ Mode switch failed: %s", esp_err_to_name(ret));
-    }
+    return ESP_OK;
 }
 
 /**
@@ -98,100 +132,127 @@ void app_main(void)
     }
     ESP_LOGI(TAG, "✓ LED Control initialized successfully");
 
-    /* Phase 5 - Initialize USB Mode Manager (default: Host mode) */
+    /* Phase 2 - Initialize NVS and Toggle Mode on Reset */
     ESP_LOGI(TAG, "=================================================");
-    ESP_LOGI(TAG, "Phase 5: Initializing USB Mode Manager...");
+    ESP_LOGI(TAG, "Phase 2: Initializing NVS and Mode Selection...");
     ESP_LOGI(TAG, "=================================================");
 
-    if (usb_mode_manager_init(USB_MODE_HOST) != ESP_OK) {
-        ESP_LOGE(TAG, "Failed to initialize USB Mode Manager");
+    if (usb_mode_nvs_init() != ESP_OK) {
+        ESP_LOGE(TAG, "Failed to initialize NVS");
         led_control_set_state(LED_STATE_ERROR);
         return;
     }
-    ESP_LOGI(TAG, "✓ USB Mode Manager initialized successfully (mode: %s)",
-             usb_mode_manager_get_mode_name(usb_mode_manager_get_mode()));
 
-    /* Phase 3c - Initialize Internal Storage (SPIFFS) */
-    ESP_LOGI(TAG, "=================================================");
-    ESP_LOGI(TAG, "Phase 3c: Initializing Internal Storage (SPIFFS)...");
-    ESP_LOGI(TAG, "=================================================");
-
-    if (internal_storage_init() != ESP_OK) {
-        ESP_LOGE(TAG, "Failed to initialize internal storage");
+    /* Toggle mode on every reset - NO BUTTON NEEDED! */
+    usb_mode_t boot_mode;
+    if (toggle_mode_on_reset(&boot_mode) != ESP_OK) {
+        ESP_LOGE(TAG, "Failed to toggle mode on reset");
         led_control_set_state(LED_STATE_ERROR);
         return;
     }
-    ESP_LOGI(TAG, "✓ Internal storage initialized successfully");
 
-    /* Create sample files in SPIFFS */
-    ESP_LOGI(TAG, "Creating sample files in SPIFFS...");
-    if (internal_storage_create_samples() != ESP_OK) {
-        ESP_LOGE(TAG, "Failed to create sample files");
-        led_control_set_state(LED_STATE_ERROR);
-        return;
-    }
-    ESP_LOGI(TAG, "✓ Sample files created successfully");
+    /* Phase 4 - Initialize USB in selected mode */
+    ESP_LOGI(TAG, "=================================================");
+    ESP_LOGI(TAG, "Phase 4: Initializing USB Mode: %s", boot_mode == USB_MODE_HOST ? "HOST" : "DEVICE");
+    ESP_LOGI(TAG, "=================================================");
 
-    /* List files in SPIFFS */
-    ESP_LOGI(TAG, "Listing files in SPIFFS:");
-    uint32_t file_count = 0;
-    if (internal_storage_list_files(&file_count) != ESP_OK) {
-        ESP_LOGE(TAG, "Failed to list files");
+    if (boot_mode == USB_MODE_HOST) {
+        /* Initialize USB Host mode */
+        if (usb_host_init() != ESP_OK) {
+            ESP_LOGE(TAG, "Failed to initialize USB Host");
+            led_control_set_state(LED_STATE_ERROR);
+            return;
+        }
+        ESP_LOGI(TAG, "✓ USB Host initialized successfully");
+        led_control_set_state(LED_STATE_IDLE);
+
+        /* Initialize SPIFFS (only in Host mode) */
+        ESP_LOGI(TAG, "=================================================");
+        ESP_LOGI(TAG, "Phase 4a: Initializing Internal Storage (SPIFFS)...");
+        ESP_LOGI(TAG, "=================================================");
+
+        if (internal_storage_init() != ESP_OK) {
+            ESP_LOGE(TAG, "Failed to initialize internal storage");
+            led_control_set_state(LED_STATE_ERROR);
+            return;
+        }
+        ESP_LOGI(TAG, "✓ Internal storage initialized successfully");
     } else {
-        ESP_LOGI(TAG, "✓ Total files in SPIFFS: %lu", file_count);
+        /* Initialize USB Device mode */
+        if (usb_device_init() != ESP_OK) {
+            ESP_LOGE(TAG, "Failed to initialize USB Device");
+            led_control_set_state(LED_STATE_ERROR);
+            return;
+        }
+        ESP_LOGI(TAG, "✓ USB Device initialized successfully");
+        led_control_set_state(LED_STATE_DEVICE_IDLE);
+
+        /* SPIFFS is NOT initialized in Device mode (partition conflict) */
+        ESP_LOGI(TAG, "SPIFFS not initialized (Device mode uses partition for USB storage)");
     }
 
-    /* Phase 4b - Initialize Workflow Automation */
-    ESP_LOGI(TAG, "=================================================");
-    ESP_LOGI(TAG, "Phase 4b: Initializing Workflow Automation...");
-    ESP_LOGI(TAG, "=================================================");
+    /* Host mode specific initialization */
+    if (boot_mode == USB_MODE_HOST) {
+        /* Create sample files in SPIFFS */
+        ESP_LOGI(TAG, "Creating sample files in SPIFFS...");
+        if (internal_storage_create_samples() != ESP_OK) {
+            ESP_LOGE(TAG, "Failed to create sample files");
+            led_control_set_state(LED_STATE_ERROR);
+            return;
+        }
+        ESP_LOGI(TAG, "✓ Sample files created successfully");
 
-    workflow_config_t workflow_config = {
-        .auto_format = true,    /* Auto-format on mount failure */
-        .auto_copy = true,      /* Auto-copy files after mount */
-        .auto_eject = true,     /* Auto-eject after copy */
-        .loop_enabled = true,   /* Loop for multiple USB drives */
-    };
+        /* List files in SPIFFS */
+        ESP_LOGI(TAG, "Listing files in SPIFFS:");
+        uint32_t file_count = 0;
+        if (internal_storage_list_files(&file_count) != ESP_OK) {
+            ESP_LOGE(TAG, "Failed to list files");
+        } else {
+            ESP_LOGI(TAG, "✓ Total files in SPIFFS: %lu", file_count);
+        }
 
-    if (workflow_init(&workflow_config) != ESP_OK) {
-        ESP_LOGE(TAG, "Failed to initialize workflow automation");
-        led_control_set_state(LED_STATE_ERROR);
-        return;
-    }
-    ESP_LOGI(TAG, "✓ Workflow automation initialized successfully");
+        /* Phase 4b - Initialize Workflow Automation */
+        ESP_LOGI(TAG, "=================================================");
+        ESP_LOGI(TAG, "Phase 4b: Initializing Workflow Automation...");
+        ESP_LOGI(TAG, "=================================================");
 
-    /* Phase 5 - Initialize Button Handler (Triple-Press Mode Switching) */
-    ESP_LOGI(TAG, "=================================================");
-    ESP_LOGI(TAG, "Phase 5: Initializing Button Handler...");
-    ESP_LOGI(TAG, "=================================================");
+        workflow_config_t workflow_config = {
+            .auto_format = true,    /* Auto-format on mount failure */
+            .auto_copy = true,      /* Auto-copy files after mount */
+            .auto_eject = true,     /* Auto-eject after copy */
+            .loop_enabled = true,   /* Loop for multiple USB drives */
+        };
 
-    button_config_t button_config = {
-        .gpio_num = PIN_BOOT1,  /* GPIO 0 - BOOT button */
-        .debounce_ms = 50,
-        .triple_press_window_ms = 2000,
-        .min_inter_press_ms = 150,
-        .callback = button_triple_press_callback,
-        .user_data = NULL,
-    };
-
-    if (button_init(&button_config) != ESP_OK) {
-        ESP_LOGW(TAG, "Failed to initialize button handler (non-critical)");
-        /* Continue anyway - button is optional */
+        if (workflow_init(&workflow_config) != ESP_OK) {
+            ESP_LOGE(TAG, "Failed to initialize workflow automation");
+            led_control_set_state(LED_STATE_ERROR);
+            return;
+        }
+        ESP_LOGI(TAG, "✓ Workflow automation initialized successfully");
     } else {
-        ESP_LOGI(TAG, "✓ Button handler initialized successfully");
-        ESP_LOGI(TAG, "Triple-press BOOT button to toggle USB mode (Host <-> Device)");
+        /* Device mode - no workflow automation */
+        ESP_LOGI(TAG, "Workflow automation not initialized (Device mode)");
     }
 
+    /* Phase 5 - Mode Switching Instructions */
     ESP_LOGI(TAG, "=================================================");
-    ESP_LOGI(TAG, "Running Automated Tests");
+    ESP_LOGI(TAG, "MODE SWITCHING: Press RESET button to toggle modes");
+    ESP_LOGI(TAG, "Current mode: %s", boot_mode == USB_MODE_HOST ? "HOST (Green LED)" : "DEVICE (Blue LED)");
+    ESP_LOGI(TAG, "Next reset: %s", boot_mode == USB_MODE_HOST ? "DEVICE (Blue LED)" : "HOST (Green LED)");
     ESP_LOGI(TAG, "=================================================");
 
-    /* ========================================================================
-     * AUTOMATED TESTS - Phase 1 & 2a
-     * ======================================================================== */
+    /* Run tests only in Host mode */
+    if (boot_mode == USB_MODE_HOST) {
+        ESP_LOGI(TAG, "=================================================");
+        ESP_LOGI(TAG, "Running Automated Tests");
+        ESP_LOGI(TAG, "=================================================");
 
-    ESP_LOGI(TAG, "Test 1: USB Host Initialization");
-    TEST_ASSERT(usb_host_is_initialized() == true, "USB Host should be initialized");
+        /* ========================================================================
+         * AUTOMATED TESTS - Phase 1 & 2a
+         * ======================================================================== */
+
+        ESP_LOGI(TAG, "Test 1: USB Host Initialization");
+        TEST_ASSERT(usb_host_is_initialized() == true, "USB Host should be initialized");
 
     ESP_LOGI(TAG, "Test 2: USB Device Detection (waiting 10 seconds)");
     ESP_LOGI(TAG, ">>> Please insert USB drive now <<<");
@@ -253,39 +314,49 @@ void app_main(void)
     ESP_LOGI(TAG, "State: IDLE (Green slow blink)");
     led_control_set_state(LED_STATE_IDLE);
 
-    /* ========================================================================
-     * TEST SUMMARY
-     * ======================================================================== */
+        /* ========================================================================
+         * TEST SUMMARY
+         * ======================================================================== */
 
-    ESP_LOGI(TAG, "=================================================");
-    ESP_LOGI(TAG, "INITIALIZATION COMPLETE");
-    ESP_LOGI(TAG, "=================================================");
-    ESP_LOGI(TAG, "Tests Passed: %d", tests_passed);
-    ESP_LOGI(TAG, "Tests Failed: %d", tests_failed);
-    ESP_LOGI(TAG, "=================================================");
-    ESP_LOGI(TAG, "Phase 1: LED Control - COMPLETE ✓");
-    ESP_LOGI(TAG, "Phase 2a: USB Host Init - COMPLETE ✓");
-    ESP_LOGI(TAG, "Phase 2b: USB MSC Driver - COMPLETE ✓");
-    ESP_LOGI(TAG, "Phase 2c: File Operations - COMPLETE ✓");
-    ESP_LOGI(TAG, "Phase 2d: Safe Eject - COMPLETE ✓");
-    ESP_LOGI(TAG, "Phase 3a: Partition Detection - COMPLETE ✓");
-    ESP_LOGI(TAG, "Phase 3b: Partition Creation - COMPLETE ✓");
-    ESP_LOGI(TAG, "Phase 3c: File Copy (SPIFFS) - COMPLETE ✓");
-    ESP_LOGI(TAG, "Phase 4a: Label Configuration - COMPLETE ✓");
-    ESP_LOGI(TAG, "Phase 4b: Workflow Automation - ACTIVE ✓");
-    ESP_LOGI(TAG, "=================================================");
-    ESP_LOGI(TAG, "🚀 WORKFLOW AUTOMATION ACTIVE");
-    ESP_LOGI(TAG, "=================================================");
-    ESP_LOGI(TAG, "Insert USB drive to start automated workflow:");
-    ESP_LOGI(TAG, "  1. Auto-format (if needed)");
-    ESP_LOGI(TAG, "  2. Copy files from SPIFFS");
-    ESP_LOGI(TAG, "  3. Safe eject");
-    ESP_LOGI(TAG, "  4. Wait for next USB drive");
-    ESP_LOGI(TAG, "=================================================");
+        ESP_LOGI(TAG, "=================================================");
+        ESP_LOGI(TAG, "INITIALIZATION COMPLETE");
+        ESP_LOGI(TAG, "=================================================");
+        ESP_LOGI(TAG, "Tests Passed: %d", tests_passed);
+        ESP_LOGI(TAG, "Tests Failed: %d", tests_failed);
+        ESP_LOGI(TAG, "=================================================");
+        ESP_LOGI(TAG, "Phase 1: LED Control - COMPLETE ✓");
+        ESP_LOGI(TAG, "Phase 2a: USB Host Init - COMPLETE ✓");
+        ESP_LOGI(TAG, "Phase 2b: USB MSC Driver - COMPLETE ✓");
+        ESP_LOGI(TAG, "Phase 2c: File Operations - COMPLETE ✓");
+        ESP_LOGI(TAG, "Phase 2d: Safe Eject - COMPLETE ✓");
+        ESP_LOGI(TAG, "Phase 3a: Partition Detection - COMPLETE ✓");
+        ESP_LOGI(TAG, "Phase 3b: Partition Creation - COMPLETE ✓");
+        ESP_LOGI(TAG, "Phase 3c: File Copy (SPIFFS) - COMPLETE ✓");
+        ESP_LOGI(TAG, "Phase 4a: Label Configuration - COMPLETE ✓");
+        ESP_LOGI(TAG, "Phase 4b: Workflow Automation - ACTIVE ✓");
+        ESP_LOGI(TAG, "=================================================");
+        ESP_LOGI(TAG, "🚀 WORKFLOW AUTOMATION ACTIVE");
+        ESP_LOGI(TAG, "=================================================");
+        ESP_LOGI(TAG, "Insert USB drive to start automated workflow:");
+        ESP_LOGI(TAG, "  1. Auto-format (if needed)");
+        ESP_LOGI(TAG, "  2. Copy files from SPIFFS");
+        ESP_LOGI(TAG, "  3. Safe eject");
+        ESP_LOGI(TAG, "  4. Wait for next USB drive");
+        ESP_LOGI(TAG, "=================================================");
+    } else {
+        /* Device mode - no tests */
+        ESP_LOGI(TAG, "=================================================");
+        ESP_LOGI(TAG, "INITIALIZATION COMPLETE - DEVICE MODE");
+        ESP_LOGI(TAG, "=================================================");
+        ESP_LOGI(TAG, "ESP32-S3 is now a USB Mass Storage Device");
+        ESP_LOGI(TAG, "Connect to PC/Android to access storage partition");
+        ESP_LOGI(TAG, "Press RESET button to switch to HOST mode");
+        ESP_LOGI(TAG, "=================================================");
+    }
 
-    /* Keep application running - Workflow automation handles everything */
+    /* Keep application running */
     while (1) {
-        vTaskDelay(pdMS_TO_TICKS(60000));  /* Sleep 60s - workflow runs in background */
+        vTaskDelay(pdMS_TO_TICKS(60000));  /* Sleep 60s */
     }
 }
 
